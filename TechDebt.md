@@ -9,10 +9,13 @@
 2. Letting other team members know when you start working on something so that others don't do the same work
 3. Testing before pushing
 4. Asking questions if stackoverflow doesn't help
-5. Always pull before working, stash instead of resetting
-6. Checking the zenhub and making sure to move things you finished
-7. Let group know if your going to push so there isn't conflict
-8. Use self explanatory variable names
+5. Always pull before working
+6. Stash instead of resetting
+7. If conflicts occur, meet with the other programmer to discuss merging
+8. Checking the Zenhub and making sure to move things you finished
+9. Let group know if you're going to push so there isn't conflict
+10. Use self explanatory variable names
 
 ### Development Suggestions
 1. Use github desktop client if you're on windows
+2. Try using Pycharm
