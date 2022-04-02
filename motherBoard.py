@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWidgets import *
 
 class Ui_Form(object):
     def setupUi(self, motherBoardGUI):
@@ -32,7 +32,33 @@ class Ui_Form(object):
         self.motherBoard.setPixmap(QtGui.QPixmap("media/IntelMotherBoard.jpg"))
         self.motherBoard.setObjectName("MotherBoard")
 
+        #Opacity effect doesn't work with multiple labels 
+        #Also tried setting opacity 1 to 0 but it doesnt work
+        #Forced to initialize new opacities w/ same values                                      
 
+        self.opacityEffect0 = QGraphicsOpacityEffect()
+        self.opacityEffect0.setOpacity(0.3)
+
+        self.opacityEffect1 = QGraphicsOpacityEffect()
+        self.opacityEffect1.setOpacity(0.3)
+
+        self.opacityEffect2 = QGraphicsOpacityEffect()
+        self.opacityEffect2.setOpacity(0.3)
+
+        self.opacityEffect3 = QGraphicsOpacityEffect()
+        self.opacityEffect3.setOpacity(0.3)
+
+        self.opacityEffect4 = QGraphicsOpacityEffect()
+        self.opacityEffect4.setOpacity(0.3)
+
+        self.opacityEffect5 = QGraphicsOpacityEffect()
+        self.opacityEffect5.setOpacity(0.3)
+
+        self.opacityEffect6 = QGraphicsOpacityEffect()
+        self.opacityEffect6.setOpacity(0.3)
+
+        self.opacityEffect7 = QGraphicsOpacityEffect()
+        self.opacityEffect7.setOpacity(0.3)
 
         #CPU ON LABEL
         self.cpu = QtWidgets.QLabel(motherBoardGUI)
@@ -42,6 +68,7 @@ class Ui_Form(object):
         self.cpu.setMouseTracking(True)
         self.cpu.clear()
         self.cpu.setObjectName("CPU")
+        self.cpu.setGraphicsEffect(self.opacityEffect0)
 
 
         self.cpuCable = QtWidgets.QLabel(motherBoardGUI)
@@ -51,6 +78,8 @@ class Ui_Form(object):
         self.cpuCable.setMouseTracking(True)
         self.cpuCable.clear()
         self.cpuCable.setObjectName("CPU-Cable")
+        self.cpuCable.setGraphicsEffect(self.opacityEffect1)
+
 
         #GPU ON LABEL
         self.gpu = QtWidgets.QLabel(motherBoardGUI)
@@ -60,7 +89,7 @@ class Ui_Form(object):
         self.gpu.setMouseTracking(True)
         self.gpu.clear()
         self.gpu.setObjectName("GPU")
-
+        self.gpu.setGraphicsEffect(self.opacityEffect2)
         
         #RAM STICKS ON LABELS
         self.ram1 = QtWidgets.QLabel(motherBoardGUI)
@@ -70,6 +99,7 @@ class Ui_Form(object):
         self.ram1.setMouseTracking(True)
         self.ram1.clear()
         self.ram1.setObjectName("RamStick1")
+        self.ram1.setGraphicsEffect(self.opacityEffect3)
       
         self.ram2 = QtWidgets.QLabel(motherBoardGUI)
         self.ram2.setStyleSheet("QLabel::hover"
@@ -78,6 +108,7 @@ class Ui_Form(object):
         self.ram2.setMouseTracking(True)
         self.ram2.clear()
         self.ram2.setObjectName("RamStick2")
+        self.ram2.setGraphicsEffect(self.opacityEffect4)
      
         self.ram3 = QtWidgets.QLabel(motherBoardGUI)
         self.ram3.setStyleSheet("QLabel::hover"
@@ -86,7 +117,8 @@ class Ui_Form(object):
         self.ram3.setMouseTracking(True)
         self.ram3.clear()
         self.ram3.setObjectName("RamStick3")
-      
+        self.ram3.setGraphicsEffect(self.opacityEffect5)
+
         self.ram4 = QtWidgets.QLabel(motherBoardGUI)
         self.ram4.setStyleSheet("QLabel::hover"
                                "{ background-color : yellow }")
@@ -94,6 +126,7 @@ class Ui_Form(object):
         self.ram4.setMouseTracking(True)
         self.ram4.clear()
         self.ram4.setObjectName("RamStick4")
+        self.ram4.setGraphicsEffect(self.opacityEffect6)
 
 
         #label 8 is m.2
@@ -103,6 +136,7 @@ class Ui_Form(object):
         self.m2.setGeometry(QtCore.QRect(860, 830, 251, 71))
         self.m2.clear()
         self.m2.setObjectName("M.2 SSD")
+        self.m2.setGraphicsEffect(self.opacityEffect7)
 
 
         self.retranslateUi(motherBoardGUI)
