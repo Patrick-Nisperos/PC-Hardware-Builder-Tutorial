@@ -8,6 +8,7 @@ pytest = "*"
 mypy = "*"
 PyQt5 = "*"
 pyqt5 = "*"
+pyqt5-tools = "*"
 
 [dev-packages]
 
