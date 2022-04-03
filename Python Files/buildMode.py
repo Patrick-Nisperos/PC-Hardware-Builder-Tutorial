@@ -197,20 +197,20 @@ class Ui_MainWindow(object):
         self.opacityEffect7.setOpacity(0.3)
 
         #CPU ON LABEL
-        self.cpu = QtWidgets.QLabel(self.centralwidget)
+        self.cpu = QtWidgets.QLabel(MainWindow)
         self.cpu.setStyleSheet("QLabel::hover"
                                "{ background-color : yellow; }")
-        self.cpu.setGeometry(QtCore.QRect(730, 170, 131, 211))
+        self.cpu.setGeometry(QtCore.QRect(330, 170, 131, 211))
         self.cpu.setMouseTracking(True)
         self.cpu.clear()
         self.cpu.setObjectName("CPU")
         self.cpu.setGraphicsEffect(self.opacityEffect0)
 
 
-        self.cpuCable = QtWidgets.QLabel(self.centralwidget)
+        self.cpuCable = QtWidgets.QLabel(MainWindow)
         self.cpuCable.setStyleSheet("QLabel::hover"
                                    "{ background-color : yellow; }")
-        self.cpuCable.setGeometry(QtCore.QRect(570, 19, 50, 25))
+        self.cpuCable.setGeometry(QtCore.QRect(170, 19, 50, 25))
         self.cpuCable.setMouseTracking(True)
         self.cpuCable.clear()
         self.cpuCable.setObjectName("CPU-Cable")
@@ -218,47 +218,47 @@ class Ui_MainWindow(object):
 
 
         #GPU ON LABEL
-        self.gpu = QtWidgets.QLabel(self.centralwidget)
+        self.gpu = QtWidgets.QLabel(MainWindow)
         self.gpu.setStyleSheet("QLabel::hover"
                                "{ background-color : yellow; }")
-        self.gpu.setGeometry(QtCore.QRect(570, 565, 321, 31))
+        self.gpu.setGeometry(QtCore.QRect(170, 565, 321, 31))
         self.gpu.setMouseTracking(True)
         self.gpu.clear()
         self.gpu.setObjectName("GPU")
         self.gpu.setGraphicsEffect(self.opacityEffect2)
         
         #RAM STICKS ON LABELS
-        self.ram1 = QtWidgets.QLabel(self.centralwidget)
+        self.ram1 = QtWidgets.QLabel(MainWindow)
         self.ram1.setStyleSheet("QLabel::hover"
                                "{ background-color : yellow }")
-        self.ram1.setGeometry(QtCore.QRect(960, 50, 20, 440))
+        self.ram1.setGeometry(QtCore.QRect(560, 50, 20, 440))
         self.ram1.setMouseTracking(True)
         self.ram1.clear()
         self.ram1.setObjectName("RamStick1")
         self.ram1.setGraphicsEffect(self.opacityEffect3)
       
-        self.ram2 = QtWidgets.QLabel(self.centralwidget)
+        self.ram2 = QtWidgets.QLabel(MainWindow)
         self.ram2.setStyleSheet("QLabel::hover"
                                "{ background-color : yellow }")
-        self.ram2.setGeometry(QtCore.QRect(989, 50, 20, 440))
+        self.ram2.setGeometry(QtCore.QRect(589, 50, 20, 440))
         self.ram2.setMouseTracking(True)
         self.ram2.clear()
         self.ram2.setObjectName("RamStick2")
         self.ram2.setGraphicsEffect(self.opacityEffect4)
      
-        self.ram3 = QtWidgets.QLabel(self.centralwidget)
+        self.ram3 = QtWidgets.QLabel(MainWindow)
         self.ram3.setStyleSheet("QLabel::hover"
                                "{ background-color : yellow }")
-        self.ram3.setGeometry(QtCore.QRect(1018, 50, 20, 440))
+        self.ram3.setGeometry(QtCore.QRect(618, 50, 20, 440))
         self.ram3.setMouseTracking(True)
         self.ram3.clear()
         self.ram3.setObjectName("RamStick3")
         self.ram3.setGraphicsEffect(self.opacityEffect5)
 
-        self.ram4 = QtWidgets.QLabel(self.centralwidget)
+        self.ram4 = QtWidgets.QLabel(MainWindow)
         self.ram4.setStyleSheet("QLabel::hover"
                                "{ background-color : yellow }")
-        self.ram4.setGeometry(QtCore.QRect(1047, 50, 20, 440))
+        self.ram4.setGeometry(QtCore.QRect(647, 50, 20, 440))
         self.ram4.setMouseTracking(True)
         self.ram4.clear()
         self.ram4.setObjectName("RamStick4")
@@ -266,10 +266,10 @@ class Ui_MainWindow(object):
 
 
         #label 8 is m.2
-        self.m2 = QtWidgets.QLabel(self.centralwidget)
+        self.m2 = QtWidgets.QLabel(MainWindow)
         self.m2.setStyleSheet("QLabel::hover"
                              "{ background-color : yellow }")
-        self.m2.setGeometry(QtCore.QRect(860, 830, 251, 71))
+        self.m2.setGeometry(QtCore.QRect(460, 830, 251, 71))
         self.m2.clear()
         self.m2.setObjectName("M.2 SSD")
         self.m2.setGraphicsEffect(self.opacityEffect7)
@@ -288,6 +288,7 @@ class Ui_MainWindow(object):
         self.cpu_label.setText(_translate("MainWindow", "CPU"))
         self.cpu_cooler_label.setText(_translate("MainWindow", "CPU Cooler"))
         self.hardware_list_label.setText(_translate("MainWindow", "Hardware Components"))
+        self.hardware_list_label.adjustSize()
         self.cpu_label_2.setText(_translate("MainWindow", "GPU"))
         self.cpu_label_3.setText(_translate("MainWindow", "RAM Sticks"))
         self.cpu_cooler_label_3.setText(_translate("MainWindow", "M.2 SSD"))
