@@ -12,7 +12,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -27,6 +26,7 @@ class Ui_MainWindow(object):
         self.startButton = QtWidgets.QPushButton(self.centralwidget)
         self.startButton.setGeometry(QtCore.QRect(410, 370, 111, 31))
         self.startButton.setObjectName("startButton")
+        self.startButton.clicked.connect(self.clicked)
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(410, 430, 111, 31))
         self.pushButton_2.setObjectName("pushButton_2")
@@ -50,6 +50,9 @@ class Ui_MainWindow(object):
         self.startButton.setText(_translate("MainWindow", "Start"))
         self.pushButton_2.setText(_translate("MainWindow", "Audio"))
         self.titleLabel.setText(_translate("MainWindow", "Computer Hardware"))
+        
+    def clicked(self):
+    	exec(open("hardware.py").read())
 
 
 if __name__ == "__main__":
