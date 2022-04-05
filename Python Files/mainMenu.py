@@ -12,29 +12,45 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import QPixmap
 import buildMode 
+
 class Ui_MainMenu(object):
     def setupUi(self, MainWindow):
         MainMenu.setObjectName("MainMenu")
+        MainMenu.resize(1000,800)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        #sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainMenu.setSizePolicy(sizePolicy)
-        MainMenu.setMinimumSize(QtCore.QSize(1000, 800))
+        #MainMenu.setMinimumSize(QtCore.QSize(1000, 800))
+
         self.centralwidget = QtWidgets.QWidget(MainMenu)
         self.centralwidget.setObjectName("centralwidget")
+        
+        self.background = QtWidgets.QLabel(self.centralwidget)
+        self.background.setGeometry(QtCore.QRect(0, 0, 1000, 1000))
+        self.background.setText("")
+        self.background.setPixmap(QtGui.QPixmap('../images/mainmenu_background.png'))
+        self.background.setScaledContents(True)
+        self.background.setObjectName("background")
+        
+        #self.background.setStyleSheet("background-image:url(../images/mainmenu_background.png); background-image")
+        
+
+        
         self.startButton = QtWidgets.QPushButton(self.centralwidget)
         self.startButton.setGeometry(QtCore.QRect(400, 370, 200, 31))
         self.startButton.setObjectName("startButton")
-
         self.startButton.clicked.connect(self.openBuildMode)
 
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(400, 430, 200, 31))
         self.pushButton_2.setObjectName("pushButton_2")
         self.titleLabel = QtWidgets.QLabel(self.centralwidget)
-        self.titleLabel.setGeometry(QtCore.QRect(200, 120, 600, 211))
+        self.titleLabel.setGeometry(QtCore.QRect(200, 120, 
+        600, 211))
         self.titleLabel.setAlignment(QtCore.Qt.AlignCenter)
         font = QtGui.QFont()
         font.setPointSize(37)
@@ -54,6 +70,7 @@ class Ui_MainMenu(object):
         self.startButton.setText(_translate("MainWindow", "Start"))
         self.pushButton_2.setText(_translate("MainWindow", "Audio"))
         self.titleLabel.setText(_translate("MainWindow", "Computer Hardware"))
+        self.background.setText(_translate("MainWindow",""))
         
     def openBuildMode(self):
         self.window = QtWidgets.QMainWindow()
