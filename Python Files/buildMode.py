@@ -10,6 +10,53 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import QMimeData, Qt
+from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
+
+# Dragging
+class DraggableLabel(QLabel):
+    def __init__(self,parent,image):
+        super(QLabel,self).__init__(parent)
+        self.setPixmap(QPixmap(image))    
+        self.show()
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            self.drag_start_position = event.pos()
+
+    def mouseMoveEvent(self, event):
+        if not (event.buttons() & Qt.LeftButton):
+            return
+        if (event.pos() - self.drag_start_position).manhattanLength() < QApplication.startDragDistance():
+            return
+        drag = QDrag(self)
+        mimedata = QMimeData()
+        mimedata.setText(self.text())
+        mimedata.setImageData(self.pixmap().toImage())
+
+        drag.setMimeData(mimedata)
+        pixmap = QPixmap(self.size())
+        painter = QPainter(pixmap)
+        painter.drawPixmap(self.rect(), self.grab())
+        painter.end()
+        drag.setPixmap(pixmap)
+        drag.setHotSpot(event.pos())
+        drag.exec_(Qt.CopyAction | Qt.MoveAction)
+
+class my_label(QLabel):
+    def __init__(self,title,parent):
+        super().__init__(title,parent)
+        self.setAcceptDrops(True)
+
+    def dragEnterEvent(self,event):
+        if event.mimeData().hasImage():
+            print("event accepted")
+            event.accept()
+        else:
+            print("event rejected")
+            event.ignore()
+    def dropEvent(self,event):
+        if event.mimeData().hasImage():
+            self.setPixmap(QPixmap.fromImage(QImage(event.mimeData().imageData())))
 
 
 class Ui_MotherBoard(object):
@@ -38,6 +85,9 @@ class Ui_MotherBoard(object):
         self.cpu_img.setScaledContents(True)
         self.cpu_img.setAlignment(QtCore.Qt.AlignCenter)
         self.cpu_img.setObjectName("cpu_img")
+
+        self.cpu_imgD = DraggableLabel(self.cpu_img,"../images/i7_cpu.jpg")
+
         self.cpu_cooler_img = QtWidgets.QLabel(self.centralwidget)
         self.cpu_cooler_img.setGeometry(QtCore.QRect(1240, 100, 111, 111))
         self.cpu_cooler_img.setMaximumSize(QtCore.QSize(16777215, 16777215))
@@ -292,6 +342,7 @@ class Ui_MotherBoard(object):
         self.gpu_label.setText(_translate("MainWindow", "GPU"))
         self.ram_label.setText(_translate("MainWindow", "RAM Sticks"))
         self.ssd_label.setText(_translate("MainWindow", "M.2 SSD"))
+
 
 
 if __name__ == "__main__":
