@@ -12,22 +12,24 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
-
-class Ui_MainWindow(object):
+import buildMode 
+class Ui_MainMenu(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
+        MainMenu.setObjectName("MainMenu")
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
-        MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QtCore.QSize(1000, 800))
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        MainMenu.setSizePolicy(sizePolicy)
+        MainMenu.setMinimumSize(QtCore.QSize(1000, 800))
+        self.centralwidget = QtWidgets.QWidget(MainMenu)
         self.centralwidget.setObjectName("centralwidget")
         self.startButton = QtWidgets.QPushButton(self.centralwidget)
         self.startButton.setGeometry(QtCore.QRect(410, 370, 111, 31))
         self.startButton.setObjectName("startButton")
-        #self.startButton.clicked.connect(self.clicked)
+
+        self.startButton.clicked.connect(self.openBuildMode)
+
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(410, 430, 111, 31))
         self.pushButton_2.setObjectName("pushButton_2")
@@ -37,13 +39,13 @@ class Ui_MainWindow(object):
         font.setPointSize(37)
         self.titleLabel.setFont(font)
         self.titleLabel.setObjectName("titleLabel")
-        MainWindow.setCentralWidget(self.centralwidget)
+        MainMenu.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        MainMenu.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(MainMenu)
+        QtCore.QMetaObject.connectSlotsByName(MainMenu)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -52,16 +54,20 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(_translate("MainWindow", "Audio"))
         self.titleLabel.setText(_translate("MainWindow", "Computer Hardware"))
         
-    def clicked(self):
-    	exec(open("buildMode.py").read())
-    	
+    def openBuildMode(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = buildMode.Ui_MotherBoard()
+        self.ui.setupHardware(self.window)
+        self.ui.setupMotherboard(self.window)
+        MainMenu.hide()
+        self.window.show()
 
-
+    
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    MainMenu = QtWidgets.QMainWindow()
+    ui = Ui_MainMenu()
+    ui.setupUi(MainMenu)
+    MainMenu.show()
     sys.exit(app.exec_())
