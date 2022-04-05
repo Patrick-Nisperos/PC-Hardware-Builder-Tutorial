@@ -29,30 +29,32 @@ class Ui_MainMenu(object):
         self.centralwidget = QtWidgets.QWidget(MainMenu)
         self.centralwidget.setObjectName("centralwidget")
         
-        self.background = QtWidgets.QLabel(self.centralwidget)
-        self.background.setGeometry(QtCore.QRect(0, 0, 1000, 1000))
+        self.background = QtWidgets.QLabel(MainMenu)
+        self.background.setGeometry(QtCore.QRect(0, 0, 1000, 800))
         self.background.setText("")
         self.background.setPixmap(QtGui.QPixmap('../images/mainmenu_background.png'))
         self.background.setScaledContents(True)
         self.background.setObjectName("background")
+        self.background.lower()
         
         #self.background.setStyleSheet("background-image:url(../images/mainmenu_background.png); background-image")
         
 
         
         self.startButton = QtWidgets.QPushButton(self.centralwidget)
-        self.startButton.setGeometry(QtCore.QRect(400, 370, 200, 31))
-        self.startButton.setObjectName("startButton")
+        self.startButton.setGeometry(QtCore.QRect(400, 490, 200, 31))
+        self.startButton.setObjectName("BuildModeButton")
         self.startButton.clicked.connect(self.openBuildMode)
 
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(400, 430, 200, 31))
+        self.pushButton_2.setGeometry(QtCore.QRect(400, 570, 200, 31))
         self.pushButton_2.setObjectName("pushButton_2")
         self.titleLabel = QtWidgets.QLabel(self.centralwidget)
-        self.titleLabel.setGeometry(QtCore.QRect(200, 120, 
-        600, 211))
+        self.titleLabel.setGeometry(QtCore.QRect(90, 280, 
+        820, 100))
+        self.titleLabel.setStyleSheet("color: white")
         self.titleLabel.setAlignment(QtCore.Qt.AlignCenter)
-        font = QtGui.QFont()
+        font = QtGui.QFont("Helvetica Black")
         font.setPointSize(37)
         self.titleLabel.setFont(font)
         self.titleLabel.setObjectName("titleLabel")
@@ -67,9 +69,9 @@ class Ui_MainMenu(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.startButton.setText(_translate("MainWindow", "Start"))
+        self.startButton.setText(_translate("MainWindow", "Build Mode"))
         self.pushButton_2.setText(_translate("MainWindow", "Audio"))
-        self.titleLabel.setText(_translate("MainWindow", "Computer Hardware"))
+        self.titleLabel.setText(_translate("MainWindow", "Learn Computer Hardware"))
         self.background.setText(_translate("MainWindow",""))
         
     def openBuildMode(self):
