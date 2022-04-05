@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 
 
-class Ui_MainWindow(object):
+class Ui_MotherBoard(object):
     def setupHardware(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1600, 986)
@@ -298,7 +298,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_MotherBoard()
     ui.setupHardware(MainWindow)
     ui.setupMotherboard(MainWindow)
     MainWindow.show()
