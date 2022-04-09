@@ -17,7 +17,8 @@ from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 class DraggableLabel(QLabel):
     def __init__(self,parent,image):
         super(QLabel,self).__init__(parent)
-        self.setPixmap(QPixmap(image))    
+        self.setPixmap(QPixmap(image))
+        self.setScaledContents(True)
         self.show()
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
@@ -86,7 +87,8 @@ class Ui_MotherBoard(object):
         self.cpu_img.setAlignment(QtCore.Qt.AlignCenter)
         self.cpu_img.setObjectName("cpu_img")
 
-        self.cpu_imgD = DraggableLabel(self.cpu_img,"../images/i7_cpu.jpg")
+
+
 
         self.cpu_cooler_img = QtWidgets.QLabel(self.centralwidget)
         self.cpu_cooler_img.setGeometry(QtCore.QRect(1240, 100, 111, 111))
@@ -200,6 +202,14 @@ class Ui_MotherBoard(object):
 
         self.retranslateHardware(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+
+        self.cpu_imgD = (DraggableLabel(self.cpu_img, "../images/i7_cpu.jpg").resize(91, 81))
+        self.gpu_imgD = (DraggableLabel(self.gpu_img, "../images/gpu.png").resize(221, 121))
+        self.cpu_cooler_imgD = (DraggableLabel(self.cpu_cooler_img, "../images/cpu_cooler.png").resize(111, 111))
+        self.ram_img1D = (DraggableLabel(self.ram_img1, "../images/ram stick.jpg").resize(221, 51))
+        self.ram_img2D = (DraggableLabel(self.ram_img2, "../images/ram stick.jpg").resize(221, 51))
+        self.ssd_imgD = (DraggableLabel(self.ssd_img, "../images/m.2_ssd.jpg").resize(221, 61))
 
     def setupMotherboard(self, MainWindow):
 
