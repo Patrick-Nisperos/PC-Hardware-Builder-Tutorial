@@ -35,6 +35,6 @@ jobs:
       run: |
         # calling via python will also add the current directory to sys.path
         python -m pytest
-    - name: Check types with mypy
-      run: |
-        mypy $(git ls-files '*.py') --exclude /venv/
+   # - name: Check types with mypy
+    #  run: |
+     #   mypy $(git ls-files '*.py') --exclude /venv/
