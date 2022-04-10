@@ -1,7 +1,6 @@
 # file containing hover descriptions
 
 def hoverEnter(label, description_label):
-    print("enter")
     if (label == "cpu"):
         description_label.setText("CPU stands for Central Processing Unit. The CPU is the BRAIN of the computer, containing all the circuitry needed to process input, store data, and output results.")
     if (label == "gpu"):
@@ -14,5 +13,4 @@ def hoverEnter(label, description_label):
         description_label.setText("SSD stands for Solid-State Drive. M.2 is a form factor for ssds. Similiar to a Hard drive, an ssd stores data even when the pc is off. However it uses flash memory and is much faster.")
 
 def hoverExit(label, description_label):
-    print("exit")
     description_label.setText("Hover over a part to see description!")
