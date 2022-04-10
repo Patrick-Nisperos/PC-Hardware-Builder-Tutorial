@@ -17,7 +17,7 @@ import buildMode
 import disasmbleMode
 
 class Ui_MainMenu(object):
-    def setupUi(self, MainWindow):
+    def setupUi(self, MainMenu):
         MainMenu.setObjectName("MainMenu")
         MainMenu.resize(1000,800)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -64,7 +64,7 @@ class Ui_MainMenu(object):
         self.titleLabel.setObjectName("titleLabel")
         
         MainMenu.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar = QtWidgets.QStatusBar(MainMenu)
         self.statusbar.setObjectName("statusbar")
         MainMenu.setStatusBar(self.statusbar)
 

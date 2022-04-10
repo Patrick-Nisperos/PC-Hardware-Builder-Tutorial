@@ -15,6 +15,8 @@ from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 from PyQt5.QtCore import *
 from hover import hoverExit, hoverEnter
 
+import mainMenu
+
 # Dragging
 class DraggableLabel(QLabel):
     def __init__(self,parent,image):
@@ -251,6 +253,8 @@ class Ui_MotherBoard(object):
         self.ssd_imgD = (DraggableLabel(self.ssd_img, "../images/m.2_ssd.jpg").resize(221, 61))
         
 
+
+
     def setupMotherboard(self, MainWindow):
 
             #Format is as follows for all components
@@ -377,7 +381,14 @@ class Ui_MotherBoard(object):
 
         self.retranslateMotherboard(self.centralwidget)
         QtCore.QMetaObject.connectSlotsByName(self.centralwidget)
-    
+
+        self.startButton = QtWidgets.QPushButton(self.centralwidget)
+        self.startButton.setGeometry(QtCore.QRect(1500, 25, 70, 31))
+        self.startButton.setText("back")
+        self.startButton.setObjectName("")
+        self.startButton.clicked.connect(lambda : self.openMain())
+
+
     def retranslateMotherboard(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         self.centralwidget.setWindowTitle(_translate("MotherBoard", "MotherBoard"))
@@ -392,8 +403,16 @@ class Ui_MotherBoard(object):
         self.gpu_label.setText(_translate("MainWindow", "GPU"))
         self.ram_label.setText(_translate("MainWindow", "RAM Sticks"))
         self.ssd_label.setText(_translate("MainWindow", "M.2 SSD"))
+
         self.hover_actual_description_label.setText(_translate("MainWindow", "Hover over a part to see description!"))
         self.hover_description_label.setText(_translate("MainWindow", "Part Description"))
+
+    def openMain(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = mainMenu.Ui_MainMenu()
+        self.ui.setupUi(self.window)
+        MainWindow.hide()
+        self.window.show()
 
 if __name__ == "__main__":
     import sys
