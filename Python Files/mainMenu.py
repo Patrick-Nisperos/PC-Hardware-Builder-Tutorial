@@ -13,10 +13,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPixmap
-import buildMode 
+import buildMode
+import disasmbleMode
 
 class Ui_MainMenu(object):
-    def setupUi(self, MainWindow):
+    def setupUi(self, MainMenu):
         MainMenu.setObjectName("MainMenu")
         MainMenu.resize(1000,800)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -39,27 +40,31 @@ class Ui_MainMenu(object):
         
         #self.background.setStyleSheet("background-image:url(../images/mainmenu_background.png); background-image")
         
+        self.buildModeButton = QtWidgets.QPushButton(self.centralwidget)
+        self.buildModeButton.setGeometry(QtCore.QRect(400, 490, 200, 31))
+        self.buildModeButton.setObjectName("BuildModeButton")
+        self.buildModeButton.clicked.connect(self.openBuildMode)
 
+        self.disasmbleModeButton = QtWidgets.QPushButton(self.centralwidget)
+        self.disasmbleModeButton.setGeometry(QtCore.QRect(400, 560, 200, 31))
+        self.disasmbleModeButton.setObjectName("disasmbleModeButton")
+        self.disasmbleModeButton.clicked.connect(self.openDisasmbleMode)
         
-        self.startButton = QtWidgets.QPushButton(self.centralwidget)
-        self.startButton.setGeometry(QtCore.QRect(400, 490, 200, 31))
-        self.startButton.setObjectName("BuildModeButton")
-        self.startButton.clicked.connect(self.openBuildMode)
-
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(400, 570, 200, 31))
-        self.pushButton_2.setObjectName("pushButton_2")
+        self.audioButton = QtWidgets.QPushButton(self.centralwidget)
+        self.audioButton.setGeometry(QtCore.QRect(400, 630, 200, 31))
+        self.audioButton.setObjectName("audioButton")
+        
         self.titleLabel = QtWidgets.QLabel(self.centralwidget)
-        self.titleLabel.setGeometry(QtCore.QRect(90, 280, 
-        820, 100))
+        self.titleLabel.setGeometry(QtCore.QRect(90, 280, 820, 100))
         self.titleLabel.setStyleSheet("color: white")
         self.titleLabel.setAlignment(QtCore.Qt.AlignCenter)
         font = QtGui.QFont("Helvetica Black")
         font.setPointSize(37)
         self.titleLabel.setFont(font)
         self.titleLabel.setObjectName("titleLabel")
+        
         MainMenu.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar = QtWidgets.QStatusBar(MainMenu)
         self.statusbar.setObjectName("statusbar")
         MainMenu.setStatusBar(self.statusbar)
 
@@ -69,14 +74,23 @@ class Ui_MainMenu(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.startButton.setText(_translate("MainWindow", "Build Mode"))
-        self.pushButton_2.setText(_translate("MainWindow", "Audio"))
-        self.titleLabel.setText(_translate("MainWindow", "Learn Computer Hardware"))
+        self.buildModeButton.setText(_translate("MainWindow", "Build Mode"))
+        self.disasmbleModeButton.setText(_translate("MainWindow", "Disassemble Mode"))
+        self.audioButton.setText(_translate("MainWindow", "Audio"))
+        self.titleLabel.setText(_translate("MainWindow", "PC Hardware Tutorial"))
         self.background.setText(_translate("MainWindow",""))
         
     def openBuildMode(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = buildMode.Ui_MotherBoard()
+        self.ui.setupHardware(self.window)
+        self.ui.setupMotherboard(self.window)
+        MainMenu.hide()
+        self.window.show()
+    
+    def openDisasmbleMode(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = disasmbleMode.Ui_MotherBoard()
         self.ui.setupHardware(self.window)
         self.ui.setupMotherboard(self.window)
         MainMenu.hide()
