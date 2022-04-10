@@ -12,6 +12,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QMimeData, Qt
 from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
+from PyQt5.QtCore import *
+from hover import hoverExit, hoverEnter
 
 # Dragging
 class DraggableLabel(QLabel):
@@ -61,6 +63,21 @@ class my_label(QLabel):
 
 
 class Ui_MotherBoard(object):
+    def hover_events(self, MainWindow):
+        self.cpu_img.leaveEvent = lambda e: hoverExit("cpu", self.hover_actual_description_label)
+        self.cpu_img.enterEvent = lambda e: hoverEnter("cpu", self.hover_actual_description_label)
+        self.gpu_img.leaveEvent = lambda e: hoverExit("gpu", self.hover_actual_description_label)
+        self.gpu_img.enterEvent = lambda e: hoverEnter("gpu", self.hover_actual_description_label)
+        self.ram_img1.leaveEvent = lambda e: hoverExit("ram", self.hover_actual_description_label)
+        self.ram_img1.enterEvent = lambda e: hoverEnter("ram", self.hover_actual_description_label)
+        self.ram_img2.leaveEvent = lambda e: hoverExit("ram", self.hover_actual_description_label)
+        self.ram_img2.enterEvent = lambda e: hoverEnter("ram", self.hover_actual_description_label)
+        self.cpu_cooler_img.leaveEvent = lambda e: hoverExit("cpu cooler", self.hover_actual_description_label)
+        self.cpu_cooler_img.enterEvent = lambda e: hoverEnter("cpu cooler", self.hover_actual_description_label)
+        self.ssd_img.leaveEvent = lambda e: hoverExit("ssd", self.hover_actual_description_label)
+        self.ssd_img.enterEvent = lambda e: hoverEnter("ssd", self.hover_actual_description_label)
+
+
     def setupHardware(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1600, 986)
@@ -86,9 +103,6 @@ class Ui_MotherBoard(object):
         self.cpu_img.setScaledContents(True)
         self.cpu_img.setAlignment(QtCore.Qt.AlignCenter)
         self.cpu_img.setObjectName("cpu_img")
-
-
-
 
         self.cpu_cooler_img = QtWidgets.QLabel(self.centralwidget)
         self.cpu_cooler_img.setGeometry(QtCore.QRect(1240, 100, 111, 111))
@@ -191,6 +205,30 @@ class Ui_MotherBoard(object):
         self.ram_img2.setScaledContents(True)
         self.ram_img2.setAlignment(QtCore.Qt.AlignCenter)
         self.ram_img2.setObjectName("ram_img2")
+
+        self.hover_actual_description_label = QtWidgets.QLabel(self.centralwidget)
+        self.hover_actual_description_label.setGeometry(QtCore.QRect(1100, 680, 241, 151))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.hover_actual_description_label.setFont(font)
+        self.hover_actual_description_label.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.hover_actual_description_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.hover_actual_description_label.setWordWrap(True)
+        self.hover_actual_description_label.setObjectName("hover_actual_description_label")
+        self.hover_description_label = QtWidgets.QLabel(self.centralwidget)
+        self.hover_description_label.setGeometry(QtCore.QRect(1130, 680, 171, 31))
+        font = QtGui.QFont()
+        font.setFamily("Consolas")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(True)
+        font.setWeight(75)
+        font.setStrikeOut(False)
+        self.hover_description_label.setFont(font)
+        self.hover_description_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.hover_description_label.setObjectName("hover_description_label")
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1004, 21))
@@ -199,6 +237,7 @@ class Ui_MotherBoard(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.hover_events(MainWindow)
 
         self.retranslateHardware(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -210,6 +249,7 @@ class Ui_MotherBoard(object):
         self.ram_img1D = (DraggableLabel(self.ram_img1, "../images/ram stick.jpg").resize(221, 51))
         self.ram_img2D = (DraggableLabel(self.ram_img2, "../images/ram stick.jpg").resize(221, 51))
         self.ssd_imgD = (DraggableLabel(self.ssd_img, "../images/m.2_ssd.jpg").resize(221, 61))
+        
 
     def setupMotherboard(self, MainWindow):
 
@@ -352,8 +392,8 @@ class Ui_MotherBoard(object):
         self.gpu_label.setText(_translate("MainWindow", "GPU"))
         self.ram_label.setText(_translate("MainWindow", "RAM Sticks"))
         self.ssd_label.setText(_translate("MainWindow", "M.2 SSD"))
-
-
+        self.hover_actual_description_label.setText(_translate("MainWindow", "Hover over a part to see description!"))
+        self.hover_description_label.setText(_translate("MainWindow", "Part Description"))
 
 if __name__ == "__main__":
     import sys
