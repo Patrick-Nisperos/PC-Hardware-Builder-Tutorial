@@ -14,19 +14,34 @@ from PyQt5.QtCore import QMimeData, Qt
 from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 from PyQt5.QtCore import *
 from hover import hoverExit, hoverEnter
-
+import PartAnalyzer
 import mainMenu
 
 # Dragging
 class DraggableLabel(QLabel):
-    def __init__(self,parent,image):
+    def __init__(self,parent,image, name):
         super(QLabel,self).__init__(parent)
         self.setPixmap(QPixmap(image))
         self.setScaledContents(True)
+        self.name = name
         self.show()
+
+
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.drag_start_position = event.pos()
+        if(event.button() == Qt.RightButton):
+            if(self.name == PartAnalyzer.partNames[0]):
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[0], PartAnalyzer.descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.jpg", 200, 200, 200, 200)
+                #print("cpu clicked")
+            elif(self.name == PartAnalyzer.partNames[1]):
+                print("gpu clicked")
+            elif(self.name == PartAnalyzer.partNames[2]):
+                print("cpu-cooler clicked")
+            elif(self.name == PartAnalyzer.partNames[3]):
+                print("ram clicked")
+            elif(self.name == PartAnalyzer.partNames[4]):
+                print("ssd clicked")
 
     def mouseMoveEvent(self, event):
         if not (event.buttons() & Qt.LeftButton):
@@ -65,6 +80,12 @@ class my_label(QLabel):
 
 
 class Ui_MotherBoard(object):
+    def openPartAnalyzer(self, name, description, image, image2, width, height, width2, height2):
+            self.partView = QtWidgets.QMainWindow()
+            ui2 = PartAnalyzer.Ui_PartAnalyzer()
+            ui2.setupUi(self.partView, "Central Processing Unit", PartAnalyzer.descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.JPG", 200, 200, 200, 200)
+            self.partView.show()
+
     def hover_events(self, MainWindow):
         self.cpu_img.leaveEvent = lambda e: hoverExit("cpu", self.hover_actual_description_label)
         self.cpu_img.enterEvent = lambda e: hoverEnter("cpu", self.hover_actual_description_label)
@@ -245,16 +266,13 @@ class Ui_MotherBoard(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
 
-        self.cpu_imgD = (DraggableLabel(self.cpu_img, "../images/i7_cpu.jpg").resize(91, 81))
-        self.gpu_imgD = (DraggableLabel(self.gpu_img, "../images/gpu.png").resize(221, 121))
-        self.cpu_cooler_imgD = (DraggableLabel(self.cpu_cooler_img, "../images/cpu_cooler.png").resize(111, 111))
-        self.ram_img1D = (DraggableLabel(self.ram_img1, "../images/ram stick.jpg").resize(221, 51))
-        self.ram_img2D = (DraggableLabel(self.ram_img2, "../images/ram stick.jpg").resize(221, 51))
-        self.ssd_imgD = (DraggableLabel(self.ssd_img, "../images/m.2_ssd.jpg").resize(221, 61))
-        
-
-
-
+        self.cpu_imgD = (DraggableLabel(self.cpu_img, "../images/i7_cpu.jpg", "CPU").resize(91, 81))
+        self.gpu_imgD = (DraggableLabel(self.gpu_img, "../images/gpu.png", "GPU").resize(221, 121))
+        self.cpu_cooler_imgD = (DraggableLabel(self.cpu_cooler_img, "../images/cpu_cooler.png", "CPU-COOLER").resize(111, 111))
+        self.ram_img1D = (DraggableLabel(self.ram_img1, "../images/ram stick.jpg", "RAM").resize(221, 51))
+        self.ram_img2D = (DraggableLabel(self.ram_img2, "../images/ram stick.jpg", "RAM").resize(221, 51))
+        self.ssd_imgD = (DraggableLabel(self.ssd_img, "../images/m.2_ssd.jpg", "SSD").resize(221, 61))
+    
     def setupMotherboard(self, MainWindow):
 
             #Format is as follows for all components
