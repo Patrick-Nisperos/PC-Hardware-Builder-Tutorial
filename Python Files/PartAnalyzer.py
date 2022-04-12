@@ -14,7 +14,7 @@ from PyQt5.QtCore import QMimeData, Qt
 from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 from PyQt5.QtCore import *
 
-partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "Cmos"]
+partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "CMOS", "PCIe x1", "PCIe x16"]
 io_partNames = ["ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS"]
 
 #Index is CPU as 0, GPU, RAM, CPU-COOLER, SSD
@@ -40,7 +40,12 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
 
                 "MotherBoard",
 
-                "Cmos"]
+                "Complementary metal-oxide-semiconductor (CMOS), is the term usually used to"
+                " describe the small amount of memory on a computer motherboard that stores the BIOS settings.",
+
+                "PCIe (peripheral component interconnect express) is an interface standard for "
+                "connecting high-speed components. The types of PCIe slots come in different physical"
+                "configurations: x1, x4, x8, x16, and x32."]
 
 descriptions2 = ["The CPU or Central Processing Unit is the brain of a computer,"
                 " containing all the circuitry needed to process input,"
@@ -60,7 +65,18 @@ descriptions2 = ["The CPU or Central Processing Unit is the brain of a computer,
 
                 "The SSD or Solid-State drive is a new generation of storage device"
                 " used in computers. An SSD is much faster than a tradition mechanical"
-                " hard disk as it uses flash-based memory instead of a physical disk"]
+                " hard disk as it uses flash-based memory instead of a physical disk",
+
+                "MotherBoard",
+
+                "The CMOS battery powers your computers BIOS firmware, which is responsible for booting up"
+                " your computer and configuring data flow.",
+
+                "The PCIe x1 slot is used to plug in low demanding PCIe expansion cards that do not have a very"
+                "high throughput(transfer data) such as Network adapters, and Port Expansion Cards.",
+
+                "The PCIe x16 slot is used to plug in high bandwidth like grapgics cards. However, these x16 slots"
+                "could be used by any of the devices that would instead go in a smaller slot.="]
 
 io_descriptions1 = ["Antenna Ports", "Hdmi", "PS/2 Ports and USB 3.2 ports",
                     "USB 3.2 Type-A port and USB 3.2 Type-C port", "LAN/Ethernet port and USB 2.0 port",
@@ -68,7 +84,7 @@ io_descriptions1 = ["Antenna Ports", "Hdmi", "PS/2 Ports and USB 3.2 ports",
 io_descriptions2 = ["Gets signal", "Transfers data"]
 
 class Ui_PartAnalyzer(object):
-    def setupUi(self, PartAnalyzer, name, description, image1, image2, width, height, width2, height2):
+    def setupUi(self, PartAnalyzer, name, description, description2, image1, image2, width, height, width2, height2):
         PartAnalyzer.setObjectName("PartAnalyzer")
         PartAnalyzer.resize(800, 600)
         PartAnalyzer.setAutoFillBackground(False)
@@ -104,20 +120,20 @@ class Ui_PartAnalyzer(object):
         self.PartName.setStyleSheet(("font-size: 16pt; color: white;"))
 
         self.Parttitle = QtWidgets.QLabel(self.centralwidget)
-        self.Parttitle.setGeometry(QtCore.QRect(480, 120, 251, 51))
+        self.Parttitle.setGeometry(QtCore.QRect(480, 110, 251, 51))
         self.Parttitle.setObjectName("PartName")
         self.Parttitle.setText("What is it?")
         self.Parttitle.setStyleSheet(("font-size: 16pt; color: white;"))
 
         self.Parttitle = QtWidgets.QLabel(self.centralwidget)
-        self.Parttitle.setGeometry(QtCore.QRect(480, 360, 251, 51))
+        self.Parttitle.setGeometry(QtCore.QRect(480, 350, 251, 51))
         self.Parttitle.setObjectName("PartName")
         self.Parttitle.setText("What Does it do?")
         self.Parttitle.setStyleSheet(("font-size: 16pt; color: white;"))
 
 
         self.PartDescription = QtWidgets.QLabel(self.centralwidget)
-        self.PartDescription.setGeometry(QtCore.QRect(480, 160, 250, 200))
+        self.PartDescription.setGeometry(QtCore.QRect(480, 150, 250, 200))
         self.PartDescription.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.PartDescription.setObjectName("PartDescription")
         self.PartDescription.setText(description)
@@ -125,10 +141,10 @@ class Ui_PartAnalyzer(object):
         self.PartDescription.setStyleSheet(("font-size: 12pt; color: white;"))
 
         self.PartDescription2 = QtWidgets.QLabel(self.centralwidget)
-        self.PartDescription2.setGeometry(QtCore.QRect(480, 400, 250, 200))
+        self.PartDescription2.setGeometry(QtCore.QRect(480, 390, 250, 200))
         self.PartDescription2.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
         self.PartDescription2.setObjectName("PartDescription")
-        self.PartDescription2.setText(description)
+        self.PartDescription2.setText(description2)
         self.PartDescription2.setWordWrap(True)
         self.PartDescription2.setStyleSheet(("font-size: 12pt; color: white;"))
 

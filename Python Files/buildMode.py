@@ -32,35 +32,37 @@ class DraggableLabel(QLabel):
             self.drag_start_position = event.pos()
         if(event.button() == Qt.RightButton):                
             if(self.name == PartAnalyzer.partNames[0]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[0], PartAnalyzer.descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.jpg", 200, 200, 200, 200)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[0], PartAnalyzer.descriptions[0], PartAnalyzer.descriptions2[0], "../images/i7_cpu.jpg", "../images/ryzen9.jpg", 200, 200, 200, 200)
                 #print("cpu clicked")
             elif(self.name == PartAnalyzer.partNames[1]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[1], PartAnalyzer.descriptions[1], "../images/gpu.png", "../images/gpu2.png", 300,200,300,200)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[1], PartAnalyzer.descriptions[1], PartAnalyzer.descriptions2[1],  "../images/gpu.png", "../images/gpu2.png", 300,200,300,200)
             elif(self.name == PartAnalyzer.partNames[2]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[2], PartAnalyzer.descriptions[2], "../images/cpu_cooler.png", "../images/cpu_cooler2.png", 200,200,200,200)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[2], PartAnalyzer.descriptions[2], PartAnalyzer.descriptions2[2], "../images/cpu_cooler.png", "../images/cpu_cooler2.png", 200,200,200,200)
             elif(self.name == PartAnalyzer.partNames[3]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[3], PartAnalyzer.descriptions[3], "../images/ram stick.jpg", "../images/ram stick.jpg", 300, 100, 300, 100)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[3], PartAnalyzer.descriptions[3], PartAnalyzer.descriptions2[3], "../images/ram stick.jpg", "../images/ram stick.jpg", 300, 100, 300, 100)
             elif(self.name == PartAnalyzer.partNames[4]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[4], PartAnalyzer.descriptions[4], "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 300, 100, 300, 100)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[4], PartAnalyzer.descriptions[4], PartAnalyzer.descriptions2[4], "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 300, 100, 300, 100)
             elif(self.name == PartAnalyzer.partNames[5]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[5], PartAnalyzer.descriptions[5], "../images/IntelMotherBoard", "", 400, 700, 400, 400)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[5], PartAnalyzer.descriptions[5], PartAnalyzer.descriptions2[5], "../images/IntelMotherBoard", "", 400, 700, 400, 400)
             elif(self.name == PartAnalyzer.partNames[6]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[6], PartAnalyzer.descriptions[6], "", "", 60,60,60,60)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[6], PartAnalyzer.descriptions[6], PartAnalyzer.descriptions2[6], "../images/cmos.jpg", "../images/cmos2.png", 200,200,200,200)
+            elif(self.name == PartAnalyzer.partNames[7]):
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[7], PartAnalyzer.descriptions[7], PartAnalyzer.descriptions2[7], "../images/network_adapter.jpg", "../images/port_expansion.jpg", 200, 200, 200, 200)
             # IO parts ------
             elif(self.name == PartAnalyzer.io_partNames[0]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[0], PartAnalyzer.io_descriptions1[0], "../images/antenna_port.jpg", "../images/antenna_port2.png", 350, 80, 300, 240)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[0], PartAnalyzer.io_descriptions1[0], PartAnalyzer.io_descriptions2[0], "../images/antenna_port.jpg", "../images/antenna_port2.png", 350, 80, 300, 240)
             elif(self.name == PartAnalyzer.io_partNames[1]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[1], PartAnalyzer.io_descriptions1[1], "../images/hdmi_port.png", "../images/hdmi_port2.jpg", 350, 80, 300, 240)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[1], PartAnalyzer.io_descriptions1[1], PartAnalyzer.io_descriptions2[1], "../images/hdmi_port.png", "../images/hdmi_port2.jpg", 350, 80, 300, 240)
             elif(self.name == PartAnalyzer.io_partNames[2]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[2], PartAnalyzer.io_descriptions1[2], "../images/PS2_port.jpg", "../images/usb3.2_port.jpg", 350, 80, 350, 80)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[2], PartAnalyzer.io_descriptions1[2], PartAnalyzer.io_descriptions2[2], "../images/PS2_port.jpg", "../images/usb3.2_port.jpg", 350, 80, 350, 80)
             elif(self.name == PartAnalyzer.io_partNames[3]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[3], PartAnalyzer.io_descriptions1[3], "../images/usb3.2_typeA_port.jpg", "../images/usb3.2_typeC_port.jpg", 350, 80, 350, 80)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[3], PartAnalyzer.io_descriptions1[3], PartAnalyzer.io_descriptions2[3], "../images/usb3.2_typeA_port.jpg", "../images/usb3.2_typeC_port.jpg", 350, 80, 350, 80)
             elif(self.name == PartAnalyzer.io_partNames[4]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[4], PartAnalyzer.io_descriptions1[4], "../images/lan_port.jpg", "../images/usb2.0_port.jpg", 350, 80, 350, 80)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[4], PartAnalyzer.io_descriptions1[4], PartAnalyzer.io_descriptions2[4], "../images/lan_port.jpg", "../images/usb2.0_port.jpg", 350, 80, 350, 80)
             elif(self.name == PartAnalyzer.io_partNames[5]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[5], PartAnalyzer.io_descriptions1[5], "../images/audio_jacks_port.jpg", "../images/audio_jacks_port2.jpg", 350, 80, 350, 120)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[5], PartAnalyzer.io_descriptions1[5], PartAnalyzer.io_descriptions2[5], "../images/audio_jacks_port.jpg", "../images/audio_jacks_port2.jpg", 350, 80, 350, 120)
     def mouseMoveEvent(self, event):
-        if(self.name == PartAnalyzer.partNames[5] or self.name == PartAnalyzer.partNames[6]):
+        if(self.name == PartAnalyzer.partNames[5] or self.name == PartAnalyzer.partNames[6] or self.name == PartAnalyzer.partNames[7]):
             return
         if not (event.buttons() & Qt.LeftButton):
             return
@@ -98,10 +100,11 @@ class my_label(QLabel):
 
 
 class Ui_MotherBoard(object):
-    def openPartAnalyzer(self, name, description, image, image2, width, height, width2, height2):
+    def openPartAnalyzer(self, name, description, description2,  image, image2, width, height, width2, height2):
             self.partView = QtWidgets.QMainWindow()
+            self.partView.setWindowTitle("Part Analyzer")
             self.ui2 = PartAnalyzer.Ui_PartAnalyzer()
-            self.ui2.setupUi(self.partView, name, description, image, image2, width, height, width2, height2)
+            self.ui2.setupUi(self.partView, name, description, description2, image, image2, width, height, width2, height2)
             self.partView.show()
 
     def hover_events(self, MainWindow):
@@ -271,7 +274,7 @@ class Ui_MotherBoard(object):
         self.hover_actual_description_label.setWordWrap(True)
         self.hover_actual_description_label.setObjectName("hover_actual_description_label")
         self.hover_description_label = QtWidgets.QLabel(self.centralwidget)
-        self.hover_description_label.setGeometry(QtCore.QRect(1130, 680, 171, 31))
+        self.hover_description_label.setGeometry(QtCore.QRect(1130, 650, 171, 31))
 
         font = QtGui.QFont()
         font.setFamily("Consolas")
@@ -412,7 +415,6 @@ class Ui_MotherBoard(object):
         self.opacityEffect9.setOpacity(0.3)
 
 
-
         #CPU ON LABEL
         self.cpu = QtWidgets.QLabel(MainWindow)
         self.cpu.setStyleSheet("QLabel::hover"
@@ -442,7 +444,7 @@ class Ui_MotherBoard(object):
         self.pcie.setGeometry(QtCore.QRect(170, 500, 80, 30))
         self.pcie.setMouseTracking(True)
         self.pcie.clear()
-        self.pcie.setObjectName("pcie")
+        self.pcie.setObjectName("PCIe")
         self.pcie.setGraphicsEffect(self.opacityEffect8)
 
         self.pcie1 = QtWidgets.QLabel(MainWindow)
@@ -451,7 +453,7 @@ class Ui_MotherBoard(object):
         self.pcie1.setGeometry(QtCore.QRect(170, 700, 80, 30))
         self.pcie1.setMouseTracking(True)
         self.pcie1.clear()
-        self.pcie1.setObjectName("pcie")
+        self.pcie1.setObjectName("PCIe")
         self.pcie1.setGraphicsEffect(self.opacityEffect8p0)
 
         self.pcie2 = QtWidgets.QLabel(MainWindow)
@@ -460,8 +462,14 @@ class Ui_MotherBoard(object):
         self.pcie2.setGeometry(QtCore.QRect(170, 890, 80, 30))
         self.pcie2.setMouseTracking(True)
         self.pcie2.clear()
-        self.pcie2.setObjectName("pcie")
+        self.pcie2.setObjectName("PCIe x1")
         self.pcie2.setGraphicsEffect(self.opacityEffect8p1)
+
+        #Making pcie a draggable label so we can inspect them
+        self.pcieD = (DraggableLabel(self.pcie, "../images/clear_image.png", "PCIe x1"))
+        self.pcie1D = (DraggableLabel(self.pcie1, "../images/clear_image.png", "PCIe x1"))
+        self.pcie2D = (DraggableLabel(self.pcie2, "../images/clear_image.png", "PCIe x1"))
+
 
 
         #GPU ON LABEL
@@ -531,15 +539,16 @@ class Ui_MotherBoard(object):
         self.m2.setGraphicsEffect(self.opacityEffect7)
 
         self.cmos = QtWidgets.QLabel(MainWindow)
+        self.cmos.setPixmap(QtGui.QPixmap("../images/clear_image.png"))
         self.cmos.setGeometry(QtCore.QRect(430, 616, 60, 60))
+
         self.cmos.setStyleSheet("QLabel::hover"
                              "{ background-color : yellow;"
                              "  border-radius: 30px;}")
         self.cmos.clear()
-        self.cmos.setObjectName("Cmos")
+        self.cmos.setObjectName("CMOS")
         self.cmos.setGraphicsEffect(self.opacityEffect9)
-
-        self.cmosD = (DraggableLabel(self.cmos, "", "Cmos"))
+        self.cmosD = (DraggableLabel(self.cmos, "../images/clear_image.png", "CMOS"))
 
 
 
@@ -568,10 +577,10 @@ class Ui_MotherBoard(object):
         self.ram_label.setText(_translate("MainWindow", "RAM Sticks"))
         self.ssd_label.setText(_translate("MainWindow", "M.2 SSD"))
 
-        self.hover_actual_description_label.setText(_translate("MainWindow", "Hover over a part to see description!         Right click to analyze a part!"))
+        self.hover_actual_description_label.setText(_translate("MainWindow", "Hover over a part to see description!\nRight click to analyze a part!"))
         self.hover_description_label.setText(_translate("MainWindow", "Part Description"))
-        #self.hover_actual_description_label.adjustSize()
         self.hover_description_label.adjustSize()
+
     def openMain(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = mainMenu.Ui_MainMenu()
@@ -579,8 +588,6 @@ class Ui_MotherBoard(object):
         MainWindow.close()
         self.window.show()
 
-
-#---------------------------------
 
 if __name__ == "__main__":
     import sys

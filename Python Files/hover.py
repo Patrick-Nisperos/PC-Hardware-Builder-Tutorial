@@ -25,4 +25,4 @@ def hoverEnter(label, description_label):
         description_label.setText("This is the port for audio jacks for sound and mic")
 
 def hoverExit(label, description_label):
-    description_label.setText("Hover over a part to see description!          Right click to analyze a part!")
+    description_label.setText("Hover over a part to see description!\nRight click to analyze a part!")
