@@ -13,4 +13,4 @@ def hoverEnter(label, description_label):
         description_label.setText("SSD stands for Solid-State Drive. M.2 is a form factor for ssds. Similiar to a Hard drive, an ssd stores data even when the pc is off. However it uses flash memory and is much faster.")
 
 def hoverExit(label, description_label):
-    description_label.setText("Hover over a part to see description!")
+    description_label.setText("Hover over a part to see description!          Right click to analyze a part!")
