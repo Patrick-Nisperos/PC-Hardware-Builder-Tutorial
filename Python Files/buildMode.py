@@ -30,7 +30,7 @@ class DraggableLabel(QLabel):
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.drag_start_position = event.pos()
-        if(event.button() == Qt.RightButton):
+        if(event.button() == Qt.RightButton):                
             if(self.name == PartAnalyzer.partNames[0]):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[0], PartAnalyzer.descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.jpg", 200, 200, 200, 200)
                 #print("cpu clicked")
@@ -42,6 +42,10 @@ class DraggableLabel(QLabel):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[3], PartAnalyzer.descriptions[3], "../images/ram stick.jpg", "../images/ram stick.jpg", 300, 100, 300, 100)
             elif(self.name == PartAnalyzer.partNames[4]):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[4], PartAnalyzer.descriptions[4], "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 300, 100, 300, 100)
+            elif(self.name == PartAnalyzer.partNames[5]):
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[5], PartAnalyzer.descriptions[5], "../images/IntelMotherBoard", "", 400, 700, 400, 400)
+            elif(self.name == PartAnalyzer.partNames[6]):
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[6], PartAnalyzer.descriptions[6], "", "", 60,60,60,60)
             # IO parts ------
             elif(self.name == PartAnalyzer.io_partNames[0]):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[0], PartAnalyzer.io_descriptions1[0], "../images/antenna_port.jpg", "../images/antenna_port2.png", 350, 80, 300, 240)
@@ -55,9 +59,9 @@ class DraggableLabel(QLabel):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[4], PartAnalyzer.io_descriptions1[4], "../images/lan_port.jpg", "../images/usb2.0_port.jpg", 350, 80, 350, 80)
             elif(self.name == PartAnalyzer.io_partNames[5]):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[5], PartAnalyzer.io_descriptions1[5], "../images/audio_jacks_port.jpg", "../images/audio_jacks_port2.jpg", 350, 80, 350, 120)
-
-    
     def mouseMoveEvent(self, event):
+        if(self.name == PartAnalyzer.partNames[5] or self.name == PartAnalyzer.partNames[6]):
+            return
         if not (event.buttons() & Qt.LeftButton):
             return
         if (event.pos() - self.drag_start_position).manhattanLength() < QApplication.startDragDistance():
@@ -269,7 +273,6 @@ class Ui_MotherBoard(object):
         self.hover_description_label = QtWidgets.QLabel(self.centralwidget)
         self.hover_description_label.setGeometry(QtCore.QRect(1130, 680, 171, 31))
 
-
         font = QtGui.QFont()
         font.setFamily("Consolas")
         font.setPointSize(14)
@@ -375,34 +378,38 @@ class Ui_MotherBoard(object):
 
         # call hover events
         self.hover_events(MainWindow)
+        self.motherBoardD = (DraggableLabel(self.motherBoard, "../images/IntelMotherBoard.jpg", "MotherBoard"))
 
         #Opacity effect doesn't work with multiple labels 
         #Also tried setting opacity 1 to 0 but it doesnt work
         #Forced to initialize new opacities w/ same values                                      
 
-        self.opacityEffect0 = QGraphicsOpacityEffect()
+        self.opacityEffect0 = QGraphicsOpacityEffect()#cpu
         self.opacityEffect0.setOpacity(0.3)
-
-        self.opacityEffect1 = QGraphicsOpacityEffect()
+        self.opacityEffect1 = QGraphicsOpacityEffect()#cpu cable
         self.opacityEffect1.setOpacity(0.3)
-
-        self.opacityEffect2 = QGraphicsOpacityEffect()
+        self.opacityEffect2 = QGraphicsOpacityEffect()#pciex16
         self.opacityEffect2.setOpacity(0.3)
-
-        self.opacityEffect3 = QGraphicsOpacityEffect()
+        self.opacityEffect2p0 = QGraphicsOpacityEffect()#pciex16
+        self.opacityEffect2p0.setOpacity(0.3)
+        self.opacityEffect3 = QGraphicsOpacityEffect()#ram
         self.opacityEffect3.setOpacity(0.3)
-
-        self.opacityEffect4 = QGraphicsOpacityEffect()
+        self.opacityEffect4 = QGraphicsOpacityEffect()#--
         self.opacityEffect4.setOpacity(0.3)
-
-        self.opacityEffect5 = QGraphicsOpacityEffect()
+        self.opacityEffect5 = QGraphicsOpacityEffect()#--
         self.opacityEffect5.setOpacity(0.3)
-
-        self.opacityEffect6 = QGraphicsOpacityEffect()
+        self.opacityEffect6 = QGraphicsOpacityEffect()#ram
         self.opacityEffect6.setOpacity(0.3)
-
-        self.opacityEffect7 = QGraphicsOpacityEffect()
+        self.opacityEffect7 = QGraphicsOpacityEffect()#ssd
         self.opacityEffect7.setOpacity(0.3)
+        self.opacityEffect8 = QGraphicsOpacityEffect()#pcie x1
+        self.opacityEffect8.setOpacity(0.3)
+        self.opacityEffect8p0 = QGraphicsOpacityEffect()#pcie x1
+        self.opacityEffect8p0.setOpacity(0.3)
+        self.opacityEffect8p1 = QGraphicsOpacityEffect()
+        self.opacityEffect8p1.setOpacity(0.3)
+        self.opacityEffect9 = QGraphicsOpacityEffect()#for cmos
+        self.opacityEffect9.setOpacity(0.3)
 
 
 
@@ -426,6 +433,36 @@ class Ui_MotherBoard(object):
         self.cpuCable.setObjectName("CPU-Cable")
         self.cpuCable.setGraphicsEffect(self.opacityEffect1)
 
+        #Small pcie 
+
+
+        self.pcie = QtWidgets.QLabel(MainWindow)
+        self.pcie.setStyleSheet("QLabel::hover"
+                               "{ background-color : yellow; }")
+        self.pcie.setGeometry(QtCore.QRect(170, 500, 80, 30))
+        self.pcie.setMouseTracking(True)
+        self.pcie.clear()
+        self.pcie.setObjectName("pcie")
+        self.pcie.setGraphicsEffect(self.opacityEffect8)
+
+        self.pcie1 = QtWidgets.QLabel(MainWindow)
+        self.pcie1.setStyleSheet("QLabel::hover"
+                               "{ background-color : yellow; }")
+        self.pcie1.setGeometry(QtCore.QRect(170, 700, 80, 30))
+        self.pcie1.setMouseTracking(True)
+        self.pcie1.clear()
+        self.pcie1.setObjectName("pcie")
+        self.pcie1.setGraphicsEffect(self.opacityEffect8p0)
+
+        self.pcie2 = QtWidgets.QLabel(MainWindow)
+        self.pcie2.setStyleSheet("QLabel::hover"
+                               "{ background-color : yellow; }")
+        self.pcie2.setGeometry(QtCore.QRect(170, 890, 80, 30))
+        self.pcie2.setMouseTracking(True)
+        self.pcie2.clear()
+        self.pcie2.setObjectName("pcie")
+        self.pcie2.setGraphicsEffect(self.opacityEffect8p1)
+
 
         #GPU ON LABEL
         self.gpu = QtWidgets.QLabel(MainWindow)
@@ -436,6 +473,15 @@ class Ui_MotherBoard(object):
         self.gpu.clear()
         self.gpu.setObjectName("GPU")
         self.gpu.setGraphicsEffect(self.opacityEffect2)
+
+        self.gpu2 = QtWidgets.QLabel(MainWindow)
+        self.gpu2.setStyleSheet("QLabel::hover"
+                               "{ background-color : yellow; }")
+        self.gpu2.setGeometry(QtCore.QRect(170, 760, 321, 31))
+        self.gpu2.setMouseTracking(True)
+        self.gpu2.clear()
+        self.gpu2.setObjectName("GPU")
+        self.gpu2.setGraphicsEffect(self.opacityEffect2p0)
         
         #RAM STICKS ON LABELS
         self.ram1 = QtWidgets.QLabel(MainWindow)
@@ -484,6 +530,18 @@ class Ui_MotherBoard(object):
         self.m2.setObjectName("M.2 SSD")
         self.m2.setGraphicsEffect(self.opacityEffect7)
 
+        self.cmos = QtWidgets.QLabel(MainWindow)
+        self.cmos.setGeometry(QtCore.QRect(430, 616, 60, 60))
+        self.cmos.setStyleSheet("QLabel::hover"
+                             "{ background-color : yellow;"
+                             "  border-radius: 30px;}")
+        self.cmos.clear()
+        self.cmos.setObjectName("Cmos")
+        self.cmos.setGraphicsEffect(self.opacityEffect9)
+
+        self.cmosD = (DraggableLabel(self.cmos, "", "Cmos"))
+
+
 
         self.retranslateMotherboard(self.centralwidget)
         QtCore.QMetaObject.connectSlotsByName(self.centralwidget)
@@ -518,8 +576,11 @@ class Ui_MotherBoard(object):
         self.window = QtWidgets.QMainWindow()
         self.ui = mainMenu.Ui_MainMenu()
         self.ui.setupUi(self.window)
-        MainWindow.hide()
+        MainWindow.close()
         self.window.show()
+
+
+#---------------------------------
 
 if __name__ == "__main__":
     import sys

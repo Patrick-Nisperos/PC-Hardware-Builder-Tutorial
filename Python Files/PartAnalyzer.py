@@ -14,8 +14,9 @@ from PyQt5.QtCore import QMimeData, Qt
 from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 from PyQt5.QtCore import *
 
-partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD"]
+partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "Cmos"]
 io_partNames = ["ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS"]
+
 #Index is CPU as 0, GPU, RAM, CPU-COOLER, SSD
 descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 " containing all the circuitry needed to process input,"
@@ -35,7 +36,11 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
 
                 "The SSD or Solid-State drive is a new generation of storage device"
                 " used in computers. An SSD is much faster than a tradition mechanical"
-                " hard disk as it uses flash-based memory instead of a physical disk"]
+                " hard disk as it uses flash-based memory instead of a physical disk",
+
+                "MotherBoard",
+
+                "Cmos"]
 
 descriptions2 = ["The CPU or Central Processing Unit is the brain of a computer,"
                 " containing all the circuitry needed to process input,"
