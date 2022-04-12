@@ -29,7 +29,28 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 "The CPU cooler is a device designed to draw heat away from the system's"
                 " CPU and other components in the enclosure.",
 
-                "",
+                "Ram or random-access memory is where the computer stores data that is needed for short term memory."
+                " The ram holds all the data you are currently using.",
+
+                "The SSD or Solid-State drive is a new generation of storage device"
+                " used in computers. An SSD is much faster than a tradition mechanical"
+                " hard disk as it uses flash-based memory instead of a physical disk"]
+
+descriptions2 = ["The CPU or Central Processing Unit is the brain of a computer,"
+                " containing all the circuitry needed to process input,"
+                " store data, and output results. The CPU is constantly following"
+                " instructions of computer programs that tell it which data to process"
+                " and how to process it.",
+
+                "The GPU or Graphics processing unit, is a specialized"
+                " processor originally designed to accelerate graphics rendering"
+                " i.e. it displays the picture onto your screen",
+
+                "The CPU cooler is a device designed to draw heat away from the system's"
+                " CPU and other components in the enclosure.",
+
+                "Ram or random-access memory is where the computer stores data that is needed for short term memory."
+                " The ram holds all the data you are currently using.",
 
                 "The SSD or Solid-State drive is a new generation of storage device"
                 " used in computers. An SSD is much faster than a tradition mechanical"
@@ -72,25 +93,35 @@ class Ui_PartAnalyzer(object):
         self.PartName.setStyleSheet(("font-size: 16pt; color: white;"))
 
         self.Parttitle = QtWidgets.QLabel(self.centralwidget)
-        self.Parttitle.setGeometry(QtCore.QRect(480, 140, 251, 51))
+        self.Parttitle.setGeometry(QtCore.QRect(480, 120, 251, 51))
         self.Parttitle.setObjectName("PartName")
         self.Parttitle.setText("What is it?")
         self.Parttitle.setStyleSheet(("font-size: 16pt; color: white;"))
 
         self.Parttitle = QtWidgets.QLabel(self.centralwidget)
-        self.Parttitle.setGeometry(QtCore.QRect(480, 370, 251, 51))
+        self.Parttitle.setGeometry(QtCore.QRect(480, 360, 251, 51))
         self.Parttitle.setObjectName("PartName")
         self.Parttitle.setText("What Does it do?")
         self.Parttitle.setStyleSheet(("font-size: 16pt; color: white;"))
 
 
         self.PartDescription = QtWidgets.QLabel(self.centralwidget)
-        self.PartDescription.setGeometry(QtCore.QRect(480, 200, 250, 200))
+        self.PartDescription.setGeometry(QtCore.QRect(480, 160, 250, 200))
         self.PartDescription.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.PartDescription.setObjectName("PartDescription")
         self.PartDescription.setText(description)
         self.PartDescription.setWordWrap(True)
         self.PartDescription.setStyleSheet(("font-size: 12pt; color: white;"))
+
+        self.PartDescription2 = QtWidgets.QLabel(self.centralwidget)
+        self.PartDescription2.setGeometry(QtCore.QRect(480, 400, 250, 200))
+        self.PartDescription2.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
+        self.PartDescription2.setObjectName("PartDescription")
+        self.PartDescription2.setText(description)
+        self.PartDescription2.setWordWrap(True)
+        self.PartDescription2.setStyleSheet(("font-size: 12pt; color: white;"))
+
+
         PartAnalyzer.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(PartAnalyzer)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 26))
