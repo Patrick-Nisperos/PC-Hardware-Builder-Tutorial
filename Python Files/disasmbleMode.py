@@ -13,8 +13,6 @@ class DragLabel(QLabel):
         super(QLabel,self).__init__(parent)
         self.setPixmap(QPixmap(top_image).scaled(top_width,top_height))
         self.image = QPixmap(mv_image).scaled(mv_width,mv_height)
-        #self.setPixmap(self.image)
-        #self.setScaledContents(True)
         self.name = name
         self.show()
 
@@ -46,52 +44,36 @@ class DragLabel(QLabel):
         mimedata.setImageData(self.image.toImage())
 
         drag.setMimeData(mimedata)
-        #painter = QPainter(self.image)
-        #painter.drawPixmap(self.rect(), self.image)
-        #painter.end()
+        pixmap = QPixmap(self.size())
+        painter = QPainter(pixmap)
+        painter.drawPixmap(self.rect(), self.grab())
+        painter.end()
 
         drag.setPixmap(self.image)
         drag.setHotSpot(QPoint(self.x()+self.width()/2,self.y()+30))
-        drag.exec_(Qt.CopyAction | Qt.MoveAction)
-
+        drag.exec_(Qt.MoveAction)
+        self.hide()
+        
 class DropLabel(QLabel):
-    def __init__(self, label, parent):
+    def __init__(self, label, parent, image, width, height, effect):
         super(QLabel,self).__init__(parent)
         self.setAcceptDrops(True)
-        self.name = label
+        self.setPixmap(QPixmap(image).scaled(width, height))
+        self.effect = effect
     def dragEnterEvent(self, event):
         if event.mimeData().hasImage():
             event.acceptProposedAction()
-    def dropEvent(self, event):
-        self.opacityEffect = QGraphicsOpacityEffect()
-        self.opacityEffect.setOpacity(0.0)
-
-        pos = event.pos()
-        image = event.mimeData().pixmap()
-        self.setGraphicsEffect(self.opacityEffect)
-        self.setPixmap(image)
-        event.acceptProposedAction()
-        self.show()
-
-class my_label(QLabel):
-    def __init__(self,title,parent):
-        super().__init__(title, parent)
-        self.setAcceptDrops(True)
-
-    def dragEnterEvent(self,event):
-        if event.mimeData().hasImage():
-            print("event accepted")
-            event.accept()
-        else:
-            print("event rejected")
-            event.ignore()
+        
+    
     def dropEvent(self,event):
+        pos = event.pos()
+        
         if event.mimeData().hasImage():
-            self.setPixmap(QPixmap.fromImage(QImage(event.mimeData().imageData())))
-
+            self.effect.setOpacity(1)
+            event.acceptProposedAction()
+            
 
 class Ui_MotherBoard(object):
-
     def openPartAnalyzer(self, name, description, image, image2, width, height, width2, height2):
             self.partView = QtWidgets.QMainWindow()
             ui2 = PartAnalyzer.Ui_PartAnalyzer()
@@ -132,6 +114,9 @@ class Ui_MotherBoard(object):
         font.setWeight(75)
         font.setStrikeOut(False)
         
+        #self.testDropLabel = QtWidgets.QLabel(self.centralwidget)
+        #self.testDropLabel.setGeometry(800, 800, 30,30)
+        #self.testDropLabel = DropLabel("Droplabel", self.testDropLabel)
         #Opacity effect doesn't work with multiple labels 
         #Also tried setting opacity 1 to 0 but it doesnt work
         #Forced to initialize new opacities w/ same values                                      
@@ -192,12 +177,6 @@ class Ui_MotherBoard(object):
         self.hardware_list_label.setObjectName("hardware_list_label")
         self.gpu_label = QtWidgets.QLabel(self.centralwidget)
         self.gpu_label.setGeometry(QtCore.QRect(1130, 210, 151, 31))
-        font = QtGui.QFont()
-        font.setFamily("Consolas")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setItalic(False)
-        font.setWeight(75)
         font.setStrikeOut(False)
         self.gpu_label.setFont(font)
         self.gpu_label.setAlignment(QtCore.Qt.AlignCenter)
@@ -237,8 +216,11 @@ class Ui_MotherBoard(object):
         self.cpu_img.setScaledContents(True)
         self.cpu_img.setAlignment(QtCore.Qt.AlignCenter)
         self.cpu_img.setObjectName("cpu_img")
-        self.cpu_img.setGraphicsEffect(self.opacityEffect0)
-        #self.cpu_img = DropLabel("CPU", self.cpu_img)
+        self.cpu_img.effect = QGraphicsOpacityEffect()
+        self.cpu_img.effect.setOpacity(0.3)
+        self.cpu_img.setGraphicsEffect(self.cpu_img.effect)
+        self.cpu_img = DropLabel("CPU", self.cpu_img, "../images/i7_cpu.jpg", 91, 81, self.cpu_img.effect)
+        
 
         self.cpu_cooler_img = QtWidgets.QLabel(self.centralwidget)
         self.cpu_cooler_img.setGeometry(QtCore.QRect(1240, 100, 111, 111))
@@ -258,7 +240,11 @@ class Ui_MotherBoard(object):
         self.gpu_img.setScaledContents(True)
         self.gpu_img.setAlignment(QtCore.Qt.AlignCenter)
         self.gpu_img.setObjectName("gpu_img")
-        self.gpu_img.setGraphicsEffect(self.opacityEffect2)
+        self.gpu_img.effect = QGraphicsOpacityEffect()
+        self.gpu_img.effect.setOpacity(0.3)
+        self.gpu_img.setGraphicsEffect(self.gpu_img.effect)
+        self.gpu_img = DropLabel("GPU", self.gpu_img, "../images/gpu.png", 221, 121, self.gpu_img.effect)
+
         
         self.ssd_img = QtWidgets.QLabel(self.centralwidget)
         self.ssd_img.setGeometry(QtCore.QRect(1090, 560, 251, 61))
@@ -268,7 +254,10 @@ class Ui_MotherBoard(object):
         self.ssd_img.setScaledContents(True)
         self.ssd_img.setAlignment(QtCore.Qt.AlignCenter)
         self.ssd_img.setObjectName("ssd_img")
-        self.ssd_img.setGraphicsEffect(self.opacityEffect3)
+        self.ssd_img.effect = QGraphicsOpacityEffect()
+        self.ssd_img.effect.setOpacity(0.3)
+        self.ssd_img.setGraphicsEffect(self.ssd_img.effect)
+        self.ssd_img = DropLabel("SSD", self.ssd_img, "../images/m.2_ssd.jpg", 251, 61, self.ssd_img.effect)
         
         self.ram_img1 = QtWidgets.QLabel(self.centralwidget)
         self.ram_img1.setGeometry(QtCore.QRect(1100, 410, 221, 51))
@@ -278,7 +267,11 @@ class Ui_MotherBoard(object):
         self.ram_img1.setScaledContents(True)
         self.ram_img1.setAlignment(QtCore.Qt.AlignCenter)
         self.ram_img1.setObjectName("ram_img1")
-        self.ram_img1.setGraphicsEffect(self.opacityEffect4)
+        self.ram_img1.effect = QGraphicsOpacityEffect()
+        self.ram_img1.effect.setOpacity(0.3)
+        self.ram_img1.setGraphicsEffect(self.ram_img1.effect)
+        self.ram_img1 = DropLabel("RAM", self.ram_img1, "../images/ram stick.jpg", 221, 51, self.ram_img1.effect)
+        
         self.ram_img2 = QtWidgets.QLabel(self.centralwidget)
         self.ram_img2.setGeometry(QtCore.QRect(1100, 470, 221, 51))
         self.ram_img2.setMaximumSize(QtCore.QSize(16777215, 16777215))
@@ -287,8 +280,11 @@ class Ui_MotherBoard(object):
         self.ram_img2.setScaledContents(True)
         self.ram_img2.setAlignment(QtCore.Qt.AlignCenter)
         self.ram_img2.setObjectName("ram_img2")
-        self.ram_img2.setGraphicsEffect(self.opacityEffect5)
-        
+        self.ram_img2.effect = QGraphicsOpacityEffect()
+        self.ram_img2.effect.setOpacity(0.3)
+        self.ram_img2.setGraphicsEffect(self.ram_img2.effect)
+        self.ram_img2 = DropLabel("RAM", self.ram_img2, "../images/ram stick.jpg", 221, 51, self.ram_img2.effect)   
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1004, 21))
