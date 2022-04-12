@@ -8,6 +8,7 @@ from hover import hoverExit, hoverEnter
 
 # Dragging
 class DragLabel(QLabel):
+    #self.gpu = DragLabel(self.gpu,"../images/GPU_topview.jpg" , "../images/gpu.png", 321, 31, 221,121, "GPU")
     def __init__(self,parent, top_image, mv_image, top_width, top_height, mv_width, mv_height, name):
         super(QLabel,self).__init__(parent)
         self.setPixmap(QPixmap(top_image).scaled(top_width,top_height))
@@ -42,7 +43,7 @@ class DragLabel(QLabel):
         
         mimedata = QMimeData()
         mimedata.setText(self.text())
-        mimedata.setImageData(self.pixmap().toImage())
+        mimedata.setImageData(self.image.toImage())
 
         drag.setMimeData(mimedata)
         #painter = QPainter(self.image)
@@ -55,20 +56,26 @@ class DragLabel(QLabel):
 
 class DropLabel(QLabel):
     def __init__(self, label, parent):
-        super().__init__(self, parent)
+        super(QLabel,self).__init__(parent)
         self.setAcceptDrops(True)
+        self.name = label
     def dragEnterEvent(self, event):
         if event.mimeData().hasImage():
             event.acceptProposedAction()
     def dropEvent(self, event):
+        self.opacityEffect = QGraphicsOpacityEffect()
+        self.opacityEffect.setOpacity(0.0)
+
         pos = event.pos()
         image = event.mimeData().pixmap()
+        self.setGraphicsEffect(self.opacityEffect)
         self.setPixmap(image)
         event.acceptProposedAction()
+        self.show()
 
 class my_label(QLabel):
     def __init__(self,title,parent):
-        super().__init__(title,parent)
+        super().__init__(title, parent)
         self.setAcceptDrops(True)
 
     def dragEnterEvent(self,event):
@@ -125,26 +132,39 @@ class Ui_MotherBoard(object):
         font.setWeight(75)
         font.setStrikeOut(False)
         
+        #Opacity effect doesn't work with multiple labels 
+        #Also tried setting opacity 1 to 0 but it doesnt work
+        #Forced to initialize new opacities w/ same values                                      
+
+        self.opacityEffect0 = QGraphicsOpacityEffect()
+        self.opacityEffect0.setOpacity(0.3)
+
+        self.opacityEffect1 = QGraphicsOpacityEffect()
+        self.opacityEffect1.setOpacity(0.3)
+
+        self.opacityEffect2 = QGraphicsOpacityEffect()
+        self.opacityEffect2.setOpacity(0.3)
+
+        self.opacityEffect3 = QGraphicsOpacityEffect()
+        self.opacityEffect3.setOpacity(0.3)
+
+        self.opacityEffect4 = QGraphicsOpacityEffect()
+        self.opacityEffect4.setOpacity(0.3)
+
+        self.opacityEffect5 = QGraphicsOpacityEffect()
+        self.opacityEffect5.setOpacity(0.3)
+
+        self.opacityEffect6 = QGraphicsOpacityEffect()
+        self.opacityEffect6.setOpacity(0.3)
+
+        self.opacityEffect7 = QGraphicsOpacityEffect()
+        self.opacityEffect7.setOpacity(0.3)
+
+        #labels
+
         self.cpu_label.setFont(font)
         self.cpu_label.setAlignment(QtCore.Qt.AlignCenter)
         self.cpu_label.setObjectName("cpu_label")
-        self.cpu_img = QtWidgets.QLabel(self.centralwidget)
-        self.cpu_img.setGeometry(QtCore.QRect(1070, 110, 91, 81))
-        self.cpu_img.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.cpu_img.setText("")
-        self.cpu_img.setPixmap(QtGui.QPixmap("../images/i7_cpu.jpg"))
-        self.cpu_img.setScaledContents(True)
-        self.cpu_img.setAlignment(QtCore.Qt.AlignCenter)
-        self.cpu_img.setObjectName("cpu_img")
-
-        self.cpu_cooler_img = QtWidgets.QLabel(self.centralwidget)
-        self.cpu_cooler_img.setGeometry(QtCore.QRect(1240, 100, 111, 111))
-        self.cpu_cooler_img.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.cpu_cooler_img.setText("")
-        self.cpu_cooler_img.setPixmap(QtGui.QPixmap("../images/cpu_cooler.png"))
-        self.cpu_cooler_img.setScaledContents(True)
-        self.cpu_cooler_img.setAlignment(QtCore.Qt.AlignCenter)
-        self.cpu_cooler_img.setObjectName("cpu_cooler_img")
         self.cpu_cooler_label = QtWidgets.QLabel(self.centralwidget)
         self.cpu_cooler_label.setGeometry(QtCore.QRect(1220, 70, 151, 31))
         font = QtGui.QFont()
@@ -170,14 +190,6 @@ class Ui_MotherBoard(object):
         self.hardware_list_label.setFont(font)
         self.hardware_list_label.setAlignment(QtCore.Qt.AlignCenter)
         self.hardware_list_label.setObjectName("hardware_list_label")
-        self.gpu_img = QtWidgets.QLabel(self.centralwidget)
-        self.gpu_img.setGeometry(QtCore.QRect(1090, 250, 221, 121))
-        self.gpu_img.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.gpu_img.setText("")
-        self.gpu_img.setPixmap(QtGui.QPixmap("../images/gpu.png"))
-        self.gpu_img.setScaledContents(True)
-        self.gpu_img.setAlignment(QtCore.Qt.AlignCenter)
-        self.gpu_img.setObjectName("gpu_img")
         self.gpu_label = QtWidgets.QLabel(self.centralwidget)
         self.gpu_label.setGeometry(QtCore.QRect(1130, 210, 151, 31))
         font = QtGui.QFont()
@@ -214,6 +226,40 @@ class Ui_MotherBoard(object):
         self.ssd_label.setFont(font)
         self.ssd_label.setAlignment(QtCore.Qt.AlignCenter)
         self.ssd_label.setObjectName("ssd_label")
+        
+    
+        #image
+        self.cpu_img = QtWidgets.QLabel(self.centralwidget)
+        self.cpu_img.setGeometry(QtCore.QRect(1070, 110, 91, 81))
+        self.cpu_img.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.cpu_img.setText("")
+        self.cpu_img.setPixmap(QtGui.QPixmap("../images/i7_cpu.jpg"))
+        self.cpu_img.setScaledContents(True)
+        self.cpu_img.setAlignment(QtCore.Qt.AlignCenter)
+        self.cpu_img.setObjectName("cpu_img")
+        self.cpu_img.setGraphicsEffect(self.opacityEffect0)
+        #self.cpu_img = DropLabel("CPU", self.cpu_img)
+
+        self.cpu_cooler_img = QtWidgets.QLabel(self.centralwidget)
+        self.cpu_cooler_img.setGeometry(QtCore.QRect(1240, 100, 111, 111))
+        self.cpu_cooler_img.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.cpu_cooler_img.setText("")
+        self.cpu_cooler_img.setPixmap(QtGui.QPixmap("../images/cpu_cooler.png"))
+        self.cpu_cooler_img.setScaledContents(True)
+        self.cpu_cooler_img.setAlignment(QtCore.Qt.AlignCenter)
+        self.cpu_cooler_img.setObjectName("cpu_cooler_img")
+        self.cpu_cooler_img.setGraphicsEffect(self.opacityEffect1)
+        
+        self.gpu_img = QtWidgets.QLabel(self.centralwidget)
+        self.gpu_img.setGeometry(QtCore.QRect(1090, 250, 221, 121))
+        self.gpu_img.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.gpu_img.setText("")
+        self.gpu_img.setPixmap(QtGui.QPixmap("../images/gpu.png"))
+        self.gpu_img.setScaledContents(True)
+        self.gpu_img.setAlignment(QtCore.Qt.AlignCenter)
+        self.gpu_img.setObjectName("gpu_img")
+        self.gpu_img.setGraphicsEffect(self.opacityEffect2)
+        
         self.ssd_img = QtWidgets.QLabel(self.centralwidget)
         self.ssd_img.setGeometry(QtCore.QRect(1090, 560, 251, 61))
         self.ssd_img.setMaximumSize(QtCore.QSize(16777215, 16777215))
@@ -222,6 +268,8 @@ class Ui_MotherBoard(object):
         self.ssd_img.setScaledContents(True)
         self.ssd_img.setAlignment(QtCore.Qt.AlignCenter)
         self.ssd_img.setObjectName("ssd_img")
+        self.ssd_img.setGraphicsEffect(self.opacityEffect3)
+        
         self.ram_img1 = QtWidgets.QLabel(self.centralwidget)
         self.ram_img1.setGeometry(QtCore.QRect(1100, 410, 221, 51))
         self.ram_img1.setMaximumSize(QtCore.QSize(16777215, 16777215))
@@ -230,6 +278,7 @@ class Ui_MotherBoard(object):
         self.ram_img1.setScaledContents(True)
         self.ram_img1.setAlignment(QtCore.Qt.AlignCenter)
         self.ram_img1.setObjectName("ram_img1")
+        self.ram_img1.setGraphicsEffect(self.opacityEffect4)
         self.ram_img2 = QtWidgets.QLabel(self.centralwidget)
         self.ram_img2.setGeometry(QtCore.QRect(1100, 470, 221, 51))
         self.ram_img2.setMaximumSize(QtCore.QSize(16777215, 16777215))
@@ -238,6 +287,8 @@ class Ui_MotherBoard(object):
         self.ram_img2.setScaledContents(True)
         self.ram_img2.setAlignment(QtCore.Qt.AlignCenter)
         self.ram_img2.setObjectName("ram_img2")
+        self.ram_img2.setGraphicsEffect(self.opacityEffect5)
+        
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1004, 21))
@@ -293,47 +344,17 @@ class Ui_MotherBoard(object):
         self.motherBoard.setPixmap(QtGui.QPixmap("../images/IntelMotherBoard.jpg"))
         self.motherBoard.setObjectName("MotherBoard")
 
-        #Opacity effect doesn't work with multiple labels 
-        #Also tried setting opacity 1 to 0 but it doesnt work
-        #Forced to initialize new opacities w/ same values                                      
-
-        self.opacityEffect0 = QGraphicsOpacityEffect()
-        self.opacityEffect0.setOpacity(0.3)
-
-        self.opacityEffect1 = QGraphicsOpacityEffect()
-        self.opacityEffect1.setOpacity(0.3)
-
-        self.opacityEffect2 = QGraphicsOpacityEffect()
-        self.opacityEffect2.setOpacity(0.3)
-
-        self.opacityEffect3 = QGraphicsOpacityEffect()
-        self.opacityEffect3.setOpacity(0.3)
-
-        self.opacityEffect4 = QGraphicsOpacityEffect()
-        self.opacityEffect4.setOpacity(0.3)
-
-        self.opacityEffect5 = QGraphicsOpacityEffect()
-        self.opacityEffect5.setOpacity(0.3)
-
-        self.opacityEffect6 = QGraphicsOpacityEffect()
-        self.opacityEffect6.setOpacity(0.3)
-
-        self.opacityEffect7 = QGraphicsOpacityEffect()
-        self.opacityEffect7.setOpacity(0.3)
-
-        #CPU ON LABEL
+        
+        #CPU on motherboard
         self.cpu = QtWidgets.QLabel(MainWindow)
         self.cpu.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
         self.cpu.setGeometry(QtCore.QRect(355, 230, 91, 81))
         self.cpu.setMouseTracking(True)
         self.cpu.clear()
-        self.cpu.setObjectName("CPU")
-        #self.cpu.setGraphicsEffect(self.opacityEffect0)
-        
+        self.cpu.setObjectName("CPU")        
         self.cpu = DragLabel(self.cpu, "../images/i7_cpu.jpg", "../images/i7_cpu.jpg", 91, 81, 91, 81, "CPU")
-        #self.cpu.leaveEvent = lambda e: hoverExit("cpu", self.hover_actual_description_label)
-        #self.cpu.enterEvent = lambda e: hoverEnter("cpu", self.hover_actual_description_label)
-
+    
+        #port on motherboard (missing image and dragLabel)
         self.cpuCable = QtWidgets.QLabel(MainWindow)
         self.cpuCable.setStyleSheet("QLabel::hover"
                                    "{ background-color : yellow; }")
@@ -341,30 +362,25 @@ class Ui_MotherBoard(object):
         self.cpuCable.setMouseTracking(True)
         self.cpuCable.clear()
         self.cpuCable.setObjectName("CPU-Cable")
-        self.cpuCable.setGraphicsEffect(self.opacityEffect1)
 
-        #GPU ON LABEL
+        #GPU on motherboard
         self.gpu = QtWidgets.QLabel(MainWindow)
         self.gpu.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
         self.gpu.setGeometry(QtCore.QRect(170, 565, 321, 31))
         self.gpu.setMouseTracking(True)
         self.gpu.clear()
         self.gpu.setObjectName("GPU")
-        #self.gpu.setGraphicsEffect(self.opacityEffect2)
-
-
         self.gpu = DragLabel(self.gpu,"../images/GPU_topview.jpg" , "../images/gpu.png", 321, 31, 221,121, "GPU")
         
         
-        #RAM STICKS ON LABELS
+        #RAM STICKS on motherboard
         self.ram1 = QtWidgets.QLabel(MainWindow)
         self.ram1.setStyleSheet("QLabel::hover"
-                               "{ background-color : yellow }")
+                                "{ background-color : yellow }")
         self.ram1.setGeometry(QtCore.QRect(560, 50, 20, 440))
         self.ram1.setMouseTracking(True)
         self.ram1.clear()
         self.ram1.setObjectName("RamStick1")
-        #self.ram1.setGraphicsEffect(self.opacityEffect3)
       
         self.ram2 = QtWidgets.QLabel(MainWindow)
         self.ram2.setStyleSheet("QLabel::hover"
@@ -373,7 +389,6 @@ class Ui_MotherBoard(object):
         self.ram2.setMouseTracking(True)
         self.ram2.clear()
         self.ram2.setObjectName("RamStick2")
-        #self.ram2.setGraphicsEffect(self.opacityEffect4)
      
         self.ram3 = QtWidgets.QLabel(MainWindow)
         self.ram3.setStyleSheet("QLabel::hover"
@@ -382,7 +397,6 @@ class Ui_MotherBoard(object):
         self.ram3.setMouseTracking(True)
         self.ram3.clear()
         self.ram3.setObjectName("RamStick3")
-        #self.ram3.setGraphicsEffect(self.opacityEffect5)
 
         self.ram4 = QtWidgets.QLabel(MainWindow)
         self.ram4.setStyleSheet("QLabel::hover"
@@ -391,7 +405,6 @@ class Ui_MotherBoard(object):
         self.ram4.setMouseTracking(True)
         self.ram4.clear()
         self.ram4.setObjectName("RamStick4")
-        #self.ram4.setGraphicsEffect(self.opacityEffect6)
 
         
         self.ram1 = DragLabel(self.ram1, "../images/ram_topview.jpg","../images/ram stick.jpg", 20, 440, 221, 51, "RAM")
@@ -400,15 +413,13 @@ class Ui_MotherBoard(object):
         self.ram4 = DragLabel(self.ram4, "../images/ram_topview.jpg","../images/ram stick.jpg", 20, 440, 221, 51, "RAM")
         
         
-        #label 8 is m.2
+        #SSD on motherboard
         self.m2 = QtWidgets.QLabel(MainWindow)
         self.m2.setStyleSheet("QLabel::hover"
                              "{ background-color : yellow }")
         self.m2.setGeometry(QtCore.QRect(460, 830, 251, 71))
         self.m2.clear()
         self.m2.setObjectName("M.2 SSD")
-        #self.m2.setGraphicsEffect(self.opacityEffect7)
-
         self.m2 = DragLabel(self.m2, "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 251, 71, 221, 61, "SSD")
 
         # call mouse hover events
