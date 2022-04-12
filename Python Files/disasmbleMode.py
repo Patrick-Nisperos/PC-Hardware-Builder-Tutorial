@@ -443,7 +443,7 @@ class Ui_MotherBoard(object):
         self.ram_label.setText(_translate("MainWindow", "RAM Sticks"))
         self.ssd_label.setText(_translate("MainWindow", "M.2 SSD"))
 
-        self.hover_actual_description_label.setText(_translate("MainWindow", "Hover over a part to see description!"))
+        self.hover_actual_description_label.setText(_translate("MainWindow", "Hover over a part to see description!         Right click to analyze a part!"))
         self.hover_description_label.setText(_translate("MainWindow", "Part Description"))
 
     

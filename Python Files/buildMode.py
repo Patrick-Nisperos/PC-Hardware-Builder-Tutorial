@@ -35,9 +35,9 @@ class DraggableLabel(QLabel):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[0], PartAnalyzer.descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.jpg", 200, 200, 200, 200)
                 #print("cpu clicked")
             elif(self.name == PartAnalyzer.partNames[1]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[1], PartAnalyzer.descriptions[1], "../images/gpu.png", "../images/gpu2.JPG", 300,200,400,200)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[1], PartAnalyzer.descriptions[1], "../images/gpu.png", "../images/gpu2.png", 300,200,300,200)
             elif(self.name == PartAnalyzer.partNames[2]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[2], PartAnalyzer.descriptions[2], "../images/cpu_cooler.png", "", 200,200,200,200)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[2], PartAnalyzer.descriptions[2], "../images/cpu_cooler.png", "../images/cpu_cooler2.png", 200,200,200,200)
             elif(self.name == PartAnalyzer.partNames[3]):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[3], PartAnalyzer.descriptions[3], "../images/ram stick.jpg", "../images/ram stick.jpg", 300, 100, 300, 100)
             elif(self.name == PartAnalyzer.partNames[4]):
@@ -239,6 +239,17 @@ class Ui_MotherBoard(object):
         self.hover_actual_description_label.setObjectName("hover_actual_description_label")
         self.hover_description_label = QtWidgets.QLabel(self.centralwidget)
         self.hover_description_label.setGeometry(QtCore.QRect(1130, 680, 171, 31))
+
+        # IO Invisible images --------
+        self.usb_spot = QtWidgets.QLabel(self.centralwidget)
+        self.usb_spot.setGeometry(QtCore.QRect(10, 100, 221, 51))
+        self.usb_spot.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.usb_spot.setText("")
+        self.usb_spot.setPixmap(QtGui.QPixmap("../images/ram stick.jpg"))
+        self.usb_spot.setScaledContents(True)
+        self.usb_spot.setAlignment(QtCore.Qt.AlignCenter)
+        self.usb_spot.setObjectName("ram_img1")
+
         font = QtGui.QFont()
         font.setFamily("Consolas")
         font.setPointSize(14)
@@ -271,6 +282,8 @@ class Ui_MotherBoard(object):
         self.ram_img1D = (DraggableLabel(self.ram_img1, "../images/ram stick.jpg", "RAM").resize(221, 51))
         self.ram_img2D = (DraggableLabel(self.ram_img2, "../images/ram stick.jpg", "RAM").resize(221, 51))
         self.ssd_imgD = (DraggableLabel(self.ssd_img, "../images/m.2_ssd.jpg", "SSD").resize(221, 61))
+        self.usb_spot = (DraggableLabel(self.usb_spot, "../images/ram stick.jpg", "RAM"))
+        
     
     def setupMotherboard(self, MainWindow):
 
@@ -316,6 +329,18 @@ class Ui_MotherBoard(object):
 
         self.opacityEffect7 = QGraphicsOpacityEffect()
         self.opacityEffect7.setOpacity(0.3)
+
+        # IO PORTS INVISIBLE IMAGES
+        #CPU ON LABEL
+        self.usb_spot = QtWidgets.QLabel(MainWindow)
+        self.usb_spot.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
+        self.usb_spot.setGeometry(QtCore.QRect(25, 210, 91, 81))
+        self.usb_spot.setMouseTracking(True)
+        self.usb_spot.clear()
+        self.usb_spot.setObjectName("CPU")
+        #self.cpu.setGraphicsEffect(self.opacityEffect0)
+        
+        self.usb_spot = DraggableLabel(self.usb_spot, "../images/i7_cpu.jpg", "CPU")
 
         #CPU ON LABEL
         self.cpu = QtWidgets.QLabel(MainWindow)
@@ -421,7 +446,7 @@ class Ui_MotherBoard(object):
         self.ram_label.setText(_translate("MainWindow", "RAM Sticks"))
         self.ssd_label.setText(_translate("MainWindow", "M.2 SSD"))
 
-        self.hover_actual_description_label.setText(_translate("MainWindow", "Hover over a part to see description!"))
+        self.hover_actual_description_label.setText(_translate("MainWindow", "Hover over a part to see description!         Right click to analyze a part!"))
         self.hover_description_label.setText(_translate("MainWindow", "Part Description"))
         #self.hover_actual_description_label.adjustSize()
         self.hover_description_label.adjustSize()
