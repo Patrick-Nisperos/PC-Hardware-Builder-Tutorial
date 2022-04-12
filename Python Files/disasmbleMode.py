@@ -7,7 +7,7 @@ import PartAnalyzer
 from hover import hoverExit, hoverEnter
 
 # Dragging
-class DraggableLabel(QLabel):
+class DragLabel(QLabel):
     def __init__(self,parent, top_image, mv_image, top_width, top_height, mv_width, mv_height, name):
         super(QLabel,self).__init__(parent)
         self.setPixmap(QPixmap(top_image).scaled(top_width,top_height))
@@ -52,6 +52,19 @@ class DraggableLabel(QLabel):
         drag.setPixmap(self.image)
         drag.setHotSpot(QPoint(self.x()+self.width()/2,self.y()+30))
         drag.exec_(Qt.CopyAction | Qt.MoveAction)
+
+class DropLabel(QLabel):
+    def __init__(self, label, parent):
+        super().__init__(self, parent)
+        self.setAcceptDrops(True)
+    def dragEnterEvent(self, event):
+        if event.mimeData().hasImage():
+            event.acceptProposedAction()
+    def dropEvent(self, event):
+        pos = event.pos()
+        image = event.mimeData().pixmap()
+        self.setPixmap(image)
+        event.acceptProposedAction()
 
 class my_label(QLabel):
     def __init__(self,title,parent):
@@ -314,7 +327,7 @@ class Ui_MotherBoard(object):
         self.cpu.setObjectName("CPU")
         #self.cpu.setGraphicsEffect(self.opacityEffect0)
         
-        self.cpu = DraggableLabel(self.cpu, "../images/i7_cpu.jpg", "../images/i7_cpu.jpg", 91, 81, 91, 81, "CPU")
+        self.cpu = DragLabel(self.cpu, "../images/i7_cpu.jpg", "../images/i7_cpu.jpg", 91, 81, 91, 81, "CPU")
         #self.cpu.leaveEvent = lambda e: hoverExit("cpu", self.hover_actual_description_label)
         #self.cpu.enterEvent = lambda e: hoverEnter("cpu", self.hover_actual_description_label)
 
@@ -337,7 +350,7 @@ class Ui_MotherBoard(object):
         #self.gpu.setGraphicsEffect(self.opacityEffect2)
 
 
-        self.gpu = DraggableLabel(self.gpu,"../images/GPU_topview.jpg" , "../images/gpu.png", 321, 31, 221,121, "GPU")
+        self.gpu = DragLabel(self.gpu,"../images/GPU_topview.jpg" , "../images/gpu.png", 321, 31, 221,121, "GPU")
         
         
         #RAM STICKS ON LABELS
@@ -378,10 +391,10 @@ class Ui_MotherBoard(object):
         #self.ram4.setGraphicsEffect(self.opacityEffect6)
 
         
-        self.ram1 = DraggableLabel(self.ram1, "../images/ram_topview.jpg","../images/ram stick.jpg", 20, 440, 221, 51, "RAM")
-        self.ram2 = DraggableLabel(self.ram2, "../images/ram_topview.jpg","../images/ram stick.jpg", 20, 440, 221, 51, "RAM")
-        self.ram3 = DraggableLabel(self.ram3, "../images/ram_topview.jpg","../images/ram stick.jpg", 20, 440, 221, 51, "RAM")
-        self.ram4 = DraggableLabel(self.ram4, "../images/ram_topview.jpg","../images/ram stick.jpg", 20, 440, 221, 51, "RAM")
+        self.ram1 = DragLabel(self.ram1, "../images/ram_topview.jpg","../images/ram stick.jpg", 20, 440, 221, 51, "RAM")
+        self.ram2 = DragLabel(self.ram2, "../images/ram_topview.jpg","../images/ram stick.jpg", 20, 440, 221, 51, "RAM")
+        self.ram3 = DragLabel(self.ram3, "../images/ram_topview.jpg","../images/ram stick.jpg", 20, 440, 221, 51, "RAM")
+        self.ram4 = DragLabel(self.ram4, "../images/ram_topview.jpg","../images/ram stick.jpg", 20, 440, 221, 51, "RAM")
         
         
         #label 8 is m.2
@@ -393,7 +406,7 @@ class Ui_MotherBoard(object):
         self.m2.setObjectName("M.2 SSD")
         #self.m2.setGraphicsEffect(self.opacityEffect7)
 
-        self.m2 = DraggableLabel(self.m2, "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 251, 71, 221, 61, "SSD")
+        self.m2 = DragLabel(self.m2, "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 251, 71, 221, 61, "SSD")
 
         self.retranslateMotherboard(self.centralwidget)
         QtCore.QMetaObject.connectSlotsByName(self.centralwidget)
