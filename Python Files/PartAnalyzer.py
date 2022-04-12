@@ -78,7 +78,9 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
 io_descriptions1 = ["Antenna Ports", "Hdmi", "PS/2 Ports and USB 3.2 ports",
                     "USB 3.2 Type-A port and USB 3.2 Type-C port", "LAN/Ethernet port and USB 2.0 port",
                     "Audio jacks port"]
-io_descriptions2 = ["Gets signal", "Transfers data"]
+io_descriptions2 = ["Gets signal", "Transfers data", "PS/2 Ports and USB 3.2 ports",
+                    "USB 3.2 Type-A port and USB 3.2 Type-C port", "LAN/Ethernet port and USB 2.0 port",
+                    "Audio jacks port"]
 
 class Ui_PartAnalyzer(object):
     def setupUi(self, PartAnalyzer, name, description, description2, image1, image2, width, height, width2, height2):
