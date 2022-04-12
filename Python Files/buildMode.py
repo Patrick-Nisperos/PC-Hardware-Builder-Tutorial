@@ -43,7 +43,7 @@ class DraggableLabel(QLabel):
             elif(self.name == PartAnalyzer.partNames[4]):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[4], PartAnalyzer.descriptions[4], PartAnalyzer.descriptions2[4], "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 300, 100, 300, 100)
             elif(self.name == PartAnalyzer.partNames[5]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[5], PartAnalyzer.descriptions[5], PartAnalyzer.descriptions2[5], "../images/IntelMotherBoard", "", 400, 700, 400, 400)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[5], PartAnalyzer.descriptions[5], PartAnalyzer.descriptions2[5], "../images/IntelMotherBoard", "", 380, 660, 200, 200)
             elif(self.name == PartAnalyzer.partNames[6]):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[6], PartAnalyzer.descriptions[6], PartAnalyzer.descriptions2[6], "../images/cmos.jpg", "../images/cmos2.png", 200,200,200,200)
             elif(self.name == PartAnalyzer.partNames[7]):

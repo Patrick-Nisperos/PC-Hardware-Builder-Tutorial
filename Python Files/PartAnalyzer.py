@@ -38,7 +38,9 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 " used in computers. An SSD is much faster than a tradition mechanical"
                 " hard disk as it uses flash-based memory instead of a physical disk",
 
-                "MotherBoard",
+                "The motherboard comes in many form factors and is one of the most essential piece of hardware in a computer. "
+                "The motherboard comes in three main sizes that the user can choose from: ATX, micro-atx, and mini-ITX."
+                "The user also has the option to choose a motherboard with an AMD or an intel socket in order to support the CPU. ",
 
                 "Complementary metal-oxide-semiconductor (CMOS), is the term usually used to"
                 " describe the small amount of memory on a computer motherboard that stores the BIOS settings.",
@@ -51,21 +53,18 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
                 "The cpu fetches instructions that are represented as series of numbers from the ram."
                  "It then decodes the instructions and executes the instructions.",
 
-                "The GPU or Graphics processing unit, is a specialized"
-                " processor originally designed to accelerate graphics rendering"
-                " i.e. it displays the picture onto your screen",
+                "The GPU or Graphics processing unit, specializes in rendering graphics in order to be displayed"
+                "Basic processing of OS graphics can be handled by the CPU, but more intense graphical rendering of games or animation requires more horsepower.",
 
-                "The CPU cooler is a device designed to draw heat away from the system's"
-                " CPU and other components in the enclosure.",
+                "The CPU coolers job is to transfer heat away from the CPU in order for it to run as cool as possible. "
+                "If the CPU gets too hot, it can lead to a system failure or crashes.",
 
-                "Ram or random-access memory is where the computer stores data that is needed for short term memory."
-                " The ram holds all the data you are currently using.",
+                "The short-term memory allows fast access and transfer of data in order to handle active applications and task that the user is working on.",
 
-                "The SSD or Solid-State drive is a new generation of storage device"
-                " used in computers. An SSD is much faster than a tradition mechanical"
-                " hard disk as it uses flash-based memory instead of a physical disk",
+                "The SSD is another component used for storage where the user is able to store much more data for long term use. "
+                " SSDs are much slower than RAM, but gives a significant amount of storage and is able to retain that data even when the computer is off unlike RAM",
 
-                "MotherBoard",
+                "The motherboard allows the connections of various hardware components.",
 
                 "The CMOS battery powers your computers BIOS firmware, which is responsible for booting up"
                 " your computer and configuring data flow.",
