@@ -35,9 +35,9 @@ class DraggableLabel(QLabel):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[0], PartAnalyzer.descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.jpg", 200, 200, 200, 200)
                 #print("cpu clicked")
             elif(self.name == PartAnalyzer.partNames[1]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[1], PartAnalyzer.descriptions[1], "../images/gpu.png", "../images/gpu2.JPG", 300,200,400,200)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[1], PartAnalyzer.descriptions[1], "../images/gpu.png", "../images/gpu2.png", 300,200,300,200)
             elif(self.name == PartAnalyzer.partNames[2]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[2], PartAnalyzer.descriptions[2], "../images/cpu_cooler.png", "", 200,200,200,200)
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[2], PartAnalyzer.descriptions[2], "../images/cpu_cooler.png", "../images/cpu_cooler2.png", 200,200,200,200)
             elif(self.name == PartAnalyzer.partNames[3]):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[3], PartAnalyzer.descriptions[3], "../images/ram stick.jpg", "../images/ram stick.jpg", 300, 100, 300, 100)
             elif(self.name == PartAnalyzer.partNames[4]):
