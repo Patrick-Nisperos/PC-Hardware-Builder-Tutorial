@@ -23,13 +23,13 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 " and how to process it.",
 
                 "The GPU or Graphics processing unit, is a specialized"
-                " processor originally designed to accelerate graphics rendering",
+                " processor originally designed to accelerate graphics rendering"
                 " i.e. it displays the picture onto your screen",
-
-                "",
 
                 "The CPU cooler is a device designed to draw heat away from the system's"
                 " CPU and other components in the enclosure.",
+
+                "",
 
                 "The SSD or Solid-State drive is a new generation of storage device"
                 " used in computers. An SSD is much faster than a tradition mechanical"
@@ -76,13 +76,13 @@ class Ui_PartAnalyzer(object):
         self.statusbar.setObjectName("statusbar")
         PartAnalyzer.setStatusBar(self.statusbar)
         QtCore.QMetaObject.connectSlotsByName(PartAnalyzer)
-
+#Test
 def window2():
     app1 = QtWidgets.QApplication(sys.argv)
     PartAnalyzer1 = QtWidgets.QMainWindow()
     ui1 = Ui_PartAnalyzer()
     #width height of first image, width height of second image
-    ui1.setupUi(PartAnalyzer1, "Graphics Processing Unit", partDescriptions(1), "../images/gpu.png", "../images/gpu2.jpg", 300, 200, 400, 200)
+    ui1.setupUi(PartAnalyzer1, "Graphics Processing Unit", descriptions[1], "../images/gpu.png", "../images/gpu2.jpg", 300, 200, 400, 200)
     PartAnalyzer1.show()
     sys.exit(app1.exec_())
     #print(Ui_PartAnalyzer.partDescriptions(0))
@@ -93,7 +93,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     PartAnalyzer = QtWidgets.QMainWindow()
     ui = Ui_PartAnalyzer()
-    ui.setupUi(PartAnalyzer, "Central Processing Unit", partDescriptions(0), "../images/i7_cpu.jpg", "../images/ryzen9.JPG", 200, 200, 200, 200)
+    ui.setupUi(PartAnalyzer, "Central Processing Unit", descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.JPG", 200, 200, 200, 200)
     PartAnalyzer.show()
     window2()
 

@@ -1,20 +1,36 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QMimeData, Qt, QPoint
+from PyQt5.QtCore import *
 from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
+
+import PartAnalyzer
+from hover import hoverExit, hoverEnter
 
 # Dragging
 class DraggableLabel(QLabel):
-    def __init__(self,parent, mv_image, mv_width, mv_height):
+    def __init__(self,parent, mv_image, mv_width, mv_height, name):
         super(QLabel,self).__init__(parent)
         self.setPixmap(QPixmap("..images/yellowBox.png"))
         self.setScaledContents(True)
         self.image = QPixmap(mv_image).scaled(mv_width,mv_height)
+        self.name = name
         self.show()
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.drag_start_position = event.pos()
+        if(event.button() == Qt.RightButton):
+            if(self.name == PartAnalyzer.partNames[0]):
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[0], PartAnalyzer.descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.jpg", 200, 200, 200, 200)
+                #print("cpu clicked")
+            elif(self.name == PartAnalyzer.partNames[1]):
+                print("gpu clicked")
+            elif(self.name == PartAnalyzer.partNames[2]):
+                print("cpu-cooler clicked")
+            elif(self.name == PartAnalyzer.partNames[3]):
+                print("ram clicked")
+            elif(self.name == PartAnalyzer.partNames[4]):
+                print("ssd clicked")
 
     def mouseMoveEvent(self, event):
         if not (event.buttons() & Qt.LeftButton):
@@ -54,6 +70,28 @@ class my_label(QLabel):
 
 
 class Ui_MotherBoard(object):
+
+    def openPartAnalyzer(self, name, description, image, image2, width, height, width2, height2):
+            self.partView = QtWidgets.QMainWindow()
+            ui2 = PartAnalyzer.Ui_PartAnalyzer()
+            ui2.setupUi(self.partView, "Central Processing Unit", PartAnalyzer.descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.JPG", 200, 200, 200, 200)
+            self.partView.show()
+
+    def hover_events(self, MainWindow):
+        self.cpu_img.leaveEvent = lambda e: hoverExit("cpu", self.hover_actual_description_label)
+        self.cpu_img.enterEvent = lambda e: hoverEnter("cpu", self.hover_actual_description_label)
+        self.gpu_img.leaveEvent = lambda e: hoverExit("gpu", self.hover_actual_description_label)
+        self.gpu_img.enterEvent = lambda e: hoverEnter("gpu", self.hover_actual_description_label)
+        self.ram_img1.leaveEvent = lambda e: hoverExit("ram", self.hover_actual_description_label)
+        self.ram_img1.enterEvent = lambda e: hoverEnter("ram", self.hover_actual_description_label)
+        self.ram_img2.leaveEvent = lambda e: hoverExit("ram", self.hover_actual_description_label)
+        self.ram_img2.enterEvent = lambda e: hoverEnter("ram", self.hover_actual_description_label)
+        self.cpu_cooler_img.leaveEvent = lambda e: hoverExit("cpu cooler", self.hover_actual_description_label)
+        self.cpu_cooler_img.enterEvent = lambda e: hoverEnter("cpu cooler", self.hover_actual_description_label)
+        self.ssd_img.leaveEvent = lambda e: hoverExit("ssd", self.hover_actual_description_label)
+        self.ssd_img.enterEvent = lambda e: hoverEnter("ssd", self.hover_actual_description_label)
+
+
     def setupHardware(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1600, 986)
@@ -190,6 +228,30 @@ class Ui_MotherBoard(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.hover_events(MainWindow)
+
+        self.hover_actual_description_label = QtWidgets.QLabel(self.centralwidget)
+        self.hover_actual_description_label.setGeometry(QtCore.QRect(1100, 680, 241, 151))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.hover_actual_description_label.setFont(font)
+        self.hover_actual_description_label.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.hover_actual_description_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.hover_actual_description_label.setWordWrap(True)
+        self.hover_actual_description_label.setObjectName("hover_actual_description_label")
+        self.hover_description_label = QtWidgets.QLabel(self.centralwidget)
+        self.hover_description_label.setGeometry(QtCore.QRect(1130, 680, 171, 31))
+        font = QtGui.QFont()
+        font.setFamily("Consolas")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(True)
+        font.setWeight(75)
+        font.setStrikeOut(False)
+        self.hover_description_label.setFont(font)
+        self.hover_description_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.hover_description_label.setObjectName("hover_description_label")
 
         self.retranslateHardware(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -251,7 +313,7 @@ class Ui_MotherBoard(object):
         self.cpu.setObjectName("CPU")
         self.cpu.setGraphicsEffect(self.opacityEffect0)
 
-        self.cpu = DraggableLabel(self.cpu, "../images/i7_cpu.jpg", 91, 81).resize(131,211)
+        self.cpu = DraggableLabel(self.cpu, "../images/i7_cpu.jpg", 91, 81, "CPU").resize(131,211)
         
         self.cpuCable = QtWidgets.QLabel(MainWindow)
         self.cpuCable.setStyleSheet("QLabel::hover"
@@ -271,7 +333,7 @@ class Ui_MotherBoard(object):
         self.gpu.setObjectName("GPU")
         self.gpu.setGraphicsEffect(self.opacityEffect2)
 
-        self.gpu = DraggableLabel(self.gpu, "../images/gpu.png", 221,121).resize(321, 31)
+        self.gpu = DraggableLabel(self.gpu, "../images/gpu.png", 221,121, "GPU").resize(321, 31)
         
         
         #RAM STICKS ON LABELS
@@ -312,10 +374,10 @@ class Ui_MotherBoard(object):
         self.ram4.setGraphicsEffect(self.opacityEffect6)
 
         
-        self.ram1 = DraggableLabel(self.ram1, "../images/ram stick.jpg", 221, 51).resize(20, 440)
-        self.ram2 = DraggableLabel(self.ram2, "../images/ram stick.jpg", 221, 51).resize(20, 440)
-        self.ram3 = DraggableLabel(self.ram3, "../images/ram stick.jpg", 221, 51).resize(20, 440)
-        self.ram4 = DraggableLabel(self.ram4, "../images/ram stick.jpg", 221, 51).resize(20, 440)
+        self.ram1 = DraggableLabel(self.ram1, "../images/ram stick.jpg", 221, 51, "RAM").resize(20, 440)
+        self.ram2 = DraggableLabel(self.ram2, "../images/ram stick.jpg", 221, 51, "RAM").resize(20, 440)
+        self.ram3 = DraggableLabel(self.ram3, "../images/ram stick.jpg", 221, 51, "RAM").resize(20, 440)
+        self.ram4 = DraggableLabel(self.ram4, "../images/ram stick.jpg", 221, 51, "RAM").resize(20, 440)
         
         
         #label 8 is m.2
@@ -327,7 +389,7 @@ class Ui_MotherBoard(object):
         self.m2.setObjectName("M.2 SSD")
         self.m2.setGraphicsEffect(self.opacityEffect7)
 
-        self.m2 = DraggableLabel(self.m2,  "../images/m.2_ssd.jpg", 221, 61).resize(251, 71)
+        self.m2 = DraggableLabel(self.m2,  "../images/m.2_ssd.jpg", 221, 61, "SSD").resize(251, 71)
 
         self.retranslateMotherboard(self.centralwidget)
         QtCore.QMetaObject.connectSlotsByName(self.centralwidget)
@@ -346,6 +408,9 @@ class Ui_MotherBoard(object):
         self.gpu_label.setText(_translate("MainWindow", "GPU"))
         self.ram_label.setText(_translate("MainWindow", "RAM Sticks"))
         self.ssd_label.setText(_translate("MainWindow", "M.2 SSD"))
+
+        self.hover_actual_description_label.setText(_translate("MainWindow", "Hover over a part to see description!"))
+        self.hover_description_label.setText(_translate("MainWindow", "Part Description"))
 
     
 

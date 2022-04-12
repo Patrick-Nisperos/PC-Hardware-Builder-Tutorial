@@ -35,14 +35,13 @@ class DraggableLabel(QLabel):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[0], PartAnalyzer.descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.jpg", 200, 200, 200, 200)
                 #print("cpu clicked")
             elif(self.name == PartAnalyzer.partNames[1]):
-                print("gpu clicked")
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[1], PartAnalyzer.descriptions[1], "../images/gpu.png", "../images/gpu2.JPG", 300,200,400,200)
             elif(self.name == PartAnalyzer.partNames[2]):
-                print("cpu-cooler clicked")
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[2], PartAnalyzer.descriptions[2], "../images/cpu_cooler.png", "", 200,200,200,200)
             elif(self.name == PartAnalyzer.partNames[3]):
-                print("ram clicked")
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[3], PartAnalyzer.descriptions[3], "../images/ram stick.jpg", "../images/ram stick.jpg", 300, 100, 300, 100)
             elif(self.name == PartAnalyzer.partNames[4]):
-                print("ssd clicked")
-
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[4], PartAnalyzer.descriptions[4], "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 300, 100, 300, 100)
     def mouseMoveEvent(self, event):
         if not (event.buttons() & Qt.LeftButton):
             return
@@ -82,8 +81,8 @@ class my_label(QLabel):
 class Ui_MotherBoard(object):
     def openPartAnalyzer(self, name, description, image, image2, width, height, width2, height2):
             self.partView = QtWidgets.QMainWindow()
-            ui2 = PartAnalyzer.Ui_PartAnalyzer()
-            ui2.setupUi(self.partView, "Central Processing Unit", PartAnalyzer.descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.JPG", 200, 200, 200, 200)
+            self.ui2 = PartAnalyzer.Ui_PartAnalyzer()
+            self.ui2.setupUi(self.partView, name, description, image, image2, width, height, width2, height2)
             self.partView.show()
 
     def hover_events(self, MainWindow):
@@ -251,7 +250,7 @@ class Ui_MotherBoard(object):
         self.hover_description_label.setFont(font)
         self.hover_description_label.setAlignment(QtCore.Qt.AlignCenter)
         self.hover_description_label.setObjectName("hover_description_label")
-
+        #self.hover_description_label.adjustSize()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1004, 21))
@@ -424,7 +423,8 @@ class Ui_MotherBoard(object):
 
         self.hover_actual_description_label.setText(_translate("MainWindow", "Hover over a part to see description!"))
         self.hover_description_label.setText(_translate("MainWindow", "Part Description"))
-
+        #self.hover_actual_description_label.adjustSize()
+        self.hover_description_label.adjustSize()
     def openMain(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = mainMenu.Ui_MainMenu()
