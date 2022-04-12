@@ -15,6 +15,7 @@ from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 from PyQt5.QtCore import *
 
 partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD"]
+io_partNames = ["ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS"]
 #Index is CPU as 0, GPU, RAM, CPU-COOLER, SSD
 descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 " containing all the circuitry needed to process input,"
@@ -55,6 +56,11 @@ descriptions2 = ["The CPU or Central Processing Unit is the brain of a computer,
                 "The SSD or Solid-State drive is a new generation of storage device"
                 " used in computers. An SSD is much faster than a tradition mechanical"
                 " hard disk as it uses flash-based memory instead of a physical disk"]
+
+io_descriptions1 = ["Antenna Ports", "Hdmi", "PS/2 Ports and USB 3.2 ports",
+                    "USB 3.2 Type-A port and USB 3.2 Type-C port", "LAN/Ethernet port and USB 2.0 port",
+                    "Audio jacks port"]
+io_descriptions2 = ["Gets signal", "Transfers data"]
 
 class Ui_PartAnalyzer(object):
     def setupUi(self, PartAnalyzer, name, description, image1, image2, width, height, width2, height2):

@@ -42,6 +42,21 @@ class DraggableLabel(QLabel):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[3], PartAnalyzer.descriptions[3], "../images/ram stick.jpg", "../images/ram stick.jpg", 300, 100, 300, 100)
             elif(self.name == PartAnalyzer.partNames[4]):
                 Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[4], PartAnalyzer.descriptions[4], "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 300, 100, 300, 100)
+            # IO parts ------
+            elif(self.name == PartAnalyzer.io_partNames[0]):
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[0], PartAnalyzer.io_descriptions1[0], "../images/antenna_port.jpg", "../images/antenna_port2.png", 350, 80, 300, 240)
+            elif(self.name == PartAnalyzer.io_partNames[1]):
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[1], PartAnalyzer.io_descriptions1[1], "../images/hdmi_port.png", "../images/hdmi_port2.jpg", 350, 80, 300, 240)
+            elif(self.name == PartAnalyzer.io_partNames[2]):
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[2], PartAnalyzer.io_descriptions1[2], "../images/PS2_port.jpg", "../images/usb3.2_port.jpg", 350, 80, 350, 80)
+            elif(self.name == PartAnalyzer.io_partNames[3]):
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[3], PartAnalyzer.io_descriptions1[3], "../images/usb3.2_typeA_port.jpg", "../images/usb3.2_typeC_port.jpg", 350, 80, 350, 80)
+            elif(self.name == PartAnalyzer.io_partNames[4]):
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[4], PartAnalyzer.io_descriptions1[4], "../images/lan_port.jpg", "../images/usb2.0_port.jpg", 350, 80, 350, 80)
+            elif(self.name == PartAnalyzer.io_partNames[5]):
+                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[5], PartAnalyzer.io_descriptions1[5], "../images/audio_jacks_port.jpg", "../images/audio_jacks_port2.jpg", 350, 80, 350, 120)
+
+    
     def mouseMoveEvent(self, event):
         if not (event.buttons() & Qt.LeftButton):
             return
@@ -86,6 +101,7 @@ class Ui_MotherBoard(object):
             self.partView.show()
 
     def hover_events(self, MainWindow):
+        # PC COMPONENTS hover events
         self.cpu_img.leaveEvent = lambda e: hoverExit("cpu", self.hover_actual_description_label)
         self.cpu_img.enterEvent = lambda e: hoverEnter("cpu", self.hover_actual_description_label)
         self.gpu_img.leaveEvent = lambda e: hoverExit("gpu", self.hover_actual_description_label)
@@ -99,6 +115,19 @@ class Ui_MotherBoard(object):
         self.ssd_img.leaveEvent = lambda e: hoverExit("ssd", self.hover_actual_description_label)
         self.ssd_img.enterEvent = lambda e: hoverEnter("ssd", self.hover_actual_description_label)
 
+        # IO Ports Hover Events
+        self.antenna_port.leaveEvent = lambda e: hoverExit("ANTENNA", self.hover_actual_description_label)
+        self.antenna_port.enterEvent = lambda e: hoverEnter("ANTENNA", self.hover_actual_description_label)
+        self.hdmi_port.leaveEvent = lambda e: hoverExit("HDMI", self.hover_actual_description_label)
+        self.hdmi_port.enterEvent = lambda e: hoverEnter("HDMI", self.hover_actual_description_label)
+        self.usb32_ps2_port.leaveEvent = lambda e: hoverExit("USB3.2_PS2", self.hover_actual_description_label)
+        self.usb32_ps2_port.enterEvent = lambda e: hoverEnter("USB3.2_PS2", self.hover_actual_description_label)
+        self.usb32_typeA_typeC_port.leaveEvent = lambda e: hoverExit("USB3.2_TypeA_TypeC", self.hover_actual_description_label)
+        self.usb32_typeA_typeC_port.enterEvent = lambda e: hoverEnter("USB3.2_TypeA_TypeC", self.hover_actual_description_label)
+        self.lan_usb20_port.leaveEvent = lambda e: hoverExit("LAN_USB2.0", self.hover_actual_description_label)
+        self.lan_usb20_port.enterEvent = lambda e: hoverEnter("LAN_USB2.0", self.hover_actual_description_label)
+        self.audio_jacks_port.leaveEvent = lambda e: hoverExit("AUDIO-JACKS", self.hover_actual_description_label)
+        self.audio_jacks_port.enterEvent = lambda e: hoverEnter("AUDIO-JACKS", self.hover_actual_description_label)
 
     def setupHardware(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -240,15 +269,6 @@ class Ui_MotherBoard(object):
         self.hover_description_label = QtWidgets.QLabel(self.centralwidget)
         self.hover_description_label.setGeometry(QtCore.QRect(1130, 680, 171, 31))
 
-        # IO Invisible images --------
-        self.usb_spot = QtWidgets.QLabel(self.centralwidget)
-        self.usb_spot.setGeometry(QtCore.QRect(10, 100, 221, 51))
-        self.usb_spot.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.usb_spot.setText("")
-        self.usb_spot.setPixmap(QtGui.QPixmap("../images/ram stick.jpg"))
-        self.usb_spot.setScaledContents(True)
-        self.usb_spot.setAlignment(QtCore.Qt.AlignCenter)
-        self.usb_spot.setObjectName("ram_img1")
 
         font = QtGui.QFont()
         font.setFamily("Consolas")
@@ -270,7 +290,6 @@ class Ui_MotherBoard(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.hover_events(MainWindow)
 
         self.retranslateHardware(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -282,9 +301,58 @@ class Ui_MotherBoard(object):
         self.ram_img1D = (DraggableLabel(self.ram_img1, "../images/ram stick.jpg", "RAM").resize(221, 51))
         self.ram_img2D = (DraggableLabel(self.ram_img2, "../images/ram stick.jpg", "RAM").resize(221, 51))
         self.ssd_imgD = (DraggableLabel(self.ssd_img, "../images/m.2_ssd.jpg", "SSD").resize(221, 61))
-        self.usb_spot = (DraggableLabel(self.usb_spot, "../images/ram stick.jpg", "RAM"))
         
-    
+    def io_ports(self, MainWindow):
+        # IO PORTS INVISIBLE IMAGES
+        self.antenna_port = QtWidgets.QLabel(MainWindow)
+        self.antenna_port.setStyleSheet("QLabel::hover" "{ background-color : orange; }")
+        self.antenna_port.setGeometry(QtCore.QRect(15, 10, 81, 51))
+        self.antenna_port.setMouseTracking(True)
+        self.antenna_port.clear()
+        self.antenna_port.setObjectName("ANTENNA")
+        self.antenna_port = DraggableLabel(self.antenna_port, "../images/clear_image", "ANTENNA")
+
+        self.hdmi_port = QtWidgets.QLabel(MainWindow)
+        self.hdmi_port.setStyleSheet("QLabel::hover" "{ background-color : orange; }")
+        self.hdmi_port.setGeometry(QtCore.QRect(25, 70, 61, 51))
+        self.hdmi_port.setMouseTracking(True)
+        self.hdmi_port.clear()
+        self.hdmi_port.setObjectName("HDMI")
+        self.hdmi_port = DraggableLabel(self.hdmi_port, "../images/clear_image", "HDMI")
+
+        self.usb32_ps2_port = QtWidgets.QLabel(MainWindow)
+        self.usb32_ps2_port.setStyleSheet("QLabel::hover" "{ background-color : orange; }")
+        self.usb32_ps2_port.setGeometry(QtCore.QRect(25, 210, 71, 51))
+        self.usb32_ps2_port.setMouseTracking(True)
+        self.usb32_ps2_port.clear()
+        self.usb32_ps2_port.setObjectName("USB3.2_PS2")
+        self.usb32_ps2_port = DraggableLabel(self.usb32_ps2_port, "../images/clear_image", "USB3.2_PS2")
+
+        self.usb32_typeA_typeC_port = QtWidgets.QLabel(MainWindow)
+        self.usb32_typeA_typeC_port.setStyleSheet("QLabel::hover" "{ background-color : orange; }")
+        self.usb32_typeA_typeC_port.setGeometry(QtCore.QRect(25, 320, 61, 45))
+        self.usb32_typeA_typeC_port.setMouseTracking(True)
+        self.usb32_typeA_typeC_port.clear()
+        self.usb32_typeA_typeC_port.setObjectName("USB3.2_TypeA_TypeC")
+        self.usb32_typeA_typeC_port = DraggableLabel(self.usb32_typeA_typeC_port, "../images/clear_image", "USB3.2_TypeA_TypeC")
+
+        self.lan_usb20_port = QtWidgets.QLabel(MainWindow)
+        self.lan_usb20_port.setStyleSheet("QLabel::hover" "{ background-color : orange; }")
+        self.lan_usb20_port.setGeometry(QtCore.QRect(25, 380, 81, 65))
+        self.lan_usb20_port.setMouseTracking(True)
+        self.lan_usb20_port.clear()
+        self.lan_usb20_port.setObjectName("LAN_USB2.0")
+        self.lan_usb20_port = DraggableLabel(self.lan_usb20_port, "../images/clear_image", "LAN_USB2.0")
+
+        self.audio_jacks_port = QtWidgets.QLabel(MainWindow)
+        self.audio_jacks_port.setStyleSheet("QLabel::hover" "{ background-color : orange; }")
+        self.audio_jacks_port.setGeometry(QtCore.QRect(25, 450, 71, 45))
+        self.audio_jacks_port.setMouseTracking(True)
+        self.audio_jacks_port.clear()
+        self.audio_jacks_port.setObjectName("AUDIO-JACKS")
+        self.audio_jacks_port = DraggableLabel(self.audio_jacks_port, "../images/clear_image", "AUDIO-JACKS")
+        
+
     def setupMotherboard(self, MainWindow):
 
             #Format is as follows for all components
@@ -301,6 +369,12 @@ class Ui_MotherBoard(object):
         self.motherBoard.setMouseTracking(True)
         self.motherBoard.setPixmap(QtGui.QPixmap("../images/IntelMotherBoard.jpg"))
         self.motherBoard.setObjectName("MotherBoard")
+
+        # call io ports
+        self.io_ports(MainWindow)
+
+        # call hover events
+        self.hover_events(MainWindow)
 
         #Opacity effect doesn't work with multiple labels 
         #Also tried setting opacity 1 to 0 but it doesnt work
@@ -330,17 +404,7 @@ class Ui_MotherBoard(object):
         self.opacityEffect7 = QGraphicsOpacityEffect()
         self.opacityEffect7.setOpacity(0.3)
 
-        # IO PORTS INVISIBLE IMAGES
-        #CPU ON LABEL
-        self.usb_spot = QtWidgets.QLabel(MainWindow)
-        self.usb_spot.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
-        self.usb_spot.setGeometry(QtCore.QRect(25, 210, 91, 81))
-        self.usb_spot.setMouseTracking(True)
-        self.usb_spot.clear()
-        self.usb_spot.setObjectName("CPU")
-        #self.cpu.setGraphicsEffect(self.opacityEffect0)
-        
-        self.usb_spot = DraggableLabel(self.usb_spot, "../images/i7_cpu.jpg", "CPU")
+
 
         #CPU ON LABEL
         self.cpu = QtWidgets.QLabel(MainWindow)
