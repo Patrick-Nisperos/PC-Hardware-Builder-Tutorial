@@ -47,11 +47,9 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 "connecting high-speed components. The types of PCIe slots come in different physical"
                 "configurations: x1, x4, x8, x16, and x32."]
 
-descriptions2 = ["The CPU or Central Processing Unit is the brain of a computer,"
-                " containing all the circuitry needed to process input,"
-                " store data, and output results. The CPU is constantly following"
-                " instructions of computer programs that tell it which data to process"
-                " and how to process it.",
+descriptions2 = ["The CPU acts as the brain of the computer and performs calculations, actions and runs the program"
+                "The cpu fetches instructions that are represented as series of numbers from the ram."
+                 "It then decodes the instructions and executes the instructions.",
 
                 "The GPU or Graphics processing unit, is a specialized"
                 " processor originally designed to accelerate graphics rendering"
