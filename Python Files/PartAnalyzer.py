@@ -14,8 +14,33 @@ from PyQt5.QtCore import QMimeData, Qt
 from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 from PyQt5.QtCore import *
 
-partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "CMOS", "PCIe x1", "PCIe x16"]
-io_partNames = ["ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS"]
+partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "CMOS", "PCIe x1", "PCIe x16", "CPU-CABLE", "ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS"]
+
+partImages = [
+                ["../images/i7_cpu.jpg", "../images/ryzen9.jpg"], 
+                ["../images/gpu.png", "../images/gpu2.png"],
+                ["../images/cpu_cooler2.png", "../images/water_cooled.jpg"],
+                ["../images/ram stick.jpg", "../images/ram stick.jpg"],
+                ["../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg"],
+                ["../images/IntelMotherBoard2.jpg", ""],
+                ["../images/cmos.jpg", "../images/cmos2.png"],
+                ["../images/network_adapter.jpg", "../images/port_expansion.jpg"],
+                ["", ""],
+                ["../images/cpu_cable.jpg", ""],
+                ["../images/antenna_port.jpg", "../images/antenna_port2.png"],
+                ["../images/hdmi_port.png", "../images/hdmi_port2.jpg"],
+                ["../images/PS2_port.jpg", "../images/usb3.2_port.jpg"],
+                ["../images/usb3.2_typeA_port.jpg", "../images/usb3.2_typeC_port.jpg"],
+                ["../images/lan_port.jpg", "../images/usb2.0_port.jpg"],
+                ["../images/audio_jacks_port.jpg", "../images/audio_jacks_port2.jpg"]
+              ]
+
+partCoordinates = [
+                    [200, 200, 200, 200], [400,200,400,200], [200,200,400,20], [300, 100, 300, 100],
+                    [300, 100, 300, 100], [300, 400, 200, 200], [200,200,200,200], [200, 200, 200, 200],
+                    [200, 200, 200, 200], [350, 80, 300, 240], [350, 80, 300, 240], [350, 80, 350, 80],
+                    [350, 80, 350, 80],[350, 80, 350, 80],[350, 80, 350, 120]
+                  ]
 
 #Index is CPU as 0, GPU, RAM, CPU-COOLER, SSD
 descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
@@ -47,7 +72,14 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
 
                 "PCIe (peripheral component interconnect express) is an interface standard for "
                 "connecting high-speed components. The types of PCIe slots come in different physical"
-                "configurations: x1, x4, x8, x16, and x32."]
+                "configurations: x1, x4, x8, x16, and x32.",
+
+                "The CPU-CABLE is simply just a power source for the CPU",
+
+                "Antenna Ports", "Hdmi stands for High Definition MultiMedia Interface and it transfers"
+                                 "across devices.",
+                    "USB 3.2 Type-A port and USB 3.2 Type-C port", "LAN/Ethernet port and USB 2.0 port",
+                    "Audio jacks port"]
 
 descriptions2 = ["The CPU acts as the brain of the computer and performs calculations, actions and runs the program"
                 "The cpu fetches instructions that are represented as series of numbers from the ram."
@@ -73,14 +105,13 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
                 "high throughput(transfer data) such as Network adapters, and Port Expansion Cards.",
 
                 "The PCIe x16 slot is used to plug in high bandwidth like grapgics cards. However, these x16 slots"
-                "could be used by any of the devices that would instead go in a smaller slot.="]
+                "could be used by any of the devices that would instead go in a smaller slot.",
 
-io_descriptions1 = ["Antenna Ports", "Hdmi", "PS/2 Ports and USB 3.2 ports",
-                    "USB 3.2 Type-A port and USB 3.2 Type-C port", "LAN/Ethernet port and USB 2.0 port",
-                    "Audio jacks port"]
-io_descriptions2 = ["Gets signal", "Transfers data", "PS/2 Ports and USB 3.2 ports",
-                    "USB 3.2 Type-A port and USB 3.2 Type-C port", "LAN/Ethernet port and USB 2.0 port",
-                    "Audio jacks port"]
+                "The CPU-CABLE powers the CPU allowing it to have the energy needed to process information."
+                " If the CPU does not have enough power, the computer will slow down.",
+
+                "Allows Dual Band WiFi", "It is an HD signal that is used to transfer audio and visual content"
+                                            " from one device to another.", "PS/2 Ports and USB 3.2 ports", "", "", "", ""]
 
 class Ui_PartAnalyzer(object):
     def setupUi(self, PartAnalyzer, name, description, description2, image1, image2, width, height, width2, height2):

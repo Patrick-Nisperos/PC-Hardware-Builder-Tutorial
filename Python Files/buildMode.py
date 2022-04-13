@@ -14,7 +14,7 @@ from PyQt5.QtCore import QMimeData, Qt
 from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 from PyQt5.QtCore import *
 from hover import hoverExit, hoverEnter
-import PartAnalyzer
+import PartAnalyzer as Analyzer
 import mainMenu
 
 # Dragging
@@ -30,40 +30,54 @@ class DraggableLabel(QLabel):
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.drag_start_position = event.pos()
-        if(event.button() == Qt.RightButton):                
-            if(self.name == PartAnalyzer.partNames[0]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[0], PartAnalyzer.descriptions[0], PartAnalyzer.descriptions2[0], "../images/i7_cpu.jpg", "../images/ryzen9.jpg", 200, 200, 200, 200)
+        if(event.button() == Qt.RightButton):
+            index = 0
+            for names in Analyzer.partNames:
+                if(self.name == names):
+                    Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[index],Analyzer.descriptions[index], Analyzer.descriptions2[index], Analyzer.partImages[index][0], Analyzer.partImages[index][1],
+                                                    Analyzer.partCoordinates[index][0], Analyzer.partCoordinates[index][1], Analyzer.partCoordinates[index][2], Analyzer.partCoordinates[index][3])
+                index += 1
+
+            """             
+            if(self.name == Analyzer.partNames[0]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[0], Analyzer.descriptions[0], Analyzer.descriptions2[0], "../images/i7_cpu.jpg", "../images/ryzen9.jpg", 200, 200, 200, 200)
                 #print("cpu clicked")
-            elif(self.name == PartAnalyzer.partNames[1]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[1], PartAnalyzer.descriptions[1], PartAnalyzer.descriptions2[1],  "../images/gpu.png", "../images/gpu2.png", 400,200,400,200)
-            elif(self.name == PartAnalyzer.partNames[2]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[2], PartAnalyzer.descriptions[2], PartAnalyzer.descriptions2[2], "../images/cpu_cooler2.png", "../images/water_cooled.jpg", 200,200,400,200)
-            elif(self.name == PartAnalyzer.partNames[3]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[3], PartAnalyzer.descriptions[3], PartAnalyzer.descriptions2[3], "../images/ram stick.jpg", "../images/ram stick.jpg", 300, 100, 300, 100)
-            elif(self.name == PartAnalyzer.partNames[4]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[4], PartAnalyzer.descriptions[4], PartAnalyzer.descriptions2[4], "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 300, 100, 300, 100)
-            elif(self.name == PartAnalyzer.partNames[5]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[5], PartAnalyzer.descriptions[5], PartAnalyzer.descriptions2[5], "../images/IntelMotherBoard", "", 380, 660, 200, 200)
-            elif(self.name == PartAnalyzer.partNames[6]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[6], PartAnalyzer.descriptions[6], PartAnalyzer.descriptions2[6], "../images/cmos.jpg", "../images/cmos2.png", 200,200,200,200)
-            elif(self.name == PartAnalyzer.partNames[7]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[7], PartAnalyzer.descriptions[7], PartAnalyzer.descriptions2[7], "../images/network_adapter.jpg", "../images/port_expansion.jpg", 200, 200, 200, 200)
+            elif(self.name == Analyzer.partNames[1]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[1], Analyzer.descriptions[1], Analyzer.descriptions2[1],  "../images/gpu.png", "../images/gpu2.png", 400,200,400,200)
+            elif(self.name == Analyzer.partNames[2]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[2], Analyzer.descriptions[2], Analyzer.descriptions2[2], "../images/cpu_cooler2.png", "../images/water_cooled.jpg", 200,200,400,200)
+            elif(self.name == Analyzer.partNames[3]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[3], Analyzer.descriptions[3], Analyzer.descriptions2[3], "../images/ram stick.jpg", "../images/ram stick.jpg", 300, 100, 300, 100)
+            elif(self.name == Analyzer.partNames[4]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[4], Analyzer.descriptions[4], Analyzer.descriptions2[4], "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 300, 100, 300, 100)
+            elif(self.name == Analyzer.partNames[5]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[5], Analyzer.descriptions[5], Analyzer.descriptions2[5], "../images/IntelMotherBoard2.jpg", "", 300, 400, 200, 200)
+            elif(self.name == Analyzer.partNames[6]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[6], Analyzer.descriptions[6], Analyzer.descriptions2[6], "../images/cmos.jpg", "../images/cmos2.png", 200,200,200,200)
+            elif(self.name == Analyzer.partNames[7]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[7], Analyzer.descriptions[7], Analyzer.descriptions2[7], "../images/network_adapter.jpg", "../images/port_expansion.jpg", 200, 200, 200, 200)
+            elif(self.name == Analyzer.partNames[8]):
+                print("works")
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[8], Analyzer.descriptions[8], PartAnalyzer.descriptions2[8], "../images/cpu_cable.jpg", "", 200, 200, 200, 200)
             # IO parts ------
-            elif(self.name == PartAnalyzer.io_partNames[0]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[0], PartAnalyzer.io_descriptions1[0], PartAnalyzer.io_descriptions2[0], "../images/antenna_port.jpg", "../images/antenna_port2.png", 350, 80, 300, 240)
-            elif(self.name == PartAnalyzer.io_partNames[1]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[1], PartAnalyzer.io_descriptions1[1], PartAnalyzer.io_descriptions2[1], "../images/hdmi_port.png", "../images/hdmi_port2.jpg", 350, 80, 300, 240)
-            elif(self.name == PartAnalyzer.io_partNames[2]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[2], PartAnalyzer.io_descriptions1[2], PartAnalyzer.io_descriptions2[2], "../images/PS2_port.jpg", "../images/usb3.2_port.jpg", 350, 80, 350, 80)
-            elif(self.name == PartAnalyzer.io_partNames[3]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[3], PartAnalyzer.io_descriptions1[3], PartAnalyzer.io_descriptions2[3], "../images/usb3.2_typeA_port.jpg", "../images/usb3.2_typeC_port.jpg", 350, 80, 350, 80)
-            elif(self.name == PartAnalyzer.io_partNames[4]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[4], PartAnalyzer.io_descriptions1[4], PartAnalyzer.io_descriptions2[4], "../images/lan_port.jpg", "../images/usb2.0_port.jpg", 350, 80, 350, 80)
-            elif(self.name == PartAnalyzer.io_partNames[5]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.io_partNames[5], PartAnalyzer.io_descriptions1[5], PartAnalyzer.io_descriptions2[5], "../images/audio_jacks_port.jpg", "../images/audio_jacks_port2.jpg", 350, 80, 350, 120)
+            elif(self.name == Analyzer.io_partNames[0]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.io_partNames[0], PartAnalyzer.io_descriptions1[0], PartAnalyzer.io_descriptions2[0], "../images/antenna_port.jpg", "../images/antenna_port2.png", 350, 80, 300, 240)
+            elif(self.name == Analyzer.io_partNames[1]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.io_partNames[1], PartAnalyzer.io_descriptions1[1], PartAnalyzer.io_descriptions2[1], "../images/hdmi_port.png", "../images/hdmi_port2.jpg", 350, 80, 300, 240)
+            elif(self.name == Analyzer.io_partNames[2]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.io_partNames[2], PartAnalyzer.io_descriptions1[2], PartAnalyzer.io_descriptions2[2], "../images/PS2_port.jpg", "../images/usb3.2_port.jpg", 350, 80, 350, 80)
+            elif(self.name == Analyzer.io_partNames[3]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.io_partNames[3], PartAnalyzer.io_descriptions1[3], PartAnalyzer.io_descriptions2[3], "../images/usb3.2_typeA_port.jpg", "../images/usb3.2_typeC_port.jpg", 350, 80, 350, 80)
+            elif(self.name == Analyzer.io_partNames[4]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.io_partNames[4], PartAnalyzer.io_descriptions1[4], PartAnalyzer.io_descriptions2[4], "../images/lan_port.jpg", "../images/usb2.0_port.jpg", 350, 80, 350, 80)
+            elif(self.name == Analyzer.io_partNames[5]):
+                Ui_MotherBoard.openPartAnalyzer(self, Analyzer.io_partNames[5], PartAnalyzer.io_descriptions1[5], PartAnalyzer.io_descriptions2[5], "../images/audio_jacks_port.jpg", "../images/audio_jacks_port2.jpg", 350, 80, 350, 120)
+   """
     def mouseMoveEvent(self, event):
-        if(self.name == PartAnalyzer.partNames[5] or self.name == PartAnalyzer.partNames[6] or self.name == PartAnalyzer.partNames[7]):
-            return
+        #if(self.name == PartAnalyzer.partNames[5] or self.name == PartAnalyzer.partNames[6] or self.name == PartAnalyzer.partNames[7] or self.name == PartAnalyzer.partNames[8] or self.name == PartAnalyzer.partNames[9]:
+        for names in Analyzer.partNames[5:]:
+            if(self.name == names):
+                return
         if not (event.buttons() & Qt.LeftButton):
             return
         if (event.pos() - self.drag_start_position).manhattanLength() < QApplication.startDragDistance():
@@ -103,7 +117,7 @@ class Ui_MotherBoard(object):
     def openPartAnalyzer(self, name, description, description2,  image, image2, width, height, width2, height2):
             self.partView = QtWidgets.QMainWindow()
             self.partView.setWindowTitle("Part Analyzer")
-            self.ui2 = PartAnalyzer.Ui_PartAnalyzer()
+            self.ui2 = Analyzer.Ui_PartAnalyzer()
             self.ui2.setupUi(self.partView, name, description, description2, image, image2, width, height, width2, height2)
             self.partView.show()
 
@@ -432,8 +446,10 @@ class Ui_MotherBoard(object):
         self.cpuCable.setGeometry(QtCore.QRect(170, 19, 50, 25))
         self.cpuCable.setMouseTracking(True)
         self.cpuCable.clear()
-        self.cpuCable.setObjectName("CPU-Cable")
+        self.cpuCable.setObjectName("CPU-CABLE")
         self.cpuCable.setGraphicsEffect(self.opacityEffect1)
+
+        self.cpuCableD = (DraggableLabel(self.cpuCable, "../images/clear_image.png", "CPU-CABLE"))
 
         #Small pcie 
 
