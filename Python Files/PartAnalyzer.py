@@ -39,7 +39,7 @@ partCoordinates = [
                     [200, 200, 200, 200], [400,200,400,200], [200,200,400,20], [300, 100, 300, 100],
                     [300, 100, 300, 100], [300, 400, 200, 200], [200,200,200,200], [200, 200, 200, 200],
                     [200, 200, 200, 200], [350, 80, 300, 240], [350, 80, 300, 240], [350, 80, 350, 80],
-                    [350, 80, 350, 80],[350, 80, 350, 80],[350, 80, 350, 120]
+                    [350, 80, 350, 80],[350, 80, 350, 80],[350, 80, 350, 120], [300,200,200,200]
                   ]
 
 #Index is CPU as 0, GPU, RAM, CPU-COOLER, SSD
@@ -74,12 +74,23 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 "connecting high-speed components. The types of PCIe slots come in different physical"
                 "configurations: x1, x4, x8, x16, and x32.",
 
+                "PCIe (peripheral component interconnect express) is an interface standard for "
+                "connecting high-speed components. The types of PCIe slots come in different physical"
+                "configurations: x1, x4, x8, x16, and x32.",
+
                 "The CPU-CABLE is simply just a power source for the CPU",
 
-                "Antenna Ports", "Hdmi stands for High Definition MultiMedia Interface and it transfers"
-                                 "across devices.",
-                    "USB 3.2 Type-A port and USB 3.2 Type-C port", "LAN/Ethernet port and USB 2.0 port",
-                    "Audio jacks port"]
+                "Antenna Ports",
+                
+                "Hdmi stands for High Definition MultiMedia Interface and it transfers"
+                " across devices.",
+                    
+                "USB 3.2 Type-A port",
+                "USB 3.2 Type-C port", 
+
+                "LAN/Ethernet port and USB 2.0 port",
+                    
+                "Audio jacks port"]
 
 descriptions2 = ["The CPU acts as the brain of the computer and performs calculations, actions and runs the program"
                 "The cpu fetches instructions that are represented as series of numbers from the ram."
@@ -110,8 +121,15 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
                 "The CPU-CABLE powers the CPU allowing it to have the energy needed to process information."
                 " If the CPU does not have enough power, the computer will slow down.",
 
-                "Allows Dual Band WiFi", "It is an HD signal that is used to transfer audio and visual content"
-                                            " from one device to another.", "PS/2 Ports and USB 3.2 ports", "", "", "", ""]
+                "Allows Dual Band WiFi", 
+
+                "It is an HD signal that is used to transfer audio and visual content"
+                " from one device to another.", 
+
+                "PS/2 Ports and USB 3.2 ports",
+                "usb2.3",
+                "lan",
+                "audio"]
 
 class Ui_PartAnalyzer(object):
     def setupUi(self, PartAnalyzer, name, description, description2, image1, image2, width, height, width2, height2):
@@ -201,12 +219,4 @@ def window2():
     
 
 if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    PartAnalyzer = QtWidgets.QMainWindow()
-    ui = Ui_PartAnalyzer()
-    ui.setupUi(PartAnalyzer, "Central Processing Unit", descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.JPG", 200, 200, 200, 200)
-    PartAnalyzer.show()
-    window2()
-
-    sys.exit(app.exec_())
+    print(len(partNames), " ", len(partCoordinates) ," ",  len(partImages), " ", len(descriptions), " ", len(descriptions2))

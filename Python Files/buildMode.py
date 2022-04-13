@@ -33,7 +33,7 @@ class DraggableLabel(QLabel):
         if(event.button() == Qt.RightButton):
             index = 0
             for names in Analyzer.partNames:
-                if(self.name == names):
+                if(self.name == names and index < 16):
                     Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[index],Analyzer.descriptions[index], Analyzer.descriptions2[index],
                                                     Analyzer.partImages[index][0], Analyzer.partImages[index][1],
                                                     Analyzer.partCoordinates[index][0], Analyzer.partCoordinates[index][1], Analyzer.partCoordinates[index][2], Analyzer.partCoordinates[index][3])
