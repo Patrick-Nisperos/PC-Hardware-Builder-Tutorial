@@ -33,7 +33,7 @@ class DraggableLabel(QLabel):
         if(event.button() == Qt.RightButton):
             index = 0
             for names in Analyzer.partNames:
-                if(self.name == names and index < 16):
+                if(self.name == names and index < len(Analyzer.partNames)):
                     Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[index],Analyzer.descriptions[index], Analyzer.descriptions2[index],
                                                     Analyzer.partImages[index][0], Analyzer.partImages[index][1],
                                                     Analyzer.partCoordinates[index][0], Analyzer.partCoordinates[index][1], Analyzer.partCoordinates[index][2], Analyzer.partCoordinates[index][3])
@@ -391,6 +391,10 @@ class Ui_MotherBoard(object):
         self.opacityEffect8p0.setOpacity(0.3)
         self.opacityEffect8p1 = QGraphicsOpacityEffect()
         self.opacityEffect8p1.setOpacity(0.3)
+        self.opacityEffect8p2 = QGraphicsOpacityEffect()
+        self.opacityEffect8p2.setOpacity(0.3)
+        self.opacityEffect8p3 = QGraphicsOpacityEffect()
+        self.opacityEffect8p3.setOpacity(0.3)
         self.opacityEffect9 = QGraphicsOpacityEffect()#for cmos
         self.opacityEffect9.setOpacity(0.3)
 
@@ -402,8 +406,10 @@ class Ui_MotherBoard(object):
         self.cpu.setGeometry(QtCore.QRect(330, 170, 131, 211))
         self.cpu.setMouseTracking(True)
         self.cpu.clear()
-        self.cpu.setObjectName("CPU")
+        self.cpu.setObjectName("CPU") 
         self.cpu.setGraphicsEffect(self.opacityEffect0)
+
+        self.cpuD = (DraggableLabel(self.cpu, "../images/clear_image.png", "CPU-SOCKET"))
 
 
         self.cpuCable = QtWidgets.QLabel(MainWindow)
@@ -447,12 +453,11 @@ class Ui_MotherBoard(object):
         self.pcie2.setObjectName("PCIe x1")
         self.pcie2.setGraphicsEffect(self.opacityEffect8p1)
 
-        #Making pcie a draggable label so we can inspect them
         self.pcieD = (DraggableLabel(self.pcie, "../images/clear_image.png", "PCIe x1"))
         self.pcie1D = (DraggableLabel(self.pcie1, "../images/clear_image.png", "PCIe x1"))
         self.pcie2D = (DraggableLabel(self.pcie2, "../images/clear_image.png", "PCIe x1"))
 
-
+       
 
         #GPU ON LABEL
         self.gpu = QtWidgets.QLabel(MainWindow)
@@ -472,6 +477,9 @@ class Ui_MotherBoard(object):
         self.gpu2.clear()
         self.gpu2.setObjectName("GPU")
         self.gpu2.setGraphicsEffect(self.opacityEffect2p0)
+
+        self.gpuD = (DraggableLabel(self.gpu, "../images/clear_image.png", "PCIe x16"))
+        self.gpu2D = (DraggableLabel(self.gpu2, "../images/clear_image.png", "PCIe x16"))
         
         #RAM STICKS ON LABELS
         self.ram1 = QtWidgets.QLabel(MainWindow)
@@ -510,6 +518,11 @@ class Ui_MotherBoard(object):
         self.ram4.setObjectName("RamStick4")
         self.ram4.setGraphicsEffect(self.opacityEffect6)
 
+        self.ram1D = (DraggableLabel(self.ram1, "../images/clear_image.png", "RAM Slot"))
+        self.ram2D = (DraggableLabel(self.ram2, "../images/clear_image.png", "RAM Slot"))
+        self.ram3D = (DraggableLabel(self.ram3, "../images/clear_image.png", "RAM Slot"))
+        self.ram4D = (DraggableLabel(self.ram4, "../images/clear_image.png", "RAM Slot"))
+
 
         #label 8 is m.2
         self.m2 = QtWidgets.QLabel(MainWindow)
@@ -519,6 +532,8 @@ class Ui_MotherBoard(object):
         self.m2.clear()
         self.m2.setObjectName("M.2 SSD")
         self.m2.setGraphicsEffect(self.opacityEffect7)
+
+        self.m2D = (DraggableLabel(self.m2, "../images/clear_image.png", "M.2 Slot"))
 
         self.cmos = QtWidgets.QLabel(MainWindow)
         self.cmos.setPixmap(QtGui.QPixmap("../images/clear_image.png"))
