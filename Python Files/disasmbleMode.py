@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 
 import PartAnalyzer
+import math
 from hover import hoverExit, hoverEnter
 
 # Dragging
@@ -50,7 +51,7 @@ class DragLabel(QLabel):
         painter.end()
 
         drag.setPixmap(self.image)
-        drag.setHotSpot(QPoint(self.x()+self.width()/2,self.y()+30))
+        drag.setHotSpot(QPoint(self.x()+math.floor(self.width()/2),self.y()+30))
         drag.exec_(Qt.MoveAction)
         self.hide()
         
