@@ -14,7 +14,7 @@ from PyQt5.QtCore import QMimeData, Qt
 from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 from PyQt5.QtCore import *
 
-partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "CMOS", "PCIe x1", "PCIe x16", "CPU-CABLE", 
+partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "CMOS", "PCIe_x1", "PCIe_x16", "CPU-CABLE", 
              "ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS", "CPU-SOCKET", "M.2 Slot", "RAM Slot"]
 
 partImages = [

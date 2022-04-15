@@ -89,18 +89,18 @@ class Ui_MotherBoard(object):
 
     def hover_events(self, MainWindow):
         # PC COMPONENTS hover events
-        self.cpu_img.leaveEvent = lambda e: hoverExit("cpu", self.hover_actual_description_label)
-        self.cpu_img.enterEvent = lambda e: hoverEnter("cpu", self.hover_actual_description_label)
-        self.gpu_img.leaveEvent = lambda e: hoverExit("gpu", self.hover_actual_description_label)
-        self.gpu_img.enterEvent = lambda e: hoverEnter("gpu", self.hover_actual_description_label)
-        self.ram_img1.leaveEvent = lambda e: hoverExit("ram", self.hover_actual_description_label)
-        self.ram_img1.enterEvent = lambda e: hoverEnter("ram", self.hover_actual_description_label)
-        self.ram_img2.leaveEvent = lambda e: hoverExit("ram", self.hover_actual_description_label)
-        self.ram_img2.enterEvent = lambda e: hoverEnter("ram", self.hover_actual_description_label)
-        self.cpu_cooler_img.leaveEvent = lambda e: hoverExit("cpu cooler", self.hover_actual_description_label)
-        self.cpu_cooler_img.enterEvent = lambda e: hoverEnter("cpu cooler", self.hover_actual_description_label)
-        self.ssd_img.leaveEvent = lambda e: hoverExit("ssd", self.hover_actual_description_label)
-        self.ssd_img.enterEvent = lambda e: hoverEnter("ssd", self.hover_actual_description_label)
+        self.cpu_img.leaveEvent = lambda e: hoverExit("CPU", self.hover_actual_description_label)
+        self.cpu_img.enterEvent = lambda e: hoverEnter("CPU", self.hover_actual_description_label)
+        self.gpu_img.leaveEvent = lambda e: hoverExit("GPU", self.hover_actual_description_label)
+        self.gpu_img.enterEvent = lambda e: hoverEnter("GPU", self.hover_actual_description_label)
+        self.ram_img1.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
+        self.ram_img1.enterEvent = lambda e: hoverEnter("RAM", self.hover_actual_description_label)
+        self.ram_img2.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
+        self.ram_img2.enterEvent = lambda e: hoverEnter("RAM", self.hover_actual_description_label)
+        self.cpu_cooler_img.leaveEvent = lambda e: hoverExit("CPU-COOLER", self.hover_actual_description_label)
+        self.cpu_cooler_img.enterEvent = lambda e: hoverEnter("CPU-COOLER", self.hover_actual_description_label)
+        self.ssd_img.leaveEvent = lambda e: hoverExit("SSD", self.hover_actual_description_label)
+        self.ssd_img.enterEvent = lambda e: hoverEnter("SSD", self.hover_actual_description_label)
 
         # IO Ports Hover Events
         self.antenna_port.leaveEvent = lambda e: hoverExit("ANTENNA", self.hover_actual_description_label)
@@ -432,7 +432,7 @@ class Ui_MotherBoard(object):
         self.pcie.setGeometry(QtCore.QRect(170, 500, 80, 30))
         self.pcie.setMouseTracking(True)
         self.pcie.clear()
-        self.pcie.setObjectName("PCIe")
+        self.pcie.setObjectName("PCIe_x1")
         self.pcie.setGraphicsEffect(self.opacityEffect8)
 
         self.pcie1 = QtWidgets.QLabel(MainWindow)
@@ -441,7 +441,7 @@ class Ui_MotherBoard(object):
         self.pcie1.setGeometry(QtCore.QRect(170, 700, 80, 30))
         self.pcie1.setMouseTracking(True)
         self.pcie1.clear()
-        self.pcie1.setObjectName("PCIe")
+        self.pcie1.setObjectName("PCIe_x1")
         self.pcie1.setGraphicsEffect(self.opacityEffect8p0)
 
         self.pcie2 = QtWidgets.QLabel(MainWindow)
@@ -450,12 +450,12 @@ class Ui_MotherBoard(object):
         self.pcie2.setGeometry(QtCore.QRect(170, 890, 80, 30))
         self.pcie2.setMouseTracking(True)
         self.pcie2.clear()
-        self.pcie2.setObjectName("PCIe x1")
+        self.pcie2.setObjectName("PCIe_x1")
         self.pcie2.setGraphicsEffect(self.opacityEffect8p1)
 
-        self.pcieD = (DraggableLabel(self.pcie, "../images/clear_image.png", "PCIe x1"))
-        self.pcie1D = (DraggableLabel(self.pcie1, "../images/clear_image.png", "PCIe x1"))
-        self.pcie2D = (DraggableLabel(self.pcie2, "../images/clear_image.png", "PCIe x1"))
+        self.pcieD = (DraggableLabel(self.pcie, "../images/clear_image.png", "PCIe_x1"))
+        self.pcie1D = (DraggableLabel(self.pcie1, "../images/clear_image.png", "PCIe_x1"))
+        self.pcie2D = (DraggableLabel(self.pcie2, "../images/clear_image.png", "PCIe_x1"))
 
        
 
@@ -478,8 +478,8 @@ class Ui_MotherBoard(object):
         self.gpu2.setObjectName("GPU")
         self.gpu2.setGraphicsEffect(self.opacityEffect2p0)
 
-        self.gpuD = (DraggableLabel(self.gpu, "../images/clear_image.png", "PCIe x16"))
-        self.gpu2D = (DraggableLabel(self.gpu2, "../images/clear_image.png", "PCIe x16"))
+        self.gpuD = (DraggableLabel(self.gpu, "../images/clear_image.png", "PCIe_x16"))
+        self.gpu2D = (DraggableLabel(self.gpu2, "../images/clear_image.png", "PCIe_x16"))
         
         #RAM STICKS ON LABELS
         self.ram1 = QtWidgets.QLabel(MainWindow)

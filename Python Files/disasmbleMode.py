@@ -3,9 +3,33 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 
-import PartAnalyzer
+import PartAnalyzer as Analyzer
 import math
 from hover import hoverExit, hoverEnter
+
+# For part analyzer
+class Part(QLabel):
+    def __init__(self, MainWindow, name, x, y, width, height):
+        QLabel.__init__(self, MainWindow)
+        self.opacityEffect0 = QGraphicsOpacityEffect()
+        self.opacityEffect0.setOpacity(0.3)
+        self.name = name
+        self.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
+        self.setGeometry(QtCore.QRect(x, y, width, height))
+        self.setMouseTracking(True)
+        self.clear()
+        self.setObjectName(self.name)
+        self.setGraphicsEffect(self.opacityEffect0)
+    
+    def mousePressEvent(self, event):
+        if(event.button() == Qt.RightButton):
+            index = 0
+            for names in Analyzer.partNames:
+                if(self.name == names and index < len(Analyzer.partNames)):
+                    Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[index],Analyzer.descriptions[index], Analyzer.descriptions2[index],
+                                                    Analyzer.partImages[index][0], Analyzer.partImages[index][1],
+                                                    Analyzer.partCoordinates[index][0], Analyzer.partCoordinates[index][1], Analyzer.partCoordinates[index][2], Analyzer.partCoordinates[index][3])
+                index += 1
 
 # Dragging
 class DragLabel(QLabel):
@@ -13,30 +37,21 @@ class DragLabel(QLabel):
     def __init__(self,parent, top_image, mv_image, top_width, top_height, mv_width, mv_height, name):
         super(QLabel,self).__init__(parent)
         self.setPixmap(QPixmap(top_image).scaled(top_width,top_height))
-        self.image = QPixmap(mv_image).scaled(mv_width,mv_height)
+        if mv_image != None:
+            self.image = QPixmap(mv_image).scaled(mv_width,mv_height)
         self.name = name
         self.show()
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.drag_start_position = event.pos()
-        if(event.button() == Qt.RightButton):
-            if(self.name == PartAnalyzer.partNames[0]):
-                Ui_MotherBoard.openPartAnalyzer(self, PartAnalyzer.partNames[0], PartAnalyzer.descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.jpg", 200, 200, 200, 200)
-                #print("cpu clicked")
-            elif(self.name == PartAnalyzer.partNames[1]):
-                print("gpu clicked")
-            elif(self.name == PartAnalyzer.partNames[2]):
-                print("cpu-cooler clicked")
-            elif(self.name == PartAnalyzer.partNames[3]):
-                print("ram clicked")
-            elif(self.name == PartAnalyzer.partNames[4]):
-                print("ssd clicked")
 
     def mouseMoveEvent(self, event):
         if not (event.buttons() & Qt.LeftButton):
             return
         if (event.pos() - self.drag_start_position).manhattanLength() < QApplication.startDragDistance():
+            return
+        if self.pixmap() == None:
             return
         drag = QDrag(self)
         
@@ -75,30 +90,57 @@ class DropLabel(QLabel):
             
 
 class Ui_MotherBoard(object):
-    def openPartAnalyzer(self, name, description, image, image2, width, height, width2, height2):
+    def openPartAnalyzer(self, name, description, description2,  image, image2, width, height, width2, height2):
             self.partView = QtWidgets.QMainWindow()
-            ui2 = PartAnalyzer.Ui_PartAnalyzer()
-            ui2.setupUi(self.partView, "Central Processing Unit", PartAnalyzer.descriptions[0], "../images/i7_cpu.jpg", "../images/ryzen9.JPG", 200, 200, 200, 200)
+            self.partView.setWindowTitle("Part Analyzer")
+            self.ui2 = Analyzer.Ui_PartAnalyzer()
+            self.ui2.setupUi(self.partView, name, description, description2, image, image2, width, height, width2, height2)
             self.partView.show()
 
     def hover_events(self, MainWindow):
-        self.cpu.leaveEvent = lambda e: hoverExit("cpu", self.hover_actual_description_label)
-        self.cpu.enterEvent = lambda e: hoverEnter("cpu", self.hover_actual_description_label)
-        self.gpu.leaveEvent = lambda e: hoverExit("gpu", self.hover_actual_description_label)
-        self.gpu.enterEvent = lambda e: hoverEnter("gpu", self.hover_actual_description_label)
-        self.ram1.leaveEvent = lambda e: hoverExit("ram", self.hover_actual_description_label)
-        self.ram1.enterEvent = lambda e: hoverEnter("ram", self.hover_actual_description_label)
-        self.ram2.leaveEvent = lambda e: hoverExit("ram", self.hover_actual_description_label)
-        self.ram2.enterEvent = lambda e: hoverEnter("ram", self.hover_actual_description_label)
-        self.ram3.leaveEvent = lambda e: hoverExit("ram", self.hover_actual_description_label)
-        self.ram3.enterEvent = lambda e: hoverEnter("ram", self.hover_actual_description_label)
-        self.ram4.leaveEvent = lambda e: hoverExit("ram", self.hover_actual_description_label)
-        self.ram4.enterEvent = lambda e: hoverEnter("ram", self.hover_actual_description_label)
-        self.cpu_cooler_img.leaveEvent = lambda e: hoverExit("cpu cooler", self.hover_actual_description_label)
-        self.cpu_cooler_img.enterEvent = lambda e: hoverEnter("cpu cooler", self.hover_actual_description_label)
-        self.m2.leaveEvent = lambda e: hoverExit("ssd", self.hover_actual_description_label)
-        self.m2.enterEvent = lambda e: hoverEnter("ssd", self.hover_actual_description_label)
+        self.cpu.leaveEvent = lambda e: hoverExit("CPU", self.hover_actual_description_label)
+        self.cpu.enterEvent = lambda e: hoverEnter("CPU", self.hover_actual_description_label)
+        self.gpu1.leaveEvent = lambda e: hoverExit("GPU", self.hover_actual_description_label)
+        self.gpu1.enterEvent = lambda e: hoverEnter("GPU", self.hover_actual_description_label)
+        self.pcie_x16.leaveEvent = lambda e: hoverExit("PCIe_x16", self.hover_actual_description_label)
+        self.pcie_x16.enterEvent = lambda e: hoverEnter("PCIe_x16", self.hover_actual_description_label)
+        self.ram1.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
+        self.ram1.enterEvent = lambda e: hoverEnter("RAM", self.hover_actual_description_label)
+        self.ram2.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
+        self.ram2.enterEvent = lambda e: hoverEnter("RAM", self.hover_actual_description_label)
+        self.ram3.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
+        self.ram3.enterEvent = lambda e: hoverEnter("RAM", self.hover_actual_description_label)
+        self.ram4.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
+        self.ram4.enterEvent = lambda e: hoverEnter("RAM", self.hover_actual_description_label)
+        self.cpu_cooler_img.leaveEvent = lambda e: hoverExit("CPU-COOLER", self.hover_actual_description_label)
+        self.cpu_cooler_img.enterEvent = lambda e: hoverEnter("CPU-COOLER", self.hover_actual_description_label)
+        self.m2.leaveEvent = lambda e: hoverExit("SSD", self.hover_actual_description_label)
+        self.m2.enterEvent = lambda e: hoverEnter("SSD", self.hover_actual_description_label)
 
+        self.cpuCable.leaveEvent = lambda e: hoverExit("CPU-CABLE", self.hover_actual_description_label)
+        self.cpuCable.enterEvent = lambda e: hoverEnter("CPU-CABLE", self.hover_actual_description_label)
+        self.antenna_port.leaveEvent = lambda e: hoverExit("ANTENNA", self.hover_actual_description_label)
+        self.antenna_port.enterEvent = lambda e: hoverEnter("ANTENNA", self.hover_actual_description_label)
+        self.hdmi_port.leaveEvent = lambda e: hoverExit("HDMI", self.hover_actual_description_label)
+        self.hdmi_port.enterEvent = lambda e: hoverEnter("HDMI", self.hover_actual_description_label)
+        self.usb32_ps2_port.leaveEvent = lambda e: hoverExit("USB3.2_PS2", self.hover_actual_description_label)
+        self.usb32_ps2_port.enterEvent = lambda e: hoverEnter("USB3.2_PS2", self.hover_actual_description_label)
+        self.usb32_typeA_typeC_port.leaveEvent = lambda e: hoverExit("USB3.2_TypeA_TypeC", self.hover_actual_description_label)
+        self.usb32_typeA_typeC_port.enterEvent = lambda e: hoverEnter("USB3.2_TypeA_TypeC", self.hover_actual_description_label)
+        self.lan_usb20_port.leaveEvent = lambda e: hoverExit("LAN_USB2.0", self.hover_actual_description_label)
+        self.lan_usb20_port.enterEvent = lambda e: hoverEnter("LAN_USB2.0", self.hover_actual_description_label)
+        self.audio_jacks_port.leaveEvent = lambda e: hoverExit("AUDIO-JACKS", self.hover_actual_description_label)
+        self.audio_jacks_port.enterEvent = lambda e: hoverEnter("AUDIO-JACKS", self.hover_actual_description_label)
+
+        self.pcie1.leaveEvent = lambda e: hoverExit("PCIe_x1", self.hover_actual_description_label)
+        self.pcie1.enterEvent = lambda e: hoverEnter("PCIe_x1", self.hover_actual_description_label)
+        self.pcie2.leaveEvent = lambda e: hoverExit("PCIe_x1", self.hover_actual_description_label)
+        self.pcie2.enterEvent = lambda e: hoverEnter("PCIe_x1", self.hover_actual_description_label)
+        self.pcie3.leaveEvent = lambda e: hoverExit("PCIe_x1", self.hover_actual_description_label)
+        self.pcie3.enterEvent = lambda e: hoverEnter("PCIe_x1", self.hover_actual_description_label)
+
+        self.cmos.leaveEvent = lambda e: hoverExit("CMOS", self.hover_actual_description_label)
+        self.cmos.enterEvent = lambda e: hoverEnter("CMOS", self.hover_actual_description_label)
 
     def setupHardware(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -286,6 +328,8 @@ class Ui_MotherBoard(object):
         self.ram_img2.setGraphicsEffect(self.ram_img2.effect)
         self.ram_img2 = DropLabel("RAM", self.ram_img2, "../images/ram stick.jpg", 221, 51, self.ram_img2.effect)   
 
+
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1004, 21))
@@ -320,10 +364,7 @@ class Ui_MotherBoard(object):
 
         self.retranslateHardware(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-
-        
-
+    
     def setupMotherboard(self, MainWindow):
 
         #Format is as follows for all components
@@ -334,14 +375,12 @@ class Ui_MotherBoard(object):
         #Clear text so we can have just the highlight w/o text
         #Name the label
 
-
         self.motherBoard = QtWidgets.QLabel(MainWindow)
         self.motherBoard.setGeometry(QtCore.QRect(0, 0, 801, 971))
         self.motherBoard.setMouseTracking(True)
         self.motherBoard.setPixmap(QtGui.QPixmap("../images/IntelMotherBoard.jpg"))
         self.motherBoard.setObjectName("MotherBoard")
 
-        
         #CPU on motherboard
         self.cpu = QtWidgets.QLabel(MainWindow)
         self.cpu.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
@@ -350,25 +389,18 @@ class Ui_MotherBoard(object):
         self.cpu.clear()
         self.cpu.setObjectName("CPU")        
         self.cpu = DragLabel(self.cpu, "../images/i7_cpu.jpg", "../images/i7_cpu.jpg", 91, 81, 91, 81, "CPU")
-    
-        #port on motherboard (missing image and dragLabel)
-        self.cpuCable = QtWidgets.QLabel(MainWindow)
-        self.cpuCable.setStyleSheet("QLabel::hover"
-                                   "{ background-color : yellow; }")
-        self.cpuCable.setGeometry(QtCore.QRect(170, 19, 50, 25))
-        self.cpuCable.setMouseTracking(True)
-        self.cpuCable.clear()
-        self.cpuCable.setObjectName("CPU-Cable")
 
         #GPU on motherboard
-        self.gpu = QtWidgets.QLabel(MainWindow)
-        self.gpu.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
-        self.gpu.setGeometry(QtCore.QRect(170, 565, 321, 31))
-        self.gpu.setMouseTracking(True)
-        self.gpu.clear()
-        self.gpu.setObjectName("GPU")
-        self.gpu = DragLabel(self.gpu,"../images/GPU_topview.jpg" , "../images/gpu.png", 321, 31, 221,121, "GPU")
-        
+        self.gpu1 = QtWidgets.QLabel(MainWindow)
+        self.gpu1.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
+        self.gpu1.setGeometry(QtCore.QRect(170, 565, 321, 31))
+        self.gpu1.setMouseTracking(True)
+        self.gpu1.clear()
+        self.gpu1.setObjectName("GPU")
+        self.gpu1 = DragLabel(self.gpu1,"../images/GPU_topview.jpg" , "../images/gpu.png", 321, 31, 221,121, "GPU")
+
+        #PCIe x16 on motherboard (no image and no draglabel)
+        self.pcie_x16 = Part(MainWindow, "PCIe_x16", 170, 760, 321, 31)
         
         #RAM STICKS on motherboard
         self.ram1 = QtWidgets.QLabel(MainWindow)
@@ -402,7 +434,6 @@ class Ui_MotherBoard(object):
         self.ram4.setMouseTracking(True)
         self.ram4.clear()
         self.ram4.setObjectName("RamStick4")
-
         
         self.ram1 = DragLabel(self.ram1, "../images/ram_topview.jpg","../images/ram stick.jpg", 20, 440, 221, 51, "RAM")
         self.ram2 = DragLabel(self.ram2, "../images/ram_topview.jpg","../images/ram stick.jpg", 20, 440, 221, 51, "RAM")
@@ -418,6 +449,35 @@ class Ui_MotherBoard(object):
         self.m2.clear()
         self.m2.setObjectName("M.2 SSD")
         self.m2 = DragLabel(self.m2, "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 251, 71, 221, 61, "SSD")
+
+        #CPU cable on motherboard (no image and no dragLabel)
+        self.cpuCable = Part(MainWindow, "CPU-CABLE", 170, 19, 50, 25)
+
+        #Antenna port on motherboard (no image and no dragLabel)
+        self.antenna_port = Part(MainWindow, "ANTENNA", 15, 10, 81, 51)
+
+        #HDMI port on motherboard (no image and no dragLabel)
+        self.hdmi_port = Part(MainWindow, "HDMI", 25, 70, 61, 51)
+
+        #USB3.2 PS2 port on motherboard (no image and no dragLabel)
+        self.usb32_ps2_port = Part(MainWindow, "USB3.2_PS2", 25, 210, 71, 51)
+
+        #USB3.2 TypeA TypeC port on motherboard (no image and no dragLabel)
+        self.usb32_typeA_typeC_port = Part(MainWindow, "USB3.2_TypeA_TypeC", 25, 320, 61, 45)
+
+        #USB2.0 port on motherboard (no image and no dragLabel)
+        self.lan_usb20_port = Part(MainWindow, "LAN_USB2.0", 25, 380, 81, 65)
+
+        #Audio jack port on motherboard (no image and no dragLabel)
+        self.audio_jacks_port = Part(MainWindow, "AUDIO-JACKS", 25, 450, 71, 45)
+
+        #Three small PCIe x1 at y=500, 700, 890 (no image and no dragLabel)
+        self.pcie1 = Part(MainWindow, "PCIe_x1", 170, 500, 80, 30)
+        self.pcie2 = Part(MainWindow, "PCIe_x1", 170, 700, 80, 30)
+        self.pcie3 = Part(MainWindow, "PCIe_x1", 170, 890, 80, 30)
+
+        #CMOS battery on motherboard (no image and no dragLabel)
+        self.cmos = Part(MainWindow, "CMOS", 430, 616, 60, 60)
 
         # call mouse hover events
         self.hover_events(MainWindow)
@@ -436,9 +496,6 @@ class Ui_MotherBoard(object):
         self.cpu_cooler_label.setText(_translate("MainWindow", "CPU Cooler"))
         self.hardware_list_label.setText(_translate("MainWindow", "Hardware Components"))
         self.hardware_list_label.adjustSize()
-        self.gpu_label.setText(_translate("MainWindow", "GPU"))
-        self.ram_label.setText(_translate("MainWindow", "RAM Sticks"))
-        self.ssd_label.setText(_translate("MainWindow", "M.2 SSD"))
 
         self.hover_actual_description_label.setText(_translate("MainWindow", "Hover over a part to see description!         Right click to analyze a part!"))
         self.hover_description_label.setText(_translate("MainWindow", "Part Description"))
