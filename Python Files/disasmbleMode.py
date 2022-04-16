@@ -56,6 +56,7 @@ class DragLabel(QLabel):
                                                     Analyzer.partImages[index][0], Analyzer.partImages[index][1],
                                                     Analyzer.partCoordinates[index][0], Analyzer.partCoordinates[index][1], Analyzer.partCoordinates[index][2], Analyzer.partCoordinates[index][3])
                 index += 1
+    
     def mouseMoveEvent(self, event):
         if not (event.buttons() & Qt.LeftButton):
             return
@@ -132,8 +133,12 @@ class Ui_MotherBoard(object):
     def hover_events(self, MainWindow):
         self.cpu.leaveEvent = lambda e: hoverExit("CPU", self.hover_actual_description_label)
         self.cpu.enterEvent = lambda e: hoverEnter("CPU", self.hover_actual_description_label)
+        self.cpu_img.leaveEvent = lambda e: hoverExit("CPU", self.hover_actual_description_label)
+        self.cpu_img.enterEvent = lambda e: hoverEnter("CPU", self.hover_actual_description_label)
         self.gpu.leaveEvent = lambda e: hoverExit("GPU", self.hover_actual_description_label)
         self.gpu.enterEvent = lambda e: hoverEnter("GPU", self.hover_actual_description_label)
+        self.gpu_img.leaveEvent = lambda e: hoverExit("GPU", self.hover_actual_description_label)
+        self.gpu_img.enterEvent = lambda e: hoverEnter("GPU", self.hover_actual_description_label)
         self.pcie_x16.leaveEvent = lambda e: hoverExit("PCIe_x16", self.hover_actual_description_label)
         self.pcie_x16.enterEvent = lambda e: hoverEnter("PCIe_x16", self.hover_actual_description_label)
         self.ram1.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
@@ -144,10 +149,18 @@ class Ui_MotherBoard(object):
         self.ram3.enterEvent = lambda e: hoverEnter("RAM Slot", self.hover_actual_description_label)
         self.ram4.leaveEvent = lambda e: hoverExit("RAM Slot", self.hover_actual_description_label)
         self.ram4.enterEvent = lambda e: hoverEnter("RAM Slot", self.hover_actual_description_label)
+        self.ram_img1.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
+        self.ram_img1.enterEvent = lambda e: hoverEnter("RAM", self.hover_actual_description_label)
+        self.ram_img2.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
+        self.ram_img2.enterEvent = lambda e: hoverEnter("RAM", self.hover_actual_description_label)
+        self.cpu_cooler.leaveEvent = lambda e: hoverExit("CPU-COOLER", self.hover_actual_description_label)
+        self.cpu_cooler.enterEvent = lambda e: hoverEnter("CPU-COOLER", self.hover_actual_description_label)
         self.cpu_cooler_img.leaveEvent = lambda e: hoverExit("CPU-COOLER", self.hover_actual_description_label)
         self.cpu_cooler_img.enterEvent = lambda e: hoverEnter("CPU-COOLER", self.hover_actual_description_label)
         self.m2.leaveEvent = lambda e: hoverExit("SSD", self.hover_actual_description_label)
         self.m2.enterEvent = lambda e: hoverEnter("SSD", self.hover_actual_description_label)
+        self.ssd_img.leaveEvent = lambda e: hoverExit("SSD", self.hover_actual_description_label)
+        self.ssd_img.enterEvent = lambda e: hoverEnter("SSD", self.hover_actual_description_label)
 
         self.cpuCable.leaveEvent = lambda e: hoverExit("CPU-CABLE", self.hover_actual_description_label)
         self.cpuCable.enterEvent = lambda e: hoverEnter("CPU-CABLE", self.hover_actual_description_label)
@@ -243,6 +256,9 @@ class Ui_MotherBoard(object):
         #CPU on motherboard           
         self.cpu = DragLabel(MainWindow, "../images/i7_cpu.jpg", "../images/i7_cpu.jpg", 355, 230, 91, 81, 91, 81, "CPU")
 
+        #CPU cooler on motherboard on top of CPU
+        self.cpu_cooler = DragLabel(MainWindow, "../images/cpu_fan.jpeg", "../images/cpu_cooler.png", 250, 150, 300, 300, 111, 111, "CPU-COOLER")
+        
         #GPU on motherboard
         self.gpu = DragLabel(MainWindow, "../images/GPU_topview.jpg" , "../images/gpu.png", 170, 565, 321, 31, 221,121, "GPU")
 
