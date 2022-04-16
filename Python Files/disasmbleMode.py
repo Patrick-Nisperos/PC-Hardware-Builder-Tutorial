@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
-from PyQt5.QtGui import QDrag, QPixmap
+from PyQt5.QtGui import QDrag, QPixmap, QColor
 
 import PartAnalyzer as Analyzer
 from hover import hoverExit, hoverEnter
@@ -37,12 +37,16 @@ class DragLabel(QLabel):
     def __init__(self, MainWindow, top_image, mv_image, top_x, top_y, top_width, top_height, mv_width, mv_height, name):
         QLabel.__init__(self, MainWindow)
         self.name = name
-        self.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
+        self.effect = QGraphicsColorizeEffect()
+        self.effect.setColor(QColor("yellow"))
+        self.effect.setStrength(0.13)
+        self.setStyleSheet("QLabel::hover")
         self.setGeometry(QtCore.QRect(top_x, top_y, top_width, top_height))
         self.setMouseTracking(True)
         self.clear()
         self.setObjectName(self.name) 
         self.setPixmap(QPixmap(top_image).scaled(top_width,top_height))
+        self.setGraphicsEffect(self.effect)
         self.image = QPixmap(mv_image).scaled(mv_width,mv_height)
 
     def mousePressEvent(self, event):
