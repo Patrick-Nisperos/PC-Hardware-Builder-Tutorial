@@ -48,6 +48,7 @@ class DragLabel(QLabel):
         self.setPixmap(QPixmap(top_image).scaled(top_width,top_height))
         self.setGraphicsEffect(self.effect)
         self.image = QPixmap(mv_image).scaled(mv_width,mv_height)
+        
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
@@ -70,7 +71,7 @@ class DragLabel(QLabel):
             return
         
         mimedata = QMimeData()
-        mimedata.setText(self.text())
+        mimedata.setText(self.name)
         mimedata.setImageData(self.image.toImage())
         
         drag = QDrag(self)
@@ -78,7 +79,8 @@ class DragLabel(QLabel):
         drag.setPixmap(self.image)
         drag.setHotSpot(QPoint(30,30))
         drag.exec_(Qt.MoveAction)
-        self.hide()
+
+        
    
 # on the right side Hardware Components
 # dropable, Has Image, No Part Analyzer, No Hover Description
@@ -98,6 +100,9 @@ class DropLabel(QLabel):
         self.setGraphicsEffect(self.effect)
         self.setAcceptDrops(True)
         self.setPixmap(QPixmap(image).scaled(width, height))
+        
+       
+    matched = pyqtSignal()
 
     def dragEnterEvent(self, event):
         if event.mimeData().hasImage():
@@ -106,9 +111,13 @@ class DropLabel(QLabel):
     def dropEvent(self,event):
         pos = event.pos()
         
-        if event.mimeData().hasImage():
+        if event.mimeData().hasImage() and event.mimeData().text() == self.name:
             self.effect.setOpacity(1)
             event.acceptProposedAction()
+            self.matched.emit()
+            
+            
+
 
 # on the right side Hardware Components
 # Titles and descriptions
@@ -128,11 +137,19 @@ class NameLabel(QLabel):
 
 class Ui_MotherBoard(object):
     def openPartAnalyzer(self, name, description, description2,  image, image2, width, height, width2, height2):
-            self.partView = QtWidgets.QMainWindow()
-            self.partView.setWindowTitle("Part Analyzer")
-            self.ui2 = Analyzer.Ui_PartAnalyzer()
-            self.ui2.setupUi(self.partView, name, description, description2, image, image2, width, height, width2, height2)
-            self.partView.show()
+        self.partView = QtWidgets.QMainWindow()
+        self.partView.setWindowTitle("Part Analyzer")
+        self.ui2 = Analyzer.Ui_PartAnalyzer()
+        self.ui2.setupUi(self.partView, name, description, description2, image, image2, width, height, width2, height2)
+        self.partView.show()
+
+    def matched_events(self, MainWindow, centralwidget):
+        self.cpu_img.matched.connect(lambda: self.cpu.hide())
+        self.cpu_cooler_img.matched.connect(lambda: self.cpu_cooler.hide())
+        self.gpu_img.matched.connect(lambda: self.gpu.hide())
+        self.ram_img1.matched.connect(lambda: self.ram1.hide())
+        self.ram_img2.matched.connect(lambda: self.ram2.hide())
+        self.ssd_img.matched.connect(lambda: self.m2.hide())
 
     def hover_events(self, MainWindow):
         self.cpu.leaveEvent = lambda e: hoverExit("CPU", self.hover_actual_description_label)
@@ -191,6 +208,7 @@ class Ui_MotherBoard(object):
         self.cmos.leaveEvent = lambda e: hoverExit("CMOS", self.hover_actual_description_label)
         self.cmos.enterEvent = lambda e: hoverEnter("CMOS", self.hover_actual_description_label)
 
+
     def setupHardware(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1600, 986)
@@ -221,7 +239,7 @@ class Ui_MotherBoard(object):
         
         self.cpu_cooler_img = DropLabel(self.centralwidget, "../images/cpu_cooler.png", 1240, 100, 111, 111, "CPU-COOLER")
         
-        self.gpu_img = DropLabel(self.centralwidget, "../images/gpu.png", 1090, 250, 221, 121,"GPU")
+        self.gpu_img = DropLabel(self.centralwidget, "../images/gpu.png", 1090, 250, 221, 121, "GPU")
 
         self.ssd_img = DropLabel(self.centralwidget, "../images/m.2_ssd.jpg", 1090, 560, 251, 61, "SSD")
         
@@ -264,7 +282,7 @@ class Ui_MotherBoard(object):
         self.cpu_cooler = DragLabel(MainWindow, "../images/cpu_fan.jpeg", "../images/cpu_cooler.png", 250, 150, 300, 300, 111, 111, "CPU-COOLER")
         
         #GPU on motherboard
-        self.gpu = DragLabel(MainWindow, "../images/GPU_topview.jpg" , "../images/gpu.png", 170, 565, 321, 31, 221,121, "GPU")
+        self.gpu = DragLabel(MainWindow, "../images/GPU_topview.png" , "../images/gpu.png", 20, 525, 800, 91, 221,121, "GPU")
 
         #PCIe x16 on motherboard (no image and no draglabel)
         self.pcie_x16 = Part(MainWindow, "PCIe_x16", 170, 760, 321, 31)
@@ -281,7 +299,7 @@ class Ui_MotherBoard(object):
         self.m2 = DragLabel(MainWindow, "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 460, 830, 251, 71, 221, 61, "SSD")
 
         #CPU cable on motherboard (no image and no dragLabel)
-        self.cpuCable = Part(MainWindow, "CPU-CABLE", 170, 19, 50, 25)
+        self.cpuCable = Part(MainWindow, "CPU-CABLE", 170, 19, 50, 25) 
 
         #Antenna port on motherboard (no image and no dragLabel)
         self.antenna_port = Part(MainWindow, "ANTENNA", 15, 10, 81, 51)
@@ -312,6 +330,9 @@ class Ui_MotherBoard(object):
         # call mouse hover events
         self.hover_events(MainWindow)
 
+        # call match events
+        self.matched_events(MainWindow, self.centralwidget)
+        
         self.retranslateMotherboard(self.centralwidget)
         QtCore.QMetaObject.connectSlotsByName(self.centralwidget)
     
