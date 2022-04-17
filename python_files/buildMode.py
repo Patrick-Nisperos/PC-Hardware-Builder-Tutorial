@@ -26,10 +26,28 @@ class DraggableLabel(QLabel):
         self.name = name
         self.show()
 
-
     def mousePressEvent(self, event):
+        # dragObject = False
+
         if event.button() == Qt.LeftButton:
             self.drag_start_position = event.pos()
+
+            if self.name == "CPU":
+                self.setObjectName("CPU")
+                print(self.name, "pressed")
+            elif self.name == "RAM":
+                self.setObjectName(("RAM"))
+                print(self.name, "pressed")
+            elif self.name == "GPU":
+                self.setObjectName(("GPU"))
+                print(self.name,"pressed")
+            elif self.name == "CPU-COOLER":
+                self.setObjectName(("CPU-COOLER"))
+                print(self.name, "pressed")
+            elif self.name == "SSD":
+                self.setObjectName(("SSD"))
+                print(self.name, "pressed")
+
         if(event.button() == Qt.RightButton):
             index = 0
             for names in Analyzer.partNames:
@@ -287,7 +305,8 @@ class Ui_MotherBoard(object):
         self.ram_img1D = (DraggableLabel(self.ram_img1, "../images/ram stick.jpg", "RAM").resize(221, 51))
         self.ram_img2D = (DraggableLabel(self.ram_img2, "../images/ram stick.jpg", "RAM").resize(221, 51))
         self.ssd_imgD = (DraggableLabel(self.ssd_img, "../images/m.2_ssd.jpg", "SSD").resize(221, 61))
-        
+
+
     def io_ports(self, MainWindow):
         # IO PORTS INVISIBLE IMAGES
         self.antenna_port = QtWidgets.QLabel(MainWindow)
