@@ -38,7 +38,8 @@ def hoverEnter(label, description_label):
         description_label.setText(text)
     except:
         print("description label does not exist")
-    return text # for test cases
+    if (description_label == "testing"):
+        return text # for test cases
 
 def hoverExit(label, description_label):
     text = "Hover over a part to see description!\nRight click to analyze a part!"
@@ -46,4 +47,5 @@ def hoverExit(label, description_label):
         description_label.setText(text)
     except:
         print("description label does not exist")
-    return text # for test cases
+    if (description_label == "testing"):
+        return text # for test cases
