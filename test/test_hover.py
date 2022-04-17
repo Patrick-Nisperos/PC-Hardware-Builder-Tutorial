@@ -11,5 +11,6 @@ def test_hoverEnter() -> None:
 
 """ Test 2 - Test that when mouse doesn't hover, default desc. is displayed """
 # "test_" must be included for pytest to recognize it as a test case
-
+def test_hoverExit() -> None:
+    assert hover.hoverExit("N/A", "mock_label") == "Hover over a part to see description!\nRight click to analyze a part!"
 
