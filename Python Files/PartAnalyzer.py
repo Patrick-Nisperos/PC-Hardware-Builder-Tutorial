@@ -36,10 +36,10 @@ partImages = [
               ]
 
 partCoordinates = [
-                    [200, 200, 200, 200], [400,200,400,200], [200,200,400,20], [300, 100, 300, 100],
+                    [200, 200, 200, 200], [400,200,400,200], [200,200,400,200], [300, 100, 300, 100],
                     [300, 100, 300, 100], [300, 400, 200, 200], [200,200,200,200], [200, 200, 200, 200],
-                    [200, 200, 200, 200], [350, 80, 300, 240], [350, 80, 300, 240], [350, 80, 350, 80],
-                    [350, 80, 350, 80],[350, 80, 350, 80],[350, 80, 350, 120], [300,200,200,200]
+                    [200, 200, 200, 200], [350, 80, 300, 240], [350, 80, 300, 240], [350, 80, 350, 200],
+                    [350, 80, 350, 80],[350, 80, 350, 80],[350, 80, 350, 80], [350,80,350,120]
                   ]
 
 #Index is CPU as 0, GPU, RAM, CPU-COOLER, SSD
@@ -80,17 +80,18 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
 
                 "The CPU-CABLE is simply just a power source for the CPU",
 
-                "Antenna Ports",
+                "These are ports for Antenna's. Only equipped for a motherboard with WI-FI, however "
+                "you can always purchase a seperate wifi card and it will come with its own antenna ports",
                 
-                "Hdmi stands for High Definition MultiMedia Interface and it transfers"
-                " across devices.",
-                    
-                "USB 3.2 Type-A port",
-                "USB 3.2 Type-C port", 
+                "This port is for HDMI cables. HDMI stands for High Definition MultiMedia Interface",
 
-                "LAN/Ethernet port and USB 2.0 port",
+                "The top image is the PS/2 port. The bottom image is the USB 3.2 ports.",
                     
-                "Audio jacks port"]
+                "The top image is the USB 3.2 Type-A port. The bottom impage is the USB 3.2 Type-C port",
+
+                "The top image is the LAN/Ethernet port. The bottom image are the USB 2.0 ports",
+                    
+                "These are the audio jacks port. The blue is the Line in, the pink is the Mic in, and the green is the Line out."]
 
 descriptions2 = ["The CPU acts as the brain of the computer and performs calculations, actions and runs the program"
                 "The cpu fetches instructions that are represented as series of numbers from the ram."
@@ -121,15 +122,20 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
                 "The CPU-CABLE powers the CPU allowing it to have the energy needed to process information."
                 " If the CPU does not have enough power, the computer will slow down.",
 
-                "Allows Dual Band WiFi", 
+                "Expands the PC's reach for a wireless internet connection (WIFI).", 
 
-                "It is an HD signal that is used to transfer audio and visual content"
-                " from one device to another.", 
+                "It transfers data across devices, usually outputs onto a monitor or tv. Pixel data, and audio data.", 
 
-                "PS/2 Ports and USB 3.2 ports",
-                "usb2.3",
-                "lan",
-                "audio"]
+                "A PS/2 port is a mouse port/keyboard port for "
+                "IBM compatible computers. (Old technology not commonly used) Then replaced with USB (universal-serial bus)"
+                " USB 3.2 (10 times faster transfer rate than USB 2.0) is Used for any peripherals that utilize USB",
+                
+                "USB Type-A is primarily used to host controlers in computers and hubs. However it is losing popularity."
+                " USB Type-C is becoming increasingly common, it transfers much faster data and power.",
+                "LAN or Local Area Network, more commonly known as Ethernet, is a wired internet connection. "
+                "USB 2.0 is used for any peripherals that utilize USB, usually for keyboard/mouse since its not as fast as USB 3.0",
+                "Mic allows input through a microphone. Line in allows for more data for input. Line out outputs the data for sound through" 
+                "speakers or a headset"]
 
 class Ui_PartAnalyzer(object):
     def setupUi(self, PartAnalyzer, name, description, description2, image1, image2, width, height, width2, height2):
