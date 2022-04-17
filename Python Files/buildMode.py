@@ -291,7 +291,7 @@ class Ui_MotherBoard(object):
     def io_ports(self, MainWindow):
         # IO PORTS INVISIBLE IMAGES
         self.antenna_port = QtWidgets.QLabel(MainWindow)
-        self.antenna_port.setStyleSheet("QLabel::hover" "{ background-color : orange; }")
+        self.antenna_port.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
         self.antenna_port.setGeometry(QtCore.QRect(15, 10, 81, 51))
         self.antenna_port.setMouseTracking(True)
         self.antenna_port.clear()
@@ -299,7 +299,7 @@ class Ui_MotherBoard(object):
         self.antenna_port = DraggableLabel(self.antenna_port, "../images/clear_image", "ANTENNA")
 
         self.hdmi_port = QtWidgets.QLabel(MainWindow)
-        self.hdmi_port.setStyleSheet("QLabel::hover" "{ background-color : orange; }")
+        self.hdmi_port.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
         self.hdmi_port.setGeometry(QtCore.QRect(25, 70, 61, 51))
         self.hdmi_port.setMouseTracking(True)
         self.hdmi_port.clear()
@@ -307,7 +307,7 @@ class Ui_MotherBoard(object):
         self.hdmi_port = DraggableLabel(self.hdmi_port, "../images/clear_image", "HDMI")
 
         self.usb32_ps2_port = QtWidgets.QLabel(MainWindow)
-        self.usb32_ps2_port.setStyleSheet("QLabel::hover" "{ background-color : orange; }")
+        self.usb32_ps2_port.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
         self.usb32_ps2_port.setGeometry(QtCore.QRect(25, 210, 71, 51))
         self.usb32_ps2_port.setMouseTracking(True)
         self.usb32_ps2_port.clear()
@@ -315,7 +315,7 @@ class Ui_MotherBoard(object):
         self.usb32_ps2_port = DraggableLabel(self.usb32_ps2_port, "../images/clear_image", "USB3.2_PS2")
 
         self.usb32_typeA_typeC_port = QtWidgets.QLabel(MainWindow)
-        self.usb32_typeA_typeC_port.setStyleSheet("QLabel::hover" "{ background-color : orange; }")
+        self.usb32_typeA_typeC_port.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
         self.usb32_typeA_typeC_port.setGeometry(QtCore.QRect(25, 320, 61, 45))
         self.usb32_typeA_typeC_port.setMouseTracking(True)
         self.usb32_typeA_typeC_port.clear()
@@ -323,7 +323,7 @@ class Ui_MotherBoard(object):
         self.usb32_typeA_typeC_port = DraggableLabel(self.usb32_typeA_typeC_port, "../images/clear_image", "USB3.2_TypeA_TypeC")
 
         self.lan_usb20_port = QtWidgets.QLabel(MainWindow)
-        self.lan_usb20_port.setStyleSheet("QLabel::hover" "{ background-color : orange; }")
+        self.lan_usb20_port.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
         self.lan_usb20_port.setGeometry(QtCore.QRect(25, 380, 81, 65))
         self.lan_usb20_port.setMouseTracking(True)
         self.lan_usb20_port.clear()
@@ -331,7 +331,7 @@ class Ui_MotherBoard(object):
         self.lan_usb20_port = DraggableLabel(self.lan_usb20_port, "../images/clear_image", "LAN_USB2.0")
 
         self.audio_jacks_port = QtWidgets.QLabel(MainWindow)
-        self.audio_jacks_port.setStyleSheet("QLabel::hover" "{ background-color : orange; }")
+        self.audio_jacks_port.setStyleSheet("QLabel::hover" "{ background-color : yellow; }")
         self.audio_jacks_port.setGeometry(QtCore.QRect(25, 450, 71, 45))
         self.audio_jacks_port.setMouseTracking(True)
         self.audio_jacks_port.clear()
