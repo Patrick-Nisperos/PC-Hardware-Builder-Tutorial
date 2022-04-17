@@ -14,7 +14,8 @@ from PyQt5.QtCore import QMimeData, Qt
 from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 from PyQt5.QtCore import *
 
-partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "CMOS", "PCIe x1", "PCIe x16", "CPU-CABLE", "ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS"]
+partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "CMOS", "PCIe_x1", "PCIe_x16", "CPU-CABLE", 
+             "ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS", "CPU-SOCKET", "M.2 Slot", "RAM Slot"]
 
 partImages = [
                 ["../images/i7_cpu.jpg", "../images/ryzen9.jpg"], 
@@ -25,21 +26,25 @@ partImages = [
                 ["../images/IntelMotherBoard2.jpg", ""],
                 ["../images/cmos.jpg", "../images/cmos2.png"],
                 ["../images/network_adapter.jpg", "../images/port_expansion.jpg"],
-                ["", ""],
+                ["../images/port_expansion.jpg", "../images/gpu2.png"],
                 ["../images/cpu_cable.jpg", ""],
                 ["../images/antenna_port.jpg", "../images/antenna_port2.png"],
                 ["../images/hdmi_port.png", "../images/hdmi_port2.jpg"],
                 ["../images/PS2_port.jpg", "../images/usb3.2_port.jpg"],
                 ["../images/usb3.2_typeA_port.jpg", "../images/usb3.2_typeC_port.jpg"],
                 ["../images/lan_port.jpg", "../images/usb2.0_port.jpg"],
-                ["../images/audio_jacks_port.jpg", "../images/audio_jacks_port2.jpg"]
+                ["../images/audio_jacks_port.jpg", "../images/audio_jacks_port2.jpg"],
+                ["../images/intel_socket.png", "../images/amd_socket.png"],
+                ["../images/M.2_slot.jpg", "../images/M.2_slot2.jpg"],
+                ["../images/ram_slots.png", "../images/ram_slots2.png"]
               ]
 
 partCoordinates = [
                     [200, 200, 200, 200], [400,200,400,200], [200,200,400,200], [300, 100, 300, 100],
                     [300, 100, 300, 100], [300, 400, 200, 200], [200,200,200,200], [200, 200, 200, 200],
-                    [200, 200, 200, 200], [350, 80, 300, 240], [350, 80, 300, 240], [350, 80, 350, 200],
-                    [350, 80, 350, 80],[350, 80, 350, 80],[350, 80, 350, 80], [350,80,350,120]
+                    [200, 200, 400, 200], [350, 80, 300, 240], [350, 80, 300, 240], [350, 80, 350, 240],
+                    [350, 80, 350, 80],[350, 80, 350, 80],[350, 80, 350, 80], [350,80,350,100],
+                    [200,200,200,200], [300,200,300,200], [300, 200, 300, 200]
                   ]
 
 #Index is CPU as 0, GPU, RAM, CPU-COOLER, SSD
@@ -74,9 +79,9 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 "connecting high-speed components. The types of PCIe slots come in different physical"
                 "configurations: x1, x4, x8, x16, and x32.",
 
-                "PCIe (peripheral component interconnect express) is an interface standard for "
-                "connecting high-speed components. The types of PCIe slots come in different physical"
-                "configurations: x1, x4, x8, x16, and x32.",
+                "PCIe (peripheral component interconnect express) is an interface standard for"
+                " connecting high-speed components. The types of PCIe slots come in different physical"
+                " configurations: x1, x4, x8, x16, and x32.",
 
                 "The CPU-CABLE is simply just a power source for the CPU",
 
@@ -91,7 +96,16 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
 
                 "The top image is the LAN/Ethernet port. The bottom image are the USB 2.0 ports",
                     
-                "These are the audio jacks port. The blue is the Line in, the pink is the Mic in, and the green is the Line out."]
+                "These are the audio jacks port. The blue is the Line in, the pink is the Mic in, and the green is the Line out.",
+
+                "The socket is the array of pins or pin placeholders and the securing mechanism for the"
+                " processor.",
+
+                "The M.2 Slot is a format designed for manufacterurs to replace a variety of specific devices"
+                " and do it in a tiny space, and require very little power with just 4 PCIe lanes.",
+
+                "RAM slots are vertical slots, typically numbering three or four, which are located"
+                " at the upper-right corner of the motherboard."]
 
 descriptions2 = ["The CPU acts as the brain of the computer and performs calculations, actions and runs the program"
                 "The cpu fetches instructions that are represented as series of numbers from the ram."
@@ -116,8 +130,8 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
                 "The PCIe x1 slot is used to plug in low demanding PCIe expansion cards that do not have a very"
                 "high throughput(transfer data) such as Network adapters, and Port Expansion Cards.",
 
-                "The PCIe x16 slot is used to plug in high bandwidth like grapgics cards. However, these x16 slots"
-                "could be used by any of the devices that would instead go in a smaller slot.",
+                "The PCIe x16 slot is used to plug in high bandwidth like graphics cards. However, these x16 slots"
+                " could be used by any of the devices that would instead go in a smaller slot.",
 
                 "The CPU-CABLE powers the CPU allowing it to have the energy needed to process information."
                 " If the CPU does not have enough power, the computer will slow down.",
@@ -135,7 +149,19 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
                 "LAN or Local Area Network, more commonly known as Ethernet, is a wired internet connection. "
                 "USB 2.0 is used for any peripherals that utilize USB, usually for keyboard/mouse since its not as fast as USB 3.0",
                 "Mic allows input through a microphone. Line in allows for more data for input. Line out outputs the data for sound through" 
-                "speakers or a headset"]
+                "speakers or a headset",
+
+                " The socket hold the processor in place and connects the motherboard to the"
+                " avaiable processing power. There are different types of socket, the image"
+                " above is for Intel CPUs and the image under is for AMD CPUs",
+
+                "The M.2 can support, potentially, any storage or disk drive, GPU or port expansion"
+                ", or low-power gadget that uses a USB connection, could all be mounted on a card"
+                " pluggewd into the M.2 slot at the same time.",
+
+                "A RAM slot is just a slot for the RAM to be inserted."
+                " RAM sticks should be inserted in every other slot (Dual Channel mode) which allows the computer to take"
+                " full advantage. In addition, make sure these RAM sticks have the same speed."]
 
 class Ui_PartAnalyzer(object):
     def setupUi(self, PartAnalyzer, name, description, description2, image1, image2, width, height, width2, height2):
