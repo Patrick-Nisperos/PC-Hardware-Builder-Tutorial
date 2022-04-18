@@ -41,19 +41,27 @@ class Ui_MainMenu(object):
         #self.background.setStyleSheet("background-image:url(../images/mainmenu_background.png); background-image")
         
         self.buildModeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.buildModeButton.setGeometry(QtCore.QRect(400, 490, 200, 31))
+        self.buildModeButton.setGeometry(QtCore.QRect(400, 420, 200, 31))
         self.buildModeButton.setObjectName("BuildModeButton")
         self.buildModeButton.clicked.connect(self.openBuildMode)
+        self.buildModeButton.clicked.connect(MainMenu.close)
 
         self.disasmbleModeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.disasmbleModeButton.setGeometry(QtCore.QRect(400, 560, 200, 31))
+        self.disasmbleModeButton.setGeometry(QtCore.QRect(400, 490, 200, 31))
         self.disasmbleModeButton.setObjectName("disasmbleModeButton")
         self.disasmbleModeButton.clicked.connect(self.openDisasmbleMode)
+        self.disasmbleModeButton.clicked.connect(MainMenu.close)
         
         self.audioButton = QtWidgets.QPushButton(self.centralwidget)
-        self.audioButton.setGeometry(QtCore.QRect(400, 630, 200, 31))
+        self.audioButton.setGeometry(QtCore.QRect(400, 560, 200, 31))
         self.audioButton.setObjectName("audioButton")
         
+        self.exit = QtWidgets.QPushButton(self.centralwidget)
+        self.exit.setGeometry(QtCore.QRect(400, 630, 200, 31))
+        self.exit.setObjectName("Exit")
+        self.exit.setText("Exit")
+        self.exit.clicked.connect(MainMenu.close)
+
         self.titleLabel = QtWidgets.QLabel(self.centralwidget)
         self.titleLabel.setGeometry(QtCore.QRect(90, 280, 820, 100))
         self.titleLabel.setStyleSheet("color: white")
@@ -85,7 +93,6 @@ class Ui_MainMenu(object):
         self.ui = buildMode.Ui_MotherBoard()
         self.ui.setupHardware(self.window)
         self.ui.setupMotherboard(self.window)
-        MainMenu.hide()
         self.window.show()
     
     def openDisasmbleMode(self):
@@ -93,7 +100,6 @@ class Ui_MainMenu(object):
         self.ui = disasmbleMode.Ui_MotherBoard()
         self.ui.setupHardware(self.window)
         self.ui.setupMotherboard(self.window)
-        MainMenu.hide()
         self.window.show()
 
     

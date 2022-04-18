@@ -593,8 +593,6 @@ class Ui_MotherBoard(object):
 
 
 
-
-
         self.retranslateMotherboard(self.centralwidget)
         QtCore.QMetaObject.connectSlotsByName(self.centralwidget)
 
@@ -603,6 +601,7 @@ class Ui_MotherBoard(object):
         self.startButton.setText("back")
         self.startButton.setObjectName("")
         self.startButton.clicked.connect(lambda : self.openMain())
+        self.startButton.clicked.connect(MainWindow.close)
 
 
     def retranslateMotherboard(self, MainWindow):
@@ -628,7 +627,6 @@ class Ui_MotherBoard(object):
         self.window = QtWidgets.QMainWindow()
         self.ui = mainMenu.Ui_MainMenu()
         self.ui.setupUi(self.window)
-        MainWindow.close()
         self.window.show()
 
 
