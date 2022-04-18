@@ -212,6 +212,15 @@ class Ui_MotherBoard(object):
     def setupHardware(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1600, 986)
+
+        self.background = QtWidgets.QLabel(MainWindow)
+        self.background.setGeometry(QtCore.QRect(0, 0, 1600, 986))
+        self.background.setText("")
+        self.background.setPixmap(QtGui.QPixmap('../images/disbackground.jpg'))
+        self.background.setScaledContents(True)
+        self.background.setObjectName("background")
+        self.background.lower()
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
