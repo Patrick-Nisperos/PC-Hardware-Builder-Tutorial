@@ -16,6 +16,7 @@ from PyQt5.QtCore import *
 from hover import hoverExit, hoverEnter
 import PartAnalyzer as Analyzer
 import mainMenu
+import disasmbleMode
 
 # Dragging
 class DraggableLabel(QLabel):
@@ -30,23 +31,7 @@ class DraggableLabel(QLabel):
         # dragObject = False
 
         if event.button() == Qt.LeftButton:
-            self.drag_start_position = event.pos()
-
-            if self.name == "CPU":
-                self.setObjectName("CPU")
-                print(self.name, "pressed")
-            elif self.name == "RAM":
-                self.setObjectName(("RAM"))
-                print(self.name, "pressed")
-            elif self.name == "GPU":
-                self.setObjectName(("GPU"))
-                print(self.name,"pressed")
-            elif self.name == "CPU-COOLER":
-                self.setObjectName(("CPU-COOLER"))
-                print(self.name, "pressed")
-            elif self.name == "SSD":
-                self.setObjectName(("SSD"))
-                print(self.name, "pressed")
+            return;
 
         if(event.button() == Qt.RightButton):
             index = 0
@@ -582,6 +567,31 @@ class Ui_MotherBoard(object):
         self.cmos.setObjectName("CMOS")
         self.cmos.setGraphicsEffect(self.opacityEffect9)
         self.cmosD = (DraggableLabel(self.cmos, "../images/clear_image.png", "CMOS"))
+
+        #Newly added headers using Sloans Part Class
+        self.USB20 = disasmbleMode.Part(MainWindow, "USB20", 365, 935, 50, 25)
+        self.USB32P0 = disasmbleMode.Part(MainWindow, "USB32", 420, 930, 75, 25)
+        self.USB32P1 = disasmbleMode.Part(MainWindow, "USB32", 755, 430, 25, 75)
+        self.frontPanelAudio = disasmbleMode.Part(MainWindow, "Front Panel Audio Header", 90, 935, 40,20)
+        self.thunderBolt = disasmbleMode.Part(MainWindow, "Thunderbolt AIC Connector", 165, 845, 50, 30)
+        self.sataConnector1 = disasmbleMode.Part(MainWindow, "Sata Connectors", 580, 940, 50, 20)
+        self.sataConnector2 = disasmbleMode.Part(MainWindow, "Sata Connectors", 630, 940, 50, 20)
+        self.sataConnector3 = disasmbleMode.Part(MainWindow, "Sata Connectors", 750, 550, 40, 60)
+        self.addHeader1 = disasmbleMode.Part(MainWindow, "LED", 715, 18, 40, 20)
+        self.addHeader2 = disasmbleMode.Part(MainWindow, "LED", 715, 40, 40, 20)
+        self.RGBHeader3 = disasmbleMode.Part(MainWindow, "LED", 310, 940, 40, 20)
+        self.RGBHeader4 = disasmbleMode.Part(MainWindow, "LED", 270, 940, 40, 20)
+        self.CPUHeader1 = disasmbleMode.Part(MainWindow, "CPU Fan Header", 130, 50, 40, 20)
+        self.CPUHeader2 = disasmbleMode.Part(MainWindow, "CPU Fan Header", 660, 20, 40, 20)
+        self.ATXPower1 = disasmbleMode.Part(MainWindow, "ATX Power Connector", 755, 250, 40, 80)
+        self.ATXPower2 = disasmbleMode.Part(MainWindow, "ATX Power Connector", 755, 190, 40, 50)
+        self.ATXPower3 = disasmbleMode.Part(MainWindow, "ATX Power Connector", 760, 145, 30, 30)
+        self.ATXPower4 = disasmbleMode.Part(MainWindow, "ATX Power Connector", 760, 100, 30, 30)
+        self.CHAFans = disasmbleMode.Part(MainWindow, "Chassis/Waterpump fan connector", 500, 940, 80, 20)
+        self.TPM = disasmbleMode.Part(MainWindow, "TPM Header", 130, 940, 75, 20)
+        self.SPI = disasmbleMode.Part(MainWindow, "Serial Port Header", 200, 940, 40, 20)
+
+
 
 
 

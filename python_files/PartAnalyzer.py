@@ -16,8 +16,8 @@ from PyQt5.QtCore import *
 
 partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "CMOS", "PCIe_x1", "PCIe_x16", "CPU-CABLE", 
              "ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS", "CPU-SOCKET", "M.2 Slot", "RAM Slot",
-             "USB3.2", "USB2.0", "Front Panel Audio Header", "Thunderbolt AIC Connector", "Sata Connectors", "LED",
-             "CPU Fan Header", "ATX Power Connector", "Chassis/Waterpump fan connector", "SPI TPM Header"]
+             "USB32", "USB20", "Front Panel Audio Header", "Thunderbolt AIC Connector", "Sata Connectors", "LED",
+             "CPU Fan Header", "ATX Power Connector", "Chassis/Waterpump fan connector", "TPM Header", "Serial Port Header"]
 
 partImages = [
                 ["../images/i7_cpu.jpg", "../images/ryzen9.jpg"], 
@@ -39,7 +39,8 @@ partImages = [
                 ["../images/intel_socket.png", "../images/amd_socket.png"],
                 ["../images/M.2_slot.jpg", "../images/M.2_slot2.jpg"],
                 ["../images/ram_slots.png", "../images/ram_slots2.png"],
-                ["../images/USB3.2Header.png", "../images/USB3.2Header.jpg"],
+                
+                ["../images/USB2.0Header.jpg", "../images/USB32Header.jpg"],
                 ["../images/USB2.0Header.jpg", "../images/USB2.0HeaderWire.jpg"],
                 ["../images/FrontPanelAudioHeader.jpg", "../images/FrontPanelAudioHeader2.jpg"],
                 ["../images/ThunderBoltCard.jpg", "../images/TBTHeaderCable.jpg"],
@@ -48,7 +49,8 @@ partImages = [
                 ["../images/CPUFanHeader.jpg", "../images/CPUFanHeader2.jpg"],
                 ["../images/ATXPower.jpg", "../images/ATXPower2.jpg"],
                 ["../images/CHAFan.jpg", "FanHeader.jpg"],
-                ["../images/TPM.jpg", "../images/TPM2.jpg"]
+                ["../images/TPM.jpg", "../images/TPM2.jpg"],
+                ["../images/SPI.jpg", "../images/SPI2.jpg"]
 
               ]
 
@@ -57,9 +59,10 @@ partCoordinates = [
                     [300, 100, 300, 100], [300, 400, 200, 200], [200,200,200,200], [200, 200, 200, 200],
                     [200, 200, 400, 200], [350, 80, 300, 240], [350, 80, 300, 240], [350, 80, 350, 240],
                     [350, 80, 350, 80],[350, 80, 350, 80],[350, 80, 350, 80], [350,80,350,100],
-                    [200,200,200,200], [300,200,300,200], [300, 200, 300, 200], [200,200,200,200],
-                    [300,300,200,300],[300,300,300,300], [300,300,300,300], [300,300,300,300], [300,300,300,300],
-                     [300,300,300,300], [300,300,300,300], [300,300,300,300] ,[300,300,300,300]
+                    [200,200,200,200], [200,200,200,200], [300, 200, 300, 200], [200,200,200,200],
+                    [200,200,200,200],[200,200,200,200], [200,200,200,200], [200,200,200,200], [200,200,200,200],
+                    [200,200,200,200], [200,200,200,200], [200,200,200,200] ,[200,200,200,200],
+                    [200,200,200,200]
 
                   ]
 
@@ -145,7 +148,9 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 "THE CHA_FAN or Chassis/Waterpump fan connector refers to the fan plug/socket on your motherboard.",
 
                 "TPM or Trusted Platform Module is a microchip attached to the motherboard that proviedes hardware-based"
-                " cybersecurity."
+                " cybersecurity.",
+
+                "SPI or Serial Port Header is this COM1 hewader that supports a serial port module."
 
                 ]
 
@@ -218,8 +223,7 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
 
                 "They are designed to carry data between the motherboard and the drive using a SATA data cable.",
 
-                "An ARGB, or Addressable RGB, header supportsd devices equipped with an Integrated Circuit to provide"
-                " much better flexibility with regards to lighting options.",
+                "Adds lighting to either fans, or other additional devices.",
 
                 "Regulates and controls the CPU's thermals depending on the load by controlling the fan(s) speed.",
 
@@ -228,9 +232,9 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
                 "It is used to plug a Chassis/case fan (optional)",
 
 
-                "You can add TPM to your PC if it doens't come with one, but youll need this TPM header to do so."
+                "You can add TPM to your PC if it doens't come with one, but youll need this TPM header to do so.",
 
-
+                "This allows a seperate display output specific for older monitors or TVs which support SPI."
 
                 ]
 
