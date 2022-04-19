@@ -38,3 +38,11 @@ Completed Stories list:
 unix> python mainMenu.py
 or 
 unix> python3 mainMenu.py
+
+## How to make project an executable
+0) Go to command prompt and install auto-py-to-exe
+1) Run the downloaded package by typing the name
+2) Select the mainMenu.py file and select Directory
+3) Make sure to create it without the command prompt
+4) (OPTIONAL) Add Icon
+5) Convert: Note it will be the entire project with libraries
