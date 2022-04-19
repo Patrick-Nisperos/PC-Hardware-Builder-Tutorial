@@ -15,10 +15,12 @@ class Part(QLabel):
         self.effect = QGraphicsOpacityEffect()
         self.effect.setOpacity(0.3)
         self.name = name
-        self.setStyleSheet("QLabel::hover")
+        self.setPixmap(QPixmap("../images/clear_image.png"))
         self.setGeometry(QtCore.QRect(x, y, width, height))
         self.setMouseTracking(True)
         self.clear()
+        self.setStyleSheet("QLabel::hover{background-color: yellow;}")
+
         self.setObjectName(self.name)
         self.setGraphicsEffect(self.effect)
     

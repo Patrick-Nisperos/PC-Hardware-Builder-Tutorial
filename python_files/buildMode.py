@@ -131,6 +131,66 @@ class Ui_MotherBoard(object):
         self.lan_usb20_port.enterEvent = lambda e: hoverEnter("LAN_USB2.0", self.hover_actual_description_label)
         self.audio_jacks_port.leaveEvent = lambda e: hoverExit("AUDIO-JACKS", self.hover_actual_description_label)
         self.audio_jacks_port.enterEvent = lambda e: hoverEnter("AUDIO-JACKS", self.hover_actual_description_label)
+        
+        self.pcie1.leaveEvent = lambda e: hoverExit("PCIe_x1", self.hover_actual_description_label)
+        self.pcie1.enterEvent = lambda e: hoverEnter("PCIe_x1", self.hover_actual_description_label)
+        self.pcie2.leaveEvent = lambda e: hoverExit("PCIe_x1", self.hover_actual_description_label)
+        self.pcie2.enterEvent = lambda e: hoverEnter("PCIe_x1", self.hover_actual_description_label)
+        self.pcie3.leaveEvent = lambda e: hoverExit("PCIe_x1", self.hover_actual_description_label)
+        self.pcie3.enterEvent = lambda e: hoverEnter("PCIe_x1", self.hover_actual_description_label)
+
+        self.cmos.leaveEvent = lambda e: hoverExit("CMOS", self.hover_actual_description_label)
+        self.cmos.enterEvent = lambda e: hoverEnter("CMOS", self.hover_actual_description_label)
+
+        self.USB20.leaveEvent = lambda e: hoverExit("USB20", self.hover_actual_description_label)
+        self.USB20.enterEvent = lambda e: hoverEnter("USB20", self.hover_actual_description_label)
+        self.USB32P0.leaveEvent = lambda e: hoverEnter("USB32", self.hover_actual_description_label) 
+        self.USB32P0.enterEvent = lambda e: hoverExit("USB32", self.hover_actual_description_label)
+        self.USB32P1.leaveEvent = lambda e: hoverExit("USB32", self.hover_actual_description_label)
+        self.USB32P1.enterEvent = lambda e: hoverExit("USB32", self.hover_actual_description_label)
+        self.frontPanelAudio.leaveEvent = lambda e: hoverExit("Front Panel Audio Header", self.hover_actual_description_label)
+        self.frontPanelAudio.enterEvent = lambda e: hoverEnter("Front Panel Audio Header", self.hover_actual_description_label)
+        self.thunderBolt.leaveEvent = lambda e: hoverExit("Thunderbolt AIC Connector", self.hover_actual_description_label)
+        self.thunderBolt.enterEvent = lambda e: hoverEnter("Thunderbolt AIC Connector", self.hover_actual_description_label)
+        self.sataConnector1.leaveEvent = lambda e: hoverExit("Sata Connectors", self.hover_actual_description_label)
+        self.sataConnector1.enterEvent = lambda e: hoverEnter("Sata Connectors", self.hover_actual_description_label)
+        self.sataConnector2.leaveEvent = lambda e: hoverExit("Sata Connectors", self.hover_actual_description_label)
+        self.sataConnector2.enterEvent = lambda e: hoverEnter("Sata Connectors", self.hover_actual_description_label)
+        self.sataConnector3.leaveEvent = lambda e: hoverExit("Sata Connectors", self.hover_actual_description_label)
+        self.sataConnector3.enterEvent = lambda e: hoverEnter("Sata Connectors", self.hover_actual_description_label)
+
+        self.addHeader1.leaveEvent = lambda e: hoverExit("LED", self.hover_actual_description_label)
+        self.addHeader1.enterEvent = lambda e: hoverEnter("LED", self.hover_actual_description_label)
+        self.addHeader2.leaveEvent = lambda e: hoverExit("LED", self.hover_actual_description_label)
+        self.addHeader2.enterEvent = lambda e: hoverEnter("LED", self.hover_actual_description_label)
+
+        self.RGBHeader3.leaveEvent = lambda e: hoverExit("LED", self.hover_actual_description_label)
+        self.RGBHeader3.enterEvent = lambda e: hoverEnter("LED", self.hover_actual_description_label)
+
+        self.RGBHeader4.leaveEvent = lambda e: hoverExit("LED", self.hover_actual_description_label)
+        self.RGBHeader4.enterEvent = lambda e: hoverEnter("LED", self.hover_actual_description_label)
+
+        self.CPUHeader1.leaveEvent = lambda e: hoverExit("CPU Fan Header", self.hover_actual_description_label)
+        self.CPUHeader1.enterEvent = lambda e: hoverEnter("CPU Fan Header", self.hover_actual_description_label)
+
+        self.CPUHeader2.leaveEvent = lambda e: hoverExit("CPU Fan Header", self.hover_actual_description_label)
+        self.CPUHeader2.enterEvent = lambda e: hoverEnter("CPU Fan Header", self.hover_actual_description_label)
+
+        self.ATXPower1.leaveEvent = lambda e: hoverExit("ATX Power Connector", self.hover_actual_description_label)
+        self.ATXPower1.enterEvent = lambda e: hoverEnter("ATX Power Connector", self.hover_actual_description_label)
+        self.ATXPower2.leaveEvent = lambda e: hoverExit("ATX Power Connector", self.hover_actual_description_label)
+        self.ATXPower2.enterEvent = lambda e: hoverEnter("ATX Power Connector", self.hover_actual_description_label)
+        self.ATXPower3.leaveEvent = lambda e: hoverExit("ATX Power Connector", self.hover_actual_description_label)
+        self.ATXPower3.enterEvent = lambda e: hoverEnter("ATX Power Connector", self.hover_actual_description_label)
+        self.ATXPower4.leaveEvent = lambda e: hoverExit("ATX Power Connector", self.hover_actual_description_label)
+        self.ATXPower4.enterEvent = lambda e: hoverEnter("ATX Power Connector", self.hover_actual_description_label)
+
+        self.CHAFans.leaveEvent = lambda e: hoverExit("Chassis/Waterpump fan connector", self.hover_actual_description_label)
+        self.CHAFans.enterEvent = lambda e: hoverEnter("Chassis/Waterpump fan connector", self.hover_actual_description_label)
+        self.TPM.leaveEvent = lambda e: hoverExit("TPM Header", self.hover_actual_description_label)
+        self.TPM.enterEvent = lambda e: hoverEnter("TPM Header", self.hover_actual_description_label)
+        self.SPI.leaveEvent = lambda e: hoverExit("Serial Port Header", self.hover_actual_description_label)
+        self.SPI.enterEvent = lambda e: hoverEnter("Serial Port Header", self.hover_actual_description_label)
 
     def setupHardware(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
