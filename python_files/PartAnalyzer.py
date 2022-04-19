@@ -15,7 +15,9 @@ from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 from PyQt5.QtCore import *
 
 partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "CMOS", "PCIe_x1", "PCIe_x16", "CPU-CABLE", 
-             "ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS", "CPU-SOCKET", "M.2 Slot", "RAM Slot"]
+             "ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS", "CPU-SOCKET", "M.2 Slot", "RAM Slot",
+             "USB32", "USB20", "Front Panel Audio Header", "Thunderbolt AIC Connector", "Sata Connectors", "LED",
+             "CPU Fan Header", "ATX Power Connector", "Chassis/Waterpump fan connector", "TPM Header", "Serial Port Header"]
 
 partImages = [
                 ["../images/i7_cpu.jpg", "../images/ryzen9.jpg"], 
@@ -36,7 +38,20 @@ partImages = [
                 ["../images/audio_jacks_port.jpg", "../images/audio_jacks_port2.jpg"],
                 ["../images/intel_socket.png", "../images/amd_socket.png"],
                 ["../images/M.2_slot.jpg", "../images/M.2_slot2.jpg"],
-                ["../images/ram_slots.png", "../images/ram_slots2.png"]
+                ["../images/ram_slots.png", "../images/ram_slots2.png"],
+                
+                ["../images/USB2.0Header.jpg", "../images/USB32Header.jpg"],
+                ["../images/USB2.0Header.jpg", "../images/USB2.0HeaderWire.jpg"],
+                ["../images/FrontPanelAudioHeader.jpg", "../images/FrontPanelAudioHeader2.jpg"],
+                ["../images/ThunderBoltCard.jpg", "../images/TBTHeaderCable.jpg"],
+                ["../images/SataConnector.jpg", "../images/SataCable.jpg"],
+                ["../images/AddHeader.jpg", "../images/RGBHeader2.jpg"],
+                ["../images/CPUFanHeader.jpg", "../images/CPUFanHeader2.jpg"],
+                ["../images/ATXPower.jpg", "../images/ATXPower2.jpg"],
+                ["../images/CHAFan.jpg", "FanHeader.jpg"],
+                ["../images/TPM.jpg", "../images/TPM2.jpg"],
+                ["../images/SPI.jpg", "../images/SPI2.jpg"]
+
               ]
 
 partCoordinates = [
@@ -44,7 +59,11 @@ partCoordinates = [
                     [300, 100, 300, 100], [300, 400, 200, 200], [200,200,200,200], [200, 200, 200, 200],
                     [200, 200, 400, 200], [350, 80, 300, 240], [350, 80, 300, 240], [350, 80, 350, 240],
                     [350, 80, 350, 80],[350, 80, 350, 80],[350, 80, 350, 80], [350,80,350,100],
-                    [200,200,200,200], [300,200,300,200], [300, 200, 300, 200]
+                    [200,200,200,200], [200,200,200,200], [300, 200, 300, 200], [200,200,200,200],
+                    [200,200,200,200],[200,200,200,200], [200,200,200,200], [200,200,200,200], [200,200,200,200],
+                    [200,200,200,200], [200,200,200,200], [200,200,200,200] ,[200,200,200,200],
+                    [200,200,200,200]
+
                   ]
 
 #Index is CPU as 0, GPU, RAM, CPU-COOLER, SSD
@@ -105,7 +124,35 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 " and do it in a tiny space, and require very little power with just 4 PCIe lanes.",
 
                 "RAM slots are vertical slots, typically numbering three or four, which are located"
-                " at the upper-right corner of the motherboard."]
+                " at the upper-right corner of the motherboard.",
+
+                "The USB 3.2 Gen1 Header allows the computer to add extra USB ports.",
+
+                "The USB 2.0 Header allows the computer to add extra USB ports.",
+
+                "The Front Panel audio header is usually located on the lower left of your motherboard and it basically"
+                "connects your audio.",
+
+                "Thunderbold consists of 4 PCI Expresslanes and a DisplayPort connection. An Add-in card (AIC) gets these from"
+                "the PCIe slot and the DisplayPort cable you plug into the card.",
+
+                "Sata ports are generally known as connectors, and they are used to connect hard drives to motherboards.",
+
+
+                "Used for connecting to LED strips and other accessories to your PC.",
+
+                "CPU Fan Header is the main header used by the motherboard, and the BIOS and any other software.",
+
+                "ATX is a connector that connects the power supply to an ATX style MotherBoard.",
+
+                "THE CHA_FAN or Chassis/Waterpump fan connector refers to the fan plug/socket on your motherboard.",
+
+                "TPM or Trusted Platform Module is a microchip attached to the motherboard that proviedes hardware-based"
+                " cybersecurity.",
+
+                "SPI or Serial Port Header is this COM1 hewader that supports a serial port module."
+
+                ]
 
 descriptions2 = ["The CPU acts as the brain of the computer and performs calculations, actions and runs the program"
                 "The cpu fetches instructions that are represented as series of numbers from the ram."
@@ -161,7 +208,35 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
 
                 "A RAM slot is just a slot for the RAM to be inserted."
                 " RAM sticks should be inserted in every other slot (Dual Channel mode) which allows the computer to take"
-                " full advantage. In addition, make sure these RAM sticks have the same speed."]
+                " full advantage. In addition, make sure these RAM sticks have the same speed.",
+
+                "USB 3.2 is a different from an older generation USB such as 2.0 as it is faster, transferring up to"
+                "20Gpbs.",
+
+                "USB 2.0 is an older version of current USBs which also supply lower transfer rates.",
+
+                "The HD_AUDIO cable connects the front audio/mic jack connectors from your case rto your motherboard, so they"
+                " can be used. You can plug there whatever you'd like: speakers, headphones, etc...",
+
+                "You can transmit DisplayPort signals through Thunderbolt, allowing you to re-route an external graphics card"
+                " output to the displayport connections.",
+
+                "They are designed to carry data between the motherboard and the drive using a SATA data cable.",
+
+                "Adds lighting to either fans, or other additional devices.",
+
+                "Regulates and controls the CPU's thermals depending on the load by controlling the fan(s) speed.",
+
+                "This connector is used to supply additional 12V current to he motherboard, which is used to power most devices on it.",
+
+                "It is used to plug a Chassis/case fan (optional)",
+
+
+                "You can add TPM to your PC if it doens't come with one, but youll need this TPM header to do so.",
+
+                "This allows a seperate display output specific for older monitors or TVs which support SPI."
+
+                ]
 
 class Ui_PartAnalyzer(object):
     def setupUi(self, PartAnalyzer, name, description, description2, image1, image2, width, height, width2, height2):

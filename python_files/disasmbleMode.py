@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import QDrag, QPixmap, QColor
 
 import PartAnalyzer as Analyzer
+import mainMenu
 from hover import hoverExit, hoverEnter
 
 # on the motherboard
@@ -212,6 +213,15 @@ class Ui_MotherBoard(object):
     def setupHardware(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1600, 986)
+
+        self.background = QtWidgets.QLabel(MainWindow)
+        self.background.setGeometry(QtCore.QRect(0, 0, 1600, 986))
+        self.background.setText("")
+        self.background.setPixmap(QtGui.QPixmap('../images/disbackground.jpg'))
+        self.background.setScaledContents(True)
+        self.background.setObjectName("background")
+        self.background.lower()
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
@@ -335,6 +345,15 @@ class Ui_MotherBoard(object):
         
         self.retranslateMotherboard(self.centralwidget)
         QtCore.QMetaObject.connectSlotsByName(self.centralwidget)
+
+        self.startButton = QtWidgets.QPushButton(self.centralwidget)
+        self.startButton.setGeometry(QtCore.QRect(1500, 25, 70, 31))
+        self.startButton.setText("back")
+        self.startButton.setObjectName("")
+
+        self.startButton.clicked.connect(self.motherBoard.close)
+        self.startButton.clicked.connect(MainWindow.close)
+        self.startButton.clicked.connect(lambda : self.openMain())
     
     def retranslateMotherboard(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -344,6 +363,12 @@ class Ui_MotherBoard(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.hardware_list_label.adjustSize()
+
+    def openMain(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = mainMenu.Ui_MainMenu()
+        self.ui.setupUi(self.window)
+        self.window.show()
 
 
 if __name__ == "__main__":

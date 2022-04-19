@@ -16,6 +16,7 @@ from PyQt5.QtCore import *
 from hover import hoverExit, hoverEnter
 import PartAnalyzer as Analyzer
 import mainMenu
+import disasmbleMode
 
 # Dragging
 class DraggableLabel(QLabel):
@@ -26,10 +27,12 @@ class DraggableLabel(QLabel):
         self.name = name
         self.show()
 
-
     def mousePressEvent(self, event):
+        # dragObject = False
+
         if event.button() == Qt.LeftButton:
-            self.drag_start_position = event.pos()
+            return;
+
         if(event.button() == Qt.RightButton):
             index = 0
             for names in Analyzer.partNames:
@@ -119,6 +122,15 @@ class Ui_MotherBoard(object):
     def setupHardware(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1600, 986)
+
+        self.background = QtWidgets.QLabel(MainWindow)
+        self.background.setGeometry(QtCore.QRect(0, 0, 1600, 986))
+        self.background.setText("")
+        self.background.setPixmap(QtGui.QPixmap('../images/buildbackground.jpg'))
+        self.background.setScaledContents(True)
+        self.background.setObjectName("background")
+        self.background.lower()
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.cpu_label = QtWidgets.QLabel(self.centralwidget)
@@ -131,6 +143,7 @@ class Ui_MotherBoard(object):
         font.setWeight(75)
         font.setStrikeOut(False)
         self.cpu_label.setFont(font)
+        self.cpu_label.setStyleSheet("font-size: 16pt;color: white;")
         self.cpu_label.setAlignment(QtCore.Qt.AlignCenter)
         self.cpu_label.setObjectName("cpu_label")
         self.cpu_img = QtWidgets.QLabel(self.centralwidget)
@@ -160,6 +173,7 @@ class Ui_MotherBoard(object):
         font.setWeight(75)
         font.setStrikeOut(False)
         self.cpu_cooler_label.setFont(font)
+        self.cpu_cooler_label.setStyleSheet("font-size: 16pt;color: white;")
         self.cpu_cooler_label.setAlignment(QtCore.Qt.AlignCenter)
         self.cpu_cooler_label.setObjectName("cpu_cooler_label")
         self.hardware_list_label = QtWidgets.QLabel(self.centralwidget)
@@ -173,6 +187,7 @@ class Ui_MotherBoard(object):
         font.setWeight(75)
         font.setStrikeOut(False)
         self.hardware_list_label.setFont(font)
+        self.hardware_list_label.setStyleSheet("font-size: 16pt;color: white;")
         self.hardware_list_label.setAlignment(QtCore.Qt.AlignCenter)
         self.hardware_list_label.setObjectName("hardware_list_label")
         self.gpu_img = QtWidgets.QLabel(self.centralwidget)
@@ -193,6 +208,7 @@ class Ui_MotherBoard(object):
         font.setWeight(75)
         font.setStrikeOut(False)
         self.gpu_label.setFont(font)
+        self.gpu_label.setStyleSheet("font-size: 16pt;color: white;")
         self.gpu_label.setAlignment(QtCore.Qt.AlignCenter)
         self.gpu_label.setObjectName("gpu_label")
         self.ram_label = QtWidgets.QLabel(self.centralwidget)
@@ -205,6 +221,7 @@ class Ui_MotherBoard(object):
         font.setWeight(75)
         font.setStrikeOut(False)
         self.ram_label.setFont(font)
+        self.ram_label.setStyleSheet("font-size: 16pt;color: white;")
         self.ram_label.setAlignment(QtCore.Qt.AlignCenter)
         self.ram_label.setObjectName("ram_label")
         self.ssd_label = QtWidgets.QLabel(self.centralwidget)
@@ -217,6 +234,7 @@ class Ui_MotherBoard(object):
         font.setWeight(75)
         font.setStrikeOut(False)
         self.ssd_label.setFont(font)
+        self.ssd_label.setStyleSheet("font-size: 16pt;color: white;")
         self.ssd_label.setAlignment(QtCore.Qt.AlignCenter)
         self.ssd_label.setObjectName("ssd_label")
         self.ssd_img = QtWidgets.QLabel(self.centralwidget)
@@ -249,6 +267,7 @@ class Ui_MotherBoard(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.hover_actual_description_label.setFont(font)
+        self.hover_actual_description_label.setStyleSheet("color: white;")
         self.hover_actual_description_label.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.hover_actual_description_label.setAlignment(QtCore.Qt.AlignCenter)
         self.hover_actual_description_label.setWordWrap(True)
@@ -264,6 +283,7 @@ class Ui_MotherBoard(object):
         font.setUnderline(True)
         font.setWeight(75)
         font.setStrikeOut(False)
+        self.hover_description_label.setStyleSheet("font-size: 16pt;color: white;")
         self.hover_description_label.setFont(font)
         self.hover_description_label.setAlignment(QtCore.Qt.AlignCenter)
         self.hover_description_label.setObjectName("hover_description_label")
@@ -287,7 +307,8 @@ class Ui_MotherBoard(object):
         self.ram_img1D = (DraggableLabel(self.ram_img1, "../images/ram stick.jpg", "RAM").resize(221, 51))
         self.ram_img2D = (DraggableLabel(self.ram_img2, "../images/ram stick.jpg", "RAM").resize(221, 51))
         self.ssd_imgD = (DraggableLabel(self.ssd_img, "../images/m.2_ssd.jpg", "SSD").resize(221, 61))
-        
+
+
     def io_ports(self, MainWindow):
         # IO PORTS INVISIBLE IMAGES
         self.antenna_port = QtWidgets.QLabel(MainWindow)
@@ -547,6 +568,29 @@ class Ui_MotherBoard(object):
         self.cmos.setGraphicsEffect(self.opacityEffect9)
         self.cmosD = (DraggableLabel(self.cmos, "../images/clear_image.png", "CMOS"))
 
+        #Newly added headers using Sloans Part Class
+        self.USB20 = disasmbleMode.Part(MainWindow, "USB20", 365, 935, 50, 25)
+        self.USB32P0 = disasmbleMode.Part(MainWindow, "USB32", 420, 930, 75, 25)
+        self.USB32P1 = disasmbleMode.Part(MainWindow, "USB32", 755, 430, 25, 75)
+        self.frontPanelAudio = disasmbleMode.Part(MainWindow, "Front Panel Audio Header", 90, 935, 40,20)
+        self.thunderBolt = disasmbleMode.Part(MainWindow, "Thunderbolt AIC Connector", 165, 845, 50, 30)
+        self.sataConnector1 = disasmbleMode.Part(MainWindow, "Sata Connectors", 580, 940, 50, 20)
+        self.sataConnector2 = disasmbleMode.Part(MainWindow, "Sata Connectors", 630, 940, 50, 20)
+        self.sataConnector3 = disasmbleMode.Part(MainWindow, "Sata Connectors", 750, 550, 40, 60)
+        self.addHeader1 = disasmbleMode.Part(MainWindow, "LED", 715, 18, 40, 20)
+        self.addHeader2 = disasmbleMode.Part(MainWindow, "LED", 715, 40, 40, 20)
+        self.RGBHeader3 = disasmbleMode.Part(MainWindow, "LED", 310, 940, 40, 20)
+        self.RGBHeader4 = disasmbleMode.Part(MainWindow, "LED", 270, 940, 40, 20)
+        self.CPUHeader1 = disasmbleMode.Part(MainWindow, "CPU Fan Header", 130, 50, 40, 20)
+        self.CPUHeader2 = disasmbleMode.Part(MainWindow, "CPU Fan Header", 660, 20, 40, 20)
+        self.ATXPower1 = disasmbleMode.Part(MainWindow, "ATX Power Connector", 755, 250, 40, 80)
+        self.ATXPower2 = disasmbleMode.Part(MainWindow, "ATX Power Connector", 755, 190, 40, 50)
+        self.ATXPower3 = disasmbleMode.Part(MainWindow, "ATX Power Connector", 760, 145, 30, 30)
+        self.ATXPower4 = disasmbleMode.Part(MainWindow, "ATX Power Connector", 760, 100, 30, 30)
+        self.CHAFans = disasmbleMode.Part(MainWindow, "Chassis/Waterpump fan connector", 500, 940, 80, 20)
+        self.TPM = disasmbleMode.Part(MainWindow, "TPM Header", 130, 940, 75, 20)
+        self.SPI = disasmbleMode.Part(MainWindow, "Serial Port Header", 200, 940, 40, 20)
+
 
 
         self.retranslateMotherboard(self.centralwidget)
@@ -557,6 +601,7 @@ class Ui_MotherBoard(object):
         self.startButton.setText("back")
         self.startButton.setObjectName("")
         self.startButton.clicked.connect(lambda : self.openMain())
+        self.startButton.clicked.connect(MainWindow.close)
 
 
     def retranslateMotherboard(self, MainWindow):
@@ -582,7 +627,6 @@ class Ui_MotherBoard(object):
         self.window = QtWidgets.QMainWindow()
         self.ui = mainMenu.Ui_MainMenu()
         self.ui.setupUi(self.window)
-        MainWindow.close()
         self.window.show()
 
 

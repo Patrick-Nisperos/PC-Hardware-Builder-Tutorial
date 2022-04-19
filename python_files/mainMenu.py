@@ -9,8 +9,11 @@
 # run: python3 -m venv ./venv
 #      source venv/bin/activate
 #      python3 mainMenu.py
+import os
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPixmap
 import buildMode
@@ -43,25 +46,39 @@ class Ui_MainMenu(object):
         #self.background.setStyleSheet("background-image:url(../images/mainmenu_background.png); background-image")
         
         self.buildModeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.buildModeButton.setGeometry(QtCore.QRect(400, 490, 200, 31))
+        self.buildModeButton.setGeometry(QtCore.QRect(400, 420, 200, 31))
         self.buildModeButton.setObjectName("BuildModeButton")
         self.buildModeButton.clicked.connect(self.openBuildMode)
+        self.buildModeButton.clicked.connect(MainMenu.close)
 
         self.disasmbleModeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.disasmbleModeButton.setGeometry(QtCore.QRect(400, 560, 200, 31))
+        self.disasmbleModeButton.setGeometry(QtCore.QRect(400, 490, 200, 31))
         self.disasmbleModeButton.setObjectName("disasmbleModeButton")
         self.disasmbleModeButton.clicked.connect(self.openDisasmbleMode)
 
         self.quizModeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.quizModeButton.setGeometry(QtCore.QRect(400, 420, 200, 31))
+        self.quizModeButton.setGeometry(QtCore.QRect(400, 560, 200, 31))
         self.quizModeButton.setObjectName("quizModeButton")
         self.quizModeButton.clicked.connect(self.openQuizMode)
 
+        self.disasmbleModeButton.clicked.connect(MainMenu.close)
         
         self.audioButton = QtWidgets.QPushButton(self.centralwidget)
         self.audioButton.setGeometry(QtCore.QRect(400, 630, 200, 31))
+        self.audioButton.clicked.connect(lambda: self.playsound())
         self.audioButton.setObjectName("audioButton")
-        
+
+        self.audioButton2 = QtWidgets.QPushButton(self.centralwidget)
+        self.audioButton2.setGeometry(QtCore.QRect(400, 630, 200, 31))
+        self.audioButton2.clicked.connect(lambda: self.stopSound())
+        self.audioButton2.setObjectName("audioButton2")
+        self.audioButton2.hide()
+        self.exit = QtWidgets.QPushButton(self.centralwidget)
+        self.exit.setGeometry(QtCore.QRect(400, 700, 200, 31))
+        self.exit.setObjectName("Exit")
+        self.exit.setText("Exit")
+        self.exit.clicked.connect(MainMenu.close)
+
         self.titleLabel = QtWidgets.QLabel(self.centralwidget)
         self.titleLabel.setGeometry(QtCore.QRect(90, 280, 820, 100))
         self.titleLabel.setStyleSheet("color: white")
@@ -78,7 +95,7 @@ class Ui_MainMenu(object):
 
         self.retranslateUi(MainMenu)
         QtCore.QMetaObject.connectSlotsByName(MainMenu)
-
+        self.playsound()
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -86,6 +103,7 @@ class Ui_MainMenu(object):
         self.disasmbleModeButton.setText(_translate("MainWindow", "Disassemble Mode"))
         self.quizModeButton.setText(_translate("MainWindow", "Quiz Mode"))
         self.audioButton.setText(_translate("MainWindow", "Audio"))
+        self.audioButton2.setText((_translate("MainWindow","Audio")))
         self.titleLabel.setText(_translate("MainWindow", "PC Hardware Tutorial"))
         self.background.setText(_translate("MainWindow",""))
         
@@ -101,7 +119,6 @@ class Ui_MainMenu(object):
         self.ui = buildMode.Ui_MotherBoard()
         self.ui.setupHardware(self.window)
         self.ui.setupMotherboard(self.window)
-        MainMenu.hide()
         self.window.show()
     
     def openDisasmbleMode(self):
@@ -109,10 +126,22 @@ class Ui_MainMenu(object):
         self.ui = disasmbleMode.Ui_MotherBoard()
         self.ui.setupHardware(self.window)
         self.ui.setupMotherboard(self.window)
-        MainMenu.hide()
         self.window.show()
 
-    
+    def playsound(self):
+        self.music_player = QMediaPlayer()
+        self.full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/backgroundMusic.mp3')
+        self.url = QUrl.fromLocalFile(self.full_file_path)
+        self.music_player.setMedia(QMediaContent(self.url))
+        self.music_player.play()
+        self.audioButton2.show()
+        self.audioButton.hide()
+
+    def stopSound(self):
+        self.music_player.stop()
+        self.audioButton.show()
+        self.audioButton2.hide()
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
