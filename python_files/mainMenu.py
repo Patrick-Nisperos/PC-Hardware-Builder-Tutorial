@@ -15,6 +15,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPixmap
 import buildMode
 import disasmbleMode
+import quizMode
+
 
 class Ui_MainMenu(object):
     def setupUi(self, MainMenu):
@@ -49,6 +51,12 @@ class Ui_MainMenu(object):
         self.disasmbleModeButton.setGeometry(QtCore.QRect(400, 560, 200, 31))
         self.disasmbleModeButton.setObjectName("disasmbleModeButton")
         self.disasmbleModeButton.clicked.connect(self.openDisasmbleMode)
+
+        self.quizModeButton = QtWidgets.QPushButton(self.centralwidget)
+        self.quizModeButton.setGeometry(QtCore.QRect(400, 420, 200, 31))
+        self.quizModeButton.setObjectName("quizModeButton")
+        self.quizModeButton.clicked.connect(self.openQuizMode)
+
         
         self.audioButton = QtWidgets.QPushButton(self.centralwidget)
         self.audioButton.setGeometry(QtCore.QRect(400, 630, 200, 31))
@@ -76,10 +84,18 @@ class Ui_MainMenu(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.buildModeButton.setText(_translate("MainWindow", "Build Mode"))
         self.disasmbleModeButton.setText(_translate("MainWindow", "Disassemble Mode"))
+        self.quizModeButton.setText(_translate("MainWindow", "Quiz Mode"))
         self.audioButton.setText(_translate("MainWindow", "Audio"))
         self.titleLabel.setText(_translate("MainWindow", "PC Hardware Tutorial"))
         self.background.setText(_translate("MainWindow",""))
         
+    def openQuizMode(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = quizMode.Ui_Quiz()
+        self.ui.setupQuiz(self.window)
+        MainMenu.hide()
+        self.window.show()
+
     def openBuildMode(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = buildMode.Ui_MotherBoard()
