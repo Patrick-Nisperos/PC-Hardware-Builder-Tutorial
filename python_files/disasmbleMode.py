@@ -1,4 +1,7 @@
+import os
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QDrag, QPixmap, QColor
@@ -311,7 +314,38 @@ class Ui_MotherBoard(object):
         self.startButton.clicked.connect(self.motherBoard.close)
         self.startButton.clicked.connect(MainWindow.close)
         self.startButton.clicked.connect(lambda : self.openMain())
-    
+        self.startButton.clicked.connect(lambda: self.stopSound())
+
+        self.audioButton = QtWidgets.QPushButton(MainWindow)
+        self.audioButton.setGeometry(QtCore.QRect(1400, 25, 70, 31))
+        self.audioButton.setText("Audio On")
+        self.audioButton.setObjectName("audioButton")
+        self.audioButton.clicked.connect(lambda: self.playsound())
+
+        self.audioButton2 = QtWidgets.QPushButton(MainWindow)
+        self.audioButton2.setGeometry(QtCore.QRect(1400, 25, 70, 31))
+        self.audioButton2.setText("Audio Off")
+        self.audioButton2.setObjectName("audioButton2")
+        self.audioButton2.clicked.connect(lambda: self.stopSound())
+        self.audioButton2.hide()
+
+
+        self.playsound()
+    def playsound(self):
+        self.music_player = QMediaPlayer()
+        self.full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/backgroundMusic.mp3')
+        self.url = QUrl.fromLocalFile(self.full_file_path)
+        self.music_player.setMedia(QMediaContent(self.url))
+        self.music_player.play()
+        self.audioButton2.show()
+        self.audioButton.hide()
+
+    def stopSound(self):
+        self.music_player.stop()
+        self.audioButton.show()
+        self.audioButton2.hide()
+
+
     def retranslateMotherboard(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         self.centralwidget.setWindowTitle(_translate("MotherBoard", "MotherBoard"))
