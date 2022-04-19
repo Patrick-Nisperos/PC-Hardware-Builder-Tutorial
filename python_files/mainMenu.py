@@ -21,7 +21,6 @@ import disasmbleMode
 
 class Ui_MainMenu(object):
     def setupUi(self, MainMenu):
-        self.play_music = False
         MainMenu.setObjectName("MainMenu")
         MainMenu.resize(1000,800)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -88,6 +87,7 @@ class Ui_MainMenu(object):
 
         self.retranslateUi(MainMenu)
         QtCore.QMetaObject.connectSlotsByName(MainMenu)
+        self.playsound()
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
