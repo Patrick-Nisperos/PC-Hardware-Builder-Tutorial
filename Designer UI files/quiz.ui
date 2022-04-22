@@ -76,44 +76,6 @@
      <number>24</number>
     </property>
    </widget>
-   <widget class="QCheckBox" name="answer_box1">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>170</y>
-      <width>521</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QCheckBox {
-	spacing: 5px;
-	color:rgb(255, 255, 255);
-}
-QCheckBox::indicator {
-	width: 40px;
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string>Central Processing Unit - Computes all basic arithmetic and other operations</string>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="checked">
-     <bool>false</bool>
-    </property>
-   </widget>
    <widget class="QLabel" name="question_text">
     <property name="geometry">
      <rect>
@@ -244,120 +206,6 @@ background-color: rgb(33, 33, 33);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QCheckBox" name="answer_box2">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>220</y>
-      <width>521</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QCheckBox {
-	spacing: 5px;
-	color:rgb(255, 255, 255);
-}
-QCheckBox::indicator {
-	width: 40px;
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string>Central Processing Unit - Computes all basic arithmetic and other operations</string>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="checked">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="answer_box3">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>270</y>
-      <width>521</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QCheckBox {
-	spacing: 5px;
-	color:rgb(255, 255, 255);
-}
-QCheckBox::indicator {
-	width: 40px;
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string>Central Processing Unit - Computes all basic arithmetic and other operations</string>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="checked">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="answer_box4">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>320</y>
-      <width>521</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QCheckBox {
-	spacing: 5px;
-	color:rgb(255, 255, 255);
-}
-QCheckBox::indicator {
-	width: 40px;
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string>Central Processing Unit - Computes all basic arithmetic and other operations</string>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="checked">
-     <bool>false</bool>
-    </property>
-   </widget>
    <widget class="QLabel" name="progress_text">
     <property name="geometry">
      <rect>
@@ -383,6 +231,126 @@ QCheckBox::indicator {
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="answer_button1">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>180</y>
+      <width>521</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QRadioButton{
+	color:rgb(255, 255, 255)
+}
+QRadioButton::indicator {
+	width: 40px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Central Processing Unit - Computes all basic arithmetic and other operations</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="answer_button2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>230</y>
+      <width>521</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QRadioButton{
+	color:rgb(255, 255, 255)
+}
+QRadioButton::indicator {
+	width: 40px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Central Processing Unit - Computes all basic arithmetic and other operations</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="answer_button3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>280</y>
+      <width>521</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QRadioButton{
+	color:rgb(255, 255, 255)
+}
+QRadioButton::indicator {
+	width: 40px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Central Processing Unit - Computes all basic arithmetic and other operations</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="answer_button4">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>330</y>
+      <width>521</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QRadioButton{
+	color:rgb(255, 255, 255)
+}
+QRadioButton::indicator {
+	width: 40px;
+}</string>
+    </property>
+    <property name="text">
+     <string>Central Processing Unit - Computes all basic arithmetic and other operations</string>
     </property>
    </widget>
   </widget>
