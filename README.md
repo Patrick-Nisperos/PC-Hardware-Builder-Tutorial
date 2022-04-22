@@ -30,6 +30,31 @@ Completed Stories list:
 * Story - Add cmos, pcie into part analyzer view
 * Story - Add hardware into part analyzer view
 
+## Sprint III - Completed Work
+Estimated Stories - 15 for a complexity of 43
+
+Completed Stories - 15 for a complexity of 45
+
+Completed Stories list:
+* Story - Set the realistic GPU size on the motherboard for disassemble mode
+* Story - Add background to buildmode/dissamble mode/quiz mode
+* Story - create quiz mode window (UI)
+* Story - Match the draglabel and droplabel
+* Story - Make the highlights for the parts on the motherboard in disassemble mode
+* Story - Having the correct order setup for cpu cooler and cpu
+* Story - Update disassembe mode with other parts that team updated
+* Story - Mouse hover on img to show description
+* Story - Object Dragging
+* Story - Menu Navigation
+* Story - Creating Basic wires
+* Story - Add headers into part analyzer
+* Story - Exit in Main Menu
+
+Newly added stories and completed:
+
+* Story - Make the program an executable
+* Story - Dropping hardware components into motherboard in buildmode
+
 ## How to run project
 0) Clone the repository
 1) Install these libaries:
@@ -38,3 +63,11 @@ Completed Stories list:
 unix> python mainMenu.py
 or 
 unix> python3 mainMenu.py
+
+## How to make project an executable
+0) Go to command prompt and install auto-py-to-exe
+1) Run the downloaded package by typing the name
+2) Select the mainMenu.py file and select Directory
+3) Make sure to create it without the command prompt
+4) (OPTIONAL) Add Icon
+5) Convert: Note it will be the entire project with libraries

@@ -22,6 +22,7 @@ import quizMode
 
 
 class Ui_MainMenu(object):
+
     def setupUi(self, MainMenu):
         MainMenu.setObjectName("MainMenu")
         MainMenu.resize(1000,800)
@@ -73,6 +74,7 @@ class Ui_MainMenu(object):
         self.audioButton2.clicked.connect(lambda: self.stopSound())
         self.audioButton2.setObjectName("audioButton2")
         self.audioButton2.hide()
+
         self.exit = QtWidgets.QPushButton(self.centralwidget)
         self.exit.setGeometry(QtCore.QRect(400, 700, 200, 31))
         self.exit.setObjectName("Exit")
@@ -112,6 +114,7 @@ class Ui_MainMenu(object):
         self.ui = quizMode.Ui_Quiz()
         self.ui.setupQuiz(self.window)
         MainMenu.hide()
+        self.stopSound()
         self.window.show()
 
     def openBuildMode(self):
@@ -119,6 +122,7 @@ class Ui_MainMenu(object):
         self.ui = buildMode.Ui_MotherBoard()
         self.ui.setupHardware(self.window)
         self.ui.setupMotherboard(self.window)
+        self.stopSound()
         self.window.show()
     
     def openDisasmbleMode(self):
@@ -126,6 +130,7 @@ class Ui_MainMenu(object):
         self.ui = disasmbleMode.Ui_MotherBoard()
         self.ui.setupHardware(self.window)
         self.ui.setupMotherboard(self.window)
+        self.stopSound()
         self.window.show()
 
     def playsound(self):
