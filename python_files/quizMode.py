@@ -13,16 +13,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_Quiz(object):
     def contents(self):
-        self.questions = ["What is the CPU for computers?", "What is the GPU for computers?"]
+        self.questions = ["What is the CPU for computers?", "What is the GPU for computers?", "What is the RAM for computers?", "What is an SSD for computers?", "What is the CMOS for computers?"]
         
-        self.question_images = ["../images/ryzen9.JPG", "../images/gpu.png"]
+        self.question_images = ["../images/ryzen9.JPG", "../images/gpu.png", "../images/ram stick.jpg", "../images/m.2_ssd.jpg", "../images/cmos.jpg"]
 
-        self.question_images_sizes = [[690,180,200,200], [590,180,400,200]] # 1st - x pos, 2nd - y pos, 3rd - width, 4th - height
+        self.question_images_sizes = [[690,180,200,200], [590,180,400,200], [590,180,400,100], [590,180,400,100], [720,180,200,200]] # 1st - x pos, 2nd - y pos, 3rd - width, 4th - height
 
-        self.answers = [["Central Processing Unit - Computes all basic arithmetic and other operations", "Computer Power User", "Critical Patch Update", "Central Policy Unit"], 
-                    ["Ground Power Unit", "Graphics Processing Unit", "General Public Utilities", "General Processing Unit"]]
+        self.answers = [["Central Processing Unit - Computes all basic arithmetic and other operations", "Computer Power User - A person who can utilize all the computer's power", "Critical Patch Update - A crucial update in software to fix major issues", "Central Policy Unit - The policy that is central for software to run"], 
+                    ["Ground Power Unit - Allows the pc's components flow of electricity to ground", "Graphics Processing Unit - speciailzed processor designed to accelerate graphics rendering", "General Public Utilities - Necessary processes that all pc needs to run", "General Processing Unit - Similar to a central procesing unit but more general"],
+                    ["Rational Asset Manager - Software that manages different assets", "Remote Application Management - The BIOS management of applications", "Random Access Memory - Memory that computer stores for short term data", "Random Access Machine - Processor that is granted access to storage"],
+                    ["Signed Sealed Delivered - Stevie wonder song that plays after your pc parts ship", "Switching Sequence Detection - Processor detecting a switch from binary to decimal", "Structured Self Development - The computer's boot up process before OS loads", "Solid State Drive - Flash-based memory"],
+                    ["Cellular Management Operation System - The BIOS system to communicate with the processor", "Configuration Memory Operating System - Allows communication between processor and memory" , "Cargo Movement Operations System - The gpu system to move large data", "Complementary Metal-Oxide Semiconductor - Small piece of memory that stores the BIOS settings"]]
 
-        self.answer_indexes = [0,1]
+        self.answer_indexes = [0,1,2,3,3]
 
         self.question_num = 0
         self.total_question_num = 5
@@ -122,7 +125,7 @@ class Ui_Quiz(object):
         self.progress_text.setAlignment(QtCore.Qt.AlignCenter)
         self.progress_text.setObjectName("progress_text")
         self.answer_button1 = QtWidgets.QRadioButton(self.centralwidget)
-        self.answer_button1.setGeometry(QtCore.QRect(30, 180, 521, 51))
+        self.answer_button1.setGeometry(QtCore.QRect(30, 180, 610, 51))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
@@ -135,7 +138,7 @@ class Ui_Quiz(object):
                                         "}")
         self.answer_button1.setObjectName("answer_button1")
         self.answer_button2 = QtWidgets.QRadioButton(self.centralwidget)
-        self.answer_button2.setGeometry(QtCore.QRect(30, 230, 521, 51))
+        self.answer_button2.setGeometry(QtCore.QRect(30, 230, 610, 51))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
@@ -148,7 +151,7 @@ class Ui_Quiz(object):
                                         "}")
         self.answer_button2.setObjectName("answer_button2")
         self.answer_button3 = QtWidgets.QRadioButton(self.centralwidget)
-        self.answer_button3.setGeometry(QtCore.QRect(30, 280, 521, 51))
+        self.answer_button3.setGeometry(QtCore.QRect(30, 280, 610, 51))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
@@ -161,7 +164,7 @@ class Ui_Quiz(object):
                                         "}")
         self.answer_button3.setObjectName("answer_button3")
         self.answer_button4 = QtWidgets.QRadioButton(self.centralwidget)
-        self.answer_button4.setGeometry(QtCore.QRect(30, 330, 521, 51))
+        self.answer_button4.setGeometry(QtCore.QRect(30, 330, 610, 51))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
@@ -183,11 +186,11 @@ class Ui_Quiz(object):
         MainWindow.setStatusBar(self.statusbar)
 
         # Other events called here
-        self.set_questions_answers(self.question_num)
         self.click_events()
 
         self.retranslateQuiz(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.set_questions_answers(self.question_num)
 
     
     def retranslateQuiz(self, MainWindow):
@@ -248,7 +251,6 @@ class Ui_Quiz(object):
         self.question_text.setText(self.questions[question_num])
         self.question_status_text.setText("")
         self.question_image.setPixmap(QtGui.QPixmap(self.question_images[question_num]))
-        print(self.question_images_sizes[question_num][0])
         self.question_image.setGeometry(self.question_images_sizes[question_num][0],
          self.question_images_sizes[question_num][1], self.question_images_sizes[question_num][2], self.question_images_sizes[question_num][3])
 
