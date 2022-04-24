@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import mainMenu
 
 class Ui_Quiz(object):
     def contents(self):
@@ -30,6 +30,9 @@ class Ui_Quiz(object):
         self.contents()
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1024, 576)
+
+
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.background_image = QtWidgets.QLabel(self.centralwidget)
@@ -180,6 +183,14 @@ class Ui_Quiz(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        self.backButton = QtWidgets.QPushButton(MainWindow)
+        self.backButton.setGeometry(QtCore.QRect(900, 25, 70, 31))
+        self.backButton.setText("Back")
+        self.backButton.setObjectName("")
+        self.backButton.clicked.connect(lambda: self.openMain())
+        self.backButton.clicked.connect(MainWindow.close)
+
+
         # Other events called here
         self.set_questions_answers(self.question_num)
         self.click_events()
@@ -259,7 +270,12 @@ class Ui_Quiz(object):
             button.setAutoExclusive(False)
             button.setChecked(False)
             button.setAutoExclusive(True)
-      
+    
+    def openMain(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = mainMenu.Ui_MainMenu()
+        self.ui.setupUi(self.window)
+        self.window.show()
 
 
 
