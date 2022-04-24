@@ -17,6 +17,8 @@ class Ui_Quiz(object):
         
         self.question_images = ["../images/ryzen9.JPG", "../images/gpu.png"]
 
+        self.question_images_sizes = [[690,180,200,200], [590,180,400,200]] # 1st - x pos, 2nd - y pos, 3rd - width, 4th - height
+
         self.answers = [["Central Processing Unit - Computes all basic arithmetic and other operations", "Computer Power User", "Critical Patch Update", "Central Policy Unit"], 
                     ["Ground Power Unit", "Graphics Processing Unit", "General Public Utilities", "General Processing Unit"]]
 
@@ -246,6 +248,9 @@ class Ui_Quiz(object):
         self.question_text.setText(self.questions[question_num])
         self.question_status_text.setText("")
         self.question_image.setPixmap(QtGui.QPixmap(self.question_images[question_num]))
+        print(self.question_images_sizes[question_num][0])
+        self.question_image.setGeometry(self.question_images_sizes[question_num][0],
+         self.question_images_sizes[question_num][1], self.question_images_sizes[question_num][2], self.question_images_sizes[question_num][3])
 
         self.answer_button1.setText(self.answers[question_num][0])
         self.answer_button2.setText(self.answers[question_num][1])
