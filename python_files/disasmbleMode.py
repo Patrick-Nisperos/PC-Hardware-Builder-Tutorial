@@ -159,7 +159,7 @@ class Ui_MotherBoard(object):
         self.centralwidget.setObjectName("centralwidget")
 
         #labels
-        self.hardware_list_label = Labels.NameLabel(self.centralwidget, 16, True, 75, 1055, 20, 241, 41, "Hardware Components")
+        self.hardware_list_label = Labels.NameLabel(self.centralwidget, 16, True, 75, 1045, 20, 241, 41, "Hardware Components")
         
         self.cpu_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1040, 70, 151, 31, "CPU")
         
@@ -171,7 +171,7 @@ class Ui_MotherBoard(object):
         
         self.ssd_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 530, 151, 31, "M.2 SSD")
 
-        self.hover_description_label = Labels.NameLabel(self.centralwidget, 14, True, 75, 1092, 650, 250, 31, "Labels.Part Description")
+        self.hover_description_label = Labels.NameLabel(self.centralwidget, 14, True, 75, 1092, 650, 250, 31, "Part Description")
 
         self.hover_actual_description_label = Labels.NameLabel(self.centralwidget, 10, False, 0, 1100, 680, 241, 200, "Hover over a Labels.Part to see description!\nRight click to analyze a Labels.Part!")
         self.hover_actual_description_label.setWordWrap(True)
@@ -217,6 +217,7 @@ class Ui_MotherBoard(object):
         self.motherBoard.setMouseTracking(True)
         self.motherBoard.setPixmap(QtGui.QPixmap("../images/IntelMotherBoard.jpg"))
         self.motherBoard.setObjectName("MotherBoard")
+        #self.motherBoard.setScaledContents(True)
 
 
         # call io ports

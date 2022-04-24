@@ -21,73 +21,9 @@ import disasmbleMode
 import Labels
 
 
-# Dragging
-class DraggableLabel(QLabel):
-    def __init__(self,parent,image, name):
-        super(QLabel,self).__init__(parent)
-        self.setPixmap(QPixmap(image))
-        self.setScaledContents(True)
-        self.name = name
-        self.show()
-
-    def mousePressEvent(self, event):
-        # dragObject = False
-
-        if event.button() == Qt.LeftButton:
-            return;
-
-        if(event.button() == Qt.RightButton):
-            index = 0
-            for names in Analyzer.partNames:
-                if(self.name == names and index < len(Analyzer.partNames)):
-                    Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[index],Analyzer.descriptions[index], Analyzer.descriptions2[index],
-                                                    Analyzer.partImages[index][0], Analyzer.partImages[index][1],
-                                                    Analyzer.partCoordinates[index][0], Analyzer.partCoordinates[index][1], Analyzer.partCoordinates[index][2], Analyzer.partCoordinates[index][3])
-                index += 1
-
-    def mouseMoveEvent(self, event):
-        #if(self.name == PartAnalyzer.partNames[5] or self.name == PartAnalyzer.partNames[6] or self.name == PartAnalyzer.partNames[7] or self.name == PartAnalyzer.partNames[8] or self.name == PartAnalyzer.partNames[9]:
-        for names in Analyzer.partNames[5:]:
-            if(self.name == names):
-                return
-        if not (event.buttons() & Qt.LeftButton):
-            return
-        if (event.pos() - self.drag_start_position).manhattanLength() < QApplication.startDragDistance():
-            return
-        drag = QDrag(self)
-        mimedata = QMimeData()
-        mimedata.setText(self.text())
-        mimedata.setImageData(self.pixmap().toImage())
-
-        drag.setMimeData(mimedata)
-        pixmap = QPixmap(self.size())
-        painter = QPainter(pixmap)
-        painter.drawPixmap(self.rect(), self.grab())
-        painter.end()
-        drag.setPixmap(pixmap)
-        drag.setHotSpot(event.pos())
-        drag.exec_(Qt.CopyAction | Qt.MoveAction)
-
-class my_label(QLabel):
-    def __init__(self,title,parent):
-        super().__init__(title,parent)
-        self.setAcceptDrops(True)
-
-    def dragEnterEvent(self,event):
-        if event.mimeData().hasImage():
-            print("event accepted")
-            event.accept()
-        else:
-            print("event rejected")
-            event.ignore()
-    def dropEvent(self,event):
-        if event.mimeData().hasImage():
-            self.setPixmap(QPixmap.fromImage(QImage(event.mimeData().imageData())))
-
-
 class Ui_MotherBoard(object):
 
-    def matched_events(self, MainWindow):
+    def matched_events(self, MainWindow, centralwidget):
         self.cpu.matched.connect(lambda: self.checkFn())
         self.cpu_cooler.matched.connect(lambda: self.cpu_cooler_img.hide())
         self.gpu.matched.connect(lambda: self.gpu_img.hide())
@@ -205,28 +141,39 @@ class Ui_MotherBoard(object):
         self.background.setScaledContents(True)
         self.background.setObjectName("background")
         self.background.lower()
-        #labels
-        self.hardware_list_label = Labels.NameLabel(MainWindow, 16, True, 75, 1055, 20, 241, 41, "Hardware Components")        
-        self.cpu_label = Labels.NameLabel(MainWindow, 12, False, 75, 1040, 70, 151, 31, "CPU")        
-        self.cpu_cooler_label = Labels.NameLabel(MainWindow, 12, False, 75, 1220, 70, 151, 31, "CPU Cooler")       
-        self.gpu_label = Labels.NameLabel(MainWindow, 12, False, 75, 1130, 210, 151, 31, "GPU")
-        self.ram_label = Labels.NameLabel(MainWindow, 12, False, 75, 1140, 370, 151, 31, "RAM Sticks")  
-        self.ssd_label = Labels.NameLabel(MainWindow, 12, False, 75, 1140, 530, 151, 31, "M.2 SSD")
-        self.hover_description_label = Labels.NameLabel(MainWindow, 14, True, 75, 1092, 650, 250, 31, "Part Description")
 
-        self.hover_actual_description_label = Labels.NameLabel(MainWindow, 10, False, 0, 1100, 680, 241, 200, "Hover over a part to see description!         Right click to analyze a part!")
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        
+        #labels
+        self.hardware_list_label = Labels.NameLabel(self.centralwidget, 16, True, 75, 1045, 20, 241, 41, "Hardware Components")
+        self.hardware_list_label.setStyleSheet("color: white")
+        self.cpu_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1040, 70, 151, 31, "CPU")
+        self.cpu_label.setStyleSheet("color: white")
+        self.cpu_cooler_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1220, 70, 151, 31, "CPU Cooler")
+        self.cpu_cooler_label.setStyleSheet("color: white")
+        self.gpu_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1130, 210, 151, 31, "GPU")
+        self.gpu_label.setStyleSheet("color: white")
+        self.ram_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 370, 151, 31, "RAM Sticks")
+        self.ram_label.setStyleSheet("color: white")
+        self.ssd_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 530, 151, 31, "M.2 SSD")
+        self.ssd_label.setStyleSheet("color: white")
+        self.hover_description_label = Labels.NameLabel(self.centralwidget, 14, True, 75, 1092, 650, 250, 31, "Part Description")
+        self.hover_description_label.setStyleSheet("color: white")
+        self.hover_actual_description_label = Labels.NameLabel(self.centralwidget, 10, False, 0, 1100, 680, 241, 200, "Hover over a Labels.Part to see description!\nRight click to analyze a Labels.Part!")
+        self.hover_actual_description_label.setStyleSheet("color: white")
         self.hover_actual_description_label.setWordWrap(True)
         self.hover_actual_description_label.setLayoutDirection(QtCore.Qt.LeftToRight)
 
         #Drag labels on the right
-        self.cpu_img = Labels.DragLabel(MainWindow, "../images/i7_cpu.jpg", "../images/i7_cpu.jpg", 1070, 110, 91, 81, 91, 81, "CPU")
-        self.cpu_cooler_img = Labels.DragLabel(MainWindow, "../images/cpu_cooler.png", "../images/cpu_fan.jpg", 1240, 100, 111, 111, 111, 111, "CPU-COOLER")
-        self.gpu_img = Labels.DragLabel(MainWindow,  "../images/gpu.png","../images/gpu.png" , 1090, 250, 221, 121, 221,121, "GPU")
-        self.ram4_img = Labels.DragLabel(MainWindow,"../images/ram stick.jpg", "../images/ram stick.jpg", 1100, 410, 221, 51, 221, 51, "RAM")
-        self.ram2_img = Labels.DragLabel(MainWindow, "../images/ram stick.jpg","../images/ram stick.jpg", 1100, 470, 221, 51, 221, 51, "RAM")
-        self.m2_img = Labels.DragLabel(MainWindow, "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 1090, 560, 251, 61, 251, 61, "SSD")
+        self.cpu_img = Labels.DragLabel(self.centralwidget, "../images/i7_cpu.jpg", "../images/i7_cpu.jpg", 1070, 110, 91, 81, 91, 81, "CPU")
+        self.cpu_cooler_img = Labels.DragLabel(self.centralwidget, "../images/cpu_cooler.png", "../images/cpu_fan.jpg", 1240, 100, 111, 111, 111, 111, "CPU-COOLER")
+        self.gpu_img = Labels.DragLabel(self.centralwidget,  "../images/gpu.png","../images/gpu.png" , 1090, 250, 221, 121, 221,121, "GPU")
+        self.ram4_img = Labels.DragLabel(self.centralwidget,"../images/ram stick.jpg", "../images/ram stick.jpg", 1100, 410, 221, 51, 221, 51, "RAM")
+        self.ram2_img = Labels.DragLabel(self.centralwidget, "../images/ram stick.jpg","../images/ram stick.jpg", 1100, 470, 221, 51, 221, 51, "RAM")
+        self.m2_img = Labels.DragLabel(self.centralwidget, "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 1090, 560, 251, 61, 251, 61, "SSD")
 
-
+        MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1004, 21))
         self.menubar.setObjectName("menubar")
@@ -235,29 +182,11 @@ class Ui_MotherBoard(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        self.retranslateHardware(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
 
-        self.backButton = QtWidgets.QPushButton(MainWindow)
-        self.backButton.setGeometry(QtCore.QRect(1500, 25, 70, 31))
-        self.backButton.setText("Back")
-        self.backButton.setObjectName("")
-        self.backButton.clicked.connect(lambda: self.openMain())
-        self.backButton.clicked.connect(lambda: self.stopSound())
-        self.backButton.clicked.connect(MainWindow.close)
-
-        self.audioButton = QtWidgets.QPushButton(MainWindow)
-        self.audioButton.setGeometry(QtCore.QRect(1400, 25, 70, 31))
-        self.audioButton.setText("Audio On")
-        self.audioButton.setObjectName("audioButton")
-        self.audioButton.clicked.connect(lambda: self.playsound())
-
-        self.audioButton2 = QtWidgets.QPushButton(MainWindow)
-        self.audioButton2.setGeometry(QtCore.QRect(1400, 25, 70, 31))
-        self.audioButton2.setText("Audio Off")
-        self.audioButton2.setObjectName("audioButton2")
-        self.audioButton2.clicked.connect(lambda: self.stopSound())
-        self.audioButton2.hide()
+        
 
     def playsound(self):
         self.music_player = QMediaPlayer()
@@ -290,7 +219,7 @@ class Ui_MotherBoard(object):
         self.motherBoard.setMouseTracking(True)
         self.motherBoard.setPixmap(QtGui.QPixmap("../images/IntelMotherBoard.jpg"))
         self.motherBoard.setObjectName("MotherBoard")
-        self.playsound()
+        
         # call io ports
         self.io_ports(MainWindow)
 
@@ -351,11 +280,33 @@ class Ui_MotherBoard(object):
         self.TPM = Labels.Part(MainWindow, "TPM Header", 130, 940, 75, 20)
         self.SPI = Labels.Part(MainWindow, "Serial Port Header", 200, 940, 40, 20)
 
+        self.backButton = QtWidgets.QPushButton(MainWindow)
+        self.backButton.setGeometry(QtCore.QRect(1500, 25, 70, 31))
+        self.backButton.setText("Back")
+        self.backButton.setObjectName("")
+        self.backButton.clicked.connect(lambda: self.openMain())
+        self.backButton.clicked.connect(lambda: self.stopSound())
+        self.backButton.clicked.connect(MainWindow.close)
+
+        self.audioButton = QtWidgets.QPushButton(MainWindow)
+        self.audioButton.setGeometry(QtCore.QRect(1400, 25, 70, 31))
+        self.audioButton.setText("Audio On")
+        self.audioButton.setObjectName("audioButton")
+        self.audioButton.clicked.connect(lambda: self.playsound())
+
+        self.audioButton2 = QtWidgets.QPushButton(MainWindow)
+        self.audioButton2.setGeometry(QtCore.QRect(1400, 25, 70, 31))
+        self.audioButton2.setText("Audio Off")
+        self.audioButton2.setObjectName("audioButton2")
+        self.audioButton2.clicked.connect(lambda: self.stopSound())
+        self.audioButton2.hide()
+        self.playsound()
+
         # call mouse hover events
         self.hover_events(MainWindow)
 
         # call match events
-        self.matched_events(MainWindow)
+        self.matched_events(MainWindow, self.centralwidget)
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -392,6 +343,6 @@ if __name__ == "__main__":
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MotherBoard()
     ui.setupHardware(MainWindow)
-    ui.setupMotherboard(MainWindow)
+    #ui.setupMotherboard(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

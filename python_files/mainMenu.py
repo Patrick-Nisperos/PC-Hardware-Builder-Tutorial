@@ -56,13 +56,14 @@ class Ui_MainMenu(object):
         self.disasmbleModeButton.setGeometry(QtCore.QRect(400, 490, 200, 31))
         self.disasmbleModeButton.setObjectName("disasmbleModeButton")
         self.disasmbleModeButton.clicked.connect(self.openDisasmbleMode)
+        self.disasmbleModeButton.clicked.connect(MainMenu.close)
+
 
         self.quizModeButton = QtWidgets.QPushButton(self.centralwidget)
         self.quizModeButton.setGeometry(QtCore.QRect(400, 560, 200, 31))
         self.quizModeButton.setObjectName("quizModeButton")
         self.quizModeButton.clicked.connect(self.openQuizMode)
-
-        self.disasmbleModeButton.clicked.connect(MainMenu.close)
+        self.quizModeButton.clicked.connect(MainMenu.close)
         
         self.audioButton = QtWidgets.QPushButton(self.centralwidget)
         self.audioButton.setGeometry(QtCore.QRect(400, 630, 200, 31))
@@ -113,7 +114,6 @@ class Ui_MainMenu(object):
         self.window = QtWidgets.QMainWindow()
         self.ui = quizMode.Ui_Quiz()
         self.ui.setupQuiz(self.window)
-        MainMenu.hide()
         self.stopSound()
         self.window.show()
 
