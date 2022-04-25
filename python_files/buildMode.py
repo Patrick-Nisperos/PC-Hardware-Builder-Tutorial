@@ -23,9 +23,39 @@ import Labels
 
 class Ui_MotherBoard(object):
 
-    def checkFn(self):
+    #Increments when you connect a ram stick, once it hits 2 then call
+    def count(self):
+        self.countRam += 1
+        if(self.countRam == 2):
+            self.hideRam()
+
+    def hideCPU(self):
         self.cpu_img.hide()
+        self.cpu_label.hide()
+        self.cpu_atx_label.show()
         self.cpu_cooler.show()
+        self.cpu_atx.show()
+
+    def hideCool(self):
+        self.cpu_cooler_img.hide()
+        self.cpu_fan_header_connecter.show()
+        self.cpu_cooler_label.hide()
+        self.cpu_fan_header_connecter_label.show()
+
+    def hideGPU(self):
+        self.gpu_img.hide()
+        self.gpu_label.hide()
+        self.power_atx_label.show()
+        self.power_atx.show()
+
+    def hideSSD(self):
+        self.m2_img.hide()
+        self.ssd_label.hide()
+        self.sata_label.show()
+        self.sata.show()
+
+    def hideRam(self):
+        self.ram_label.hide()
 
     def openPartAnalyzer(self, name, description, description2,  image, image2, width, height, width2, height2):
         self.partView = QtWidgets.QMainWindow()
@@ -35,12 +65,14 @@ class Ui_MotherBoard(object):
         self.partView.show()
 
     def matched_events(self, MainWindow, centralwidget):
-        self.cpu.matched.connect(lambda: self.checkFn())
-        self.cpu_cooler.matched.connect(lambda: self.cpu_cooler_img.hide())
-        self.gpu.matched.connect(lambda: self.gpu_img.hide())
+        self.cpu.matched.connect(lambda: self.hideCPU())
+        self.cpu_cooler.matched.connect(lambda: self.hideCool())
+        self.gpu.matched.connect(lambda: self.hideGPU())
         self.ram2.matched.connect(lambda: self.ram2_img.hide())
+        self.ram2.matched.connect(lambda: self.count())
         self.ram4.matched.connect(lambda: self.ram4_img.hide())
-        self.m2.matched.connect(lambda: self.m2_img.hide())
+        self.ram4.matched.connect(lambda: self.count())
+        self.m2.matched.connect(lambda: self.hideSSD())
 
     def hover_events(self, MainWindow):
         # PC COMPONENTS hover events
@@ -174,17 +206,30 @@ class Ui_MotherBoard(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         
-        #labels
+        #count to check if ram was installed
+        self.countRam = 0
+        #labels for style sheet we can send in another parameter for color
         self.hardware_list_label = Labels.NameLabel(self.centralwidget, 16, True, 75, 1045, 20, 241, 41, "Hardware Components")
         self.hardware_list_label.setStyleSheet("color: white")
         self.cpu_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1040, 70, 151, 31, "CPU")
         self.cpu_label.setStyleSheet("color: white")
+        self.cpu_atx_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1040, 70, 151, 31, "CPU ATX Power")
+        self.cpu_atx_label.setStyleSheet("color: white")
+        self.cpu_atx_label.hide()
         self.cpu_cooler_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1220, 70, 151, 31, "CPU Cooler")
         self.cpu_cooler_label.setStyleSheet("color: white")
+        self.cpu_fan_header_connecter_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1220, 70, 151, 31, "CPU Fan Header")
+        self.cpu_fan_header_connecter_label.setStyleSheet("color: white")
+        self.cpu_fan_header_connecter_label.hide()
         self.gpu_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1130, 210, 151, 31, "GPU")
         self.gpu_label.setStyleSheet("color: white")
+        self.power_atx_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1130, 210, 151, 31, "Power ATX")
+        self.power_atx_label.hide()
         self.ram_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 370, 151, 31, "RAM Sticks")
         self.ram_label.setStyleSheet("color: white")
+        self.sata_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 530, 151, 31, "Sata Connecter")
+        self.sata_label.setStyleSheet("color: white")
+        self.sata_label.hide()
         self.ssd_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 530, 151, 31, "M.2 SSD")
         self.ssd_label.setStyleSheet("color: white")
         self.hover_description_label = Labels.NameLabel(self.centralwidget, 14, True, 75, 1092, 650, 250, 31, "Part Description")
@@ -204,17 +249,17 @@ class Ui_MotherBoard(object):
 
         #New Cables
         self.cpu_atx = Labels.DragLabel(self.centralwidget, "../images/cpu_cable.jpg", "../images/cpu_cable.jpg", 1070, 110, 91, 81, 91, 81, "CPU-CABLE")
-        #self.cpu_atx.hide()
+        self.cpu_atx.hide()
         self.cpu_fan_header_connecter = Labels.DragLabel(self.centralwidget, "../images/CPUFanHeader2.jpg", "../images/CPUFanHeader2.jpg", 1240, 100, 111, 111, 111, 111, "CPU Fan Header")
-        #self.cpu_fan_header_connecter.hide()
+        self.cpu_fan_header_connecter.hide()
         #self.cpu_header_connecter = Labels.DragLabel(self.centralwidget, "../images/CPUFanHeader2.jpg", "../images/CPUFanHeader2.jpg",  1090, 250, 221, 121, 221,121)
         #self.cpu_header_connecter.hide()
         
         #should be four power connecters
-        #self.power_atx = Labels.DragLabel(self.centralwidget, "../images/ATXPower.jpg", "../images/ATXPower.jpg", 760, 100, 30, 30, 200, 200, 200, 200)
-        #self.power_atx.hide()
-        #self.sata = Labels.DragLabel(self.centralwidget, "../images/SataCable.jpg", "../images/SataCable.jpg", 580, 940, 50, 20, 200, 200, 200, 200)
-        #self.sata.hide()
+        self.power_atx = Labels.DragLabel(self.centralwidget, "../images/ATXPower2.jpg", "../images/ATXPower2.jpg", 1090, 250, 221, 121, 221,121, "ATX Power Connecter")
+        self.power_atx.hide()
+        self.sata = Labels.DragLabel(self.centralwidget, "../images/SataCable.jpg", "../images/SataCable.jpg", 1090, 560, 251, 50, 251, 61, "Sata connecters")
+        self.sata.hide()
 
 
 
