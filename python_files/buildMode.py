@@ -56,6 +56,9 @@ class Ui_MotherBoard(object):
 
     def hideRam(self):
         self.ram_label.hide()
+        self.power_atx.show()
+        self.power_atx2.show()
+        self.power_atx_label.show()
 
     def openPartAnalyzer(self, name, description, description2,  image, image2, width, height, width2, height2):
         self.partView = QtWidgets.QMainWindow()
@@ -248,18 +251,24 @@ class Ui_MotherBoard(object):
         self.m2_img = Labels.DragLabel(self.centralwidget, "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 1090, 560, 251, 61, 251, 61, "SSD")
 
         #New Cables
+        #replaces cpu
         self.cpu_atx = Labels.DragLabel(self.centralwidget, "../images/cpu_cable.jpg", "../images/cpu_cable.jpg", 1070, 110, 91, 81, 91, 81, "CPU-CABLE")
         self.cpu_atx.hide()
+
+        #replaces cooler
         self.cpu_fan_header_connecter = Labels.DragLabel(self.centralwidget, "../images/CPUFanHeader2.jpg", "../images/CPUFanHeader2.jpg", 1240, 100, 111, 111, 111, 111, "CPU Fan Header")
         self.cpu_fan_header_connecter.hide()
-        #self.cpu_header_connecter = Labels.DragLabel(self.centralwidget, "../images/CPUFanHeader2.jpg", "../images/CPUFanHeader2.jpg",  1090, 250, 221, 121, 221,121)
-        #self.cpu_header_connecter.hide()
+
+        #Replaces gpu
+        self.sata = Labels.DragLabel(self.centralwidget, "../images/SataCable.jpg", "../images/SataCable.jpg", 1090, 250, 251, 50, 251, 61, "Sata connecters")
+        self.sata.hide()
         
         #should be four power connecters
-        self.power_atx = Labels.DragLabel(self.centralwidget, "../images/ATXPower2.jpg", "../images/ATXPower2.jpg", 1090, 250, 221, 121, 221,121, "ATX Power Connecter")
+        #replaces ram
+        self.power_atx = Labels.DragLabel(self.centralwidget, "../images/ATXPower2.jpg", "../images/ATXPower2.jpg", 1100, 410, 221, 51, 221, 51, "ATX Power Connecter")
         self.power_atx.hide()
-        self.sata = Labels.DragLabel(self.centralwidget, "../images/SataCable.jpg", "../images/SataCable.jpg", 1090, 560, 251, 50, 251, 61, "Sata connecters")
-        self.sata.hide()
+        self.power_atx2 = Labels.DragLabel(self.centralwidget, "../images/ATXPower2.jpg", "../images/ATXPower2.jpg", 1100, 470, 221, 51, 221, 51, "ATX Power Connecter")
+        self.power_atx2.hide()
 
 
 
