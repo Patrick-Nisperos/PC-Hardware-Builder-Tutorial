@@ -1,4 +1,7 @@
+import os
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QDrag, QPixmap, QColor
@@ -118,7 +121,15 @@ class DropLabel(QLabel):
             self.effect.setOpacity(1)
             event.acceptProposedAction()
             self.matched.emit()
-            
+            self.playsound()
+
+    def playsound(self):
+        self.music_player = QMediaPlayer()
+        self.full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/correct.wav')
+        self.url = QUrl.fromLocalFile(self.full_file_path)
+        self.music_player.setMedia(QMediaContent(self.url))
+        self.music_player.play()
+
 # on the right side Hardware Components
 # Titles and descriptions
 class NameLabel(QLabel):

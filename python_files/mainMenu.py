@@ -33,6 +33,13 @@ class Ui_MainMenu(object):
         MainMenu.setSizePolicy(sizePolicy)
         #MainMenu.setMinimumSize(QtCore.QSize(1000, 800))
 
+        self.music_player = QMediaPlayer()
+        self.play_music = False
+        self.full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/backgroundMusic.mp3')
+        self.url = QUrl.fromLocalFile(self.full_file_path)
+        self.music_player.setMedia(QMediaContent(self.url))
+        self.music_player.play()
+
         self.centralwidget = QtWidgets.QWidget(MainMenu)
         self.centralwidget.setObjectName("centralwidget")
         
@@ -58,23 +65,18 @@ class Ui_MainMenu(object):
         self.disasmbleModeButton.clicked.connect(self.openDisasmbleMode)
         self.disasmbleModeButton.clicked.connect(MainMenu.close)
 
+        self.audioButton = QtWidgets.QPushButton(self.centralwidget)
+        self.audioButton.setGeometry(QtCore.QRect(400, 630, 200, 31))
+        self.audioButton.setCheckable(self.play_music)
+        self.audioButton.clicked.connect(lambda: self.manage_song(self.audioButton))
+        self.audioButton.setObjectName("audioButton")
+
 
         self.quizModeButton = QtWidgets.QPushButton(self.centralwidget)
         self.quizModeButton.setGeometry(QtCore.QRect(400, 560, 200, 31))
         self.quizModeButton.setObjectName("quizModeButton")
         self.quizModeButton.clicked.connect(self.openQuizMode)
         self.quizModeButton.clicked.connect(MainMenu.close)
-        
-        self.audioButton = QtWidgets.QPushButton(self.centralwidget)
-        self.audioButton.setGeometry(QtCore.QRect(400, 630, 200, 31))
-        self.audioButton.clicked.connect(lambda: self.playsound())
-        self.audioButton.setObjectName("audioButton")
-
-        self.audioButton2 = QtWidgets.QPushButton(self.centralwidget)
-        self.audioButton2.setGeometry(QtCore.QRect(400, 630, 200, 31))
-        self.audioButton2.clicked.connect(lambda: self.stopSound())
-        self.audioButton2.setObjectName("audioButton2")
-        self.audioButton2.hide()
 
         self.exit = QtWidgets.QPushButton(self.centralwidget)
         self.exit.setGeometry(QtCore.QRect(400, 700, 200, 31))
@@ -98,15 +100,14 @@ class Ui_MainMenu(object):
 
         self.retranslateUi(MainMenu)
         QtCore.QMetaObject.connectSlotsByName(MainMenu)
-        self.playsound()
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.buildModeButton.setText(_translate("MainWindow", "Build Mode"))
         self.disasmbleModeButton.setText(_translate("MainWindow", "Disassemble Mode"))
+        self.audioButton.setText(_translate("MainWindow", "Toggle Music"))
         self.quizModeButton.setText(_translate("MainWindow", "Quiz Mode"))
-        self.audioButton.setText(_translate("MainWindow", "Audio"))
-        self.audioButton2.setText((_translate("MainWindow","Audio")))
         self.titleLabel.setText(_translate("MainWindow", "PC Hardware Tutorial"))
         self.background.setText(_translate("MainWindow",""))
         
@@ -114,7 +115,6 @@ class Ui_MainMenu(object):
         self.window = QtWidgets.QMainWindow()
         self.ui = quizMode.Ui_Quiz()
         self.ui.setupQuiz(self.window)
-        self.stopSound()
         self.window.show()
 
     def openBuildMode(self):
@@ -122,7 +122,11 @@ class Ui_MainMenu(object):
         self.ui = buildMode.Ui_MotherBoard()
         self.ui.setupHardware(self.window)
         self.ui.setupMotherboard(self.window)
-        self.stopSound()
+        self.ui.audioButton.setCheckable(self.play_music)
+        self.ui.audioButton.clicked.connect(lambda: self.manage_song(self.ui.audioButton))
+        self.ui.backButton.setCheckable(self.play_music)
+        self.ui.backButton.clicked.connect(lambda: self.manage_song(self.ui.backButton))
+        print(self.play_music)
         self.window.show()
     
     def openDisasmbleMode(self):
@@ -130,22 +134,28 @@ class Ui_MainMenu(object):
         self.ui = disasmbleMode.Ui_MotherBoard()
         self.ui.setupHardware(self.window)
         self.ui.setupMotherboard(self.window)
-        self.stopSound()
+        self.ui.audioButton.setCheckable(self.play_music)
+        self.ui.audioButton.clicked.connect(lambda: self.manage_song(self.ui.audioButton))
+        self.ui.startButton.setCheckable(self.play_music)
+        self.ui.startButton.clicked.connect(lambda: self.manage_song(self.ui.startButton))
         self.window.show()
 
-    def playsound(self):
-        self.music_player = QMediaPlayer()
-        self.full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/backgroundMusic.mp3')
-        self.url = QUrl.fromLocalFile(self.full_file_path)
-        self.music_player.setMedia(QMediaContent(self.url))
-        self.music_player.play()
-        self.audioButton2.show()
-        self.audioButton.hide()
+    def manage_song(self, toggle_music_button):
+        toggle_music_button.setCheckable(self.play_music)
+        if toggle_music_button.isChecked():
+            self.play_music = False
+            toggle_music_button.setCheckable(self.play_music)
+            full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/backgroundMusic.mp3')
+            url = QUrl.fromLocalFile(full_file_path)
+            content = QMediaContent(url)
+            self.music_player.setMedia(content)
+            self.music_player.play()
+            print(url)
+        else:
+            self.play_music = True
+            toggle_music_button.setCheckable(self.play_music)
+            self.music_player.stop()
 
-    def stopSound(self):
-        self.music_player.stop()
-        self.audioButton.show()
-        self.audioButton2.hide()
 
 if __name__ == "__main__":
     import sys

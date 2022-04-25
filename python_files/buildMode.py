@@ -149,21 +149,7 @@ class Ui_MotherBoard(object):
         self.TPM.leaveEvent = lambda e: hoverExit("TPM Header", self.hover_actual_description_label)
         self.TPM.enterEvent = lambda e: hoverEnter("TPM Header", self.hover_actual_description_label)
         self.SPI.leaveEvent = lambda e: hoverExit("Serial Port Header", self.hover_actual_description_label)
-        self.SPI.enterEvent = lambda e: hoverEnter("Serial Port Header", self.hover_actual_description_label)    
-
-    def playsound(self):
-        self.music_player = QMediaPlayer()
-        self.full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/backgroundMusic.mp3')
-        self.url = QUrl.fromLocalFile(self.full_file_path)
-        self.music_player.setMedia(QMediaContent(self.url))
-        self.music_player.play()
-        self.audioButton2.show()
-        self.audioButton.hide()
-
-    def stopSound(self):
-        self.music_player.stop()
-        self.audioButton.show()
-        self.audioButton2.hide()
+        self.SPI.enterEvent = lambda e: hoverEnter("Serial Port Header", self.hover_actual_description_label)
 
     def io_ports(self, MainWindow):
         # IO PORTS INVISIBLE IMAGES
@@ -229,6 +215,7 @@ class Ui_MotherBoard(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def setupMotherboard(self, MainWindow):
+        ui = mainMenu.Ui_MainMenu
         self.motherBoard = QtWidgets.QLabel(MainWindow)
         self.motherBoard.setGeometry(QtCore.QRect(0, 0, 801, 971))
         self.motherBoard.setMouseTracking(True)
@@ -295,28 +282,19 @@ class Ui_MotherBoard(object):
         self.TPM = Labels.Part(MainWindow, "TPM Header", 130, 940, 75, 20)
         self.SPI = Labels.Part(MainWindow, "Serial Port Header", 200, 940, 40, 20)
 
+        self.audioButton = QtWidgets.QPushButton(MainWindow)
+        self.audioButton.setGeometry(QtCore.QRect(1400, 25, 70, 31))
+        self.audioButton.setText("Toggle Music")
+        self.audioButton.setObjectName("audioButton")
+
+
         self.backButton = QtWidgets.QPushButton(MainWindow)
         self.backButton.setGeometry(QtCore.QRect(1500, 25, 70, 31))
         self.backButton.setText("Back")
         self.backButton.setObjectName("")
         self.backButton.clicked.connect(lambda: self.openMain())
-        self.backButton.clicked.connect(lambda: self.stopSound())
+        self.backButton.clicked.connect(lambda: self.ui.manage_song(self.backButton))
         self.backButton.clicked.connect(MainWindow.close)
-
-        self.audioButton = QtWidgets.QPushButton(MainWindow)
-        self.audioButton.setGeometry(QtCore.QRect(1400, 25, 70, 31))
-        self.audioButton.setText("Audio On")
-        self.audioButton.setObjectName("audioButton")
-        self.audioButton.clicked.connect(lambda: self.playsound())
-
-        self.audioButton2 = QtWidgets.QPushButton(MainWindow)
-        self.audioButton2.setGeometry(QtCore.QRect(1400, 25, 70, 31))
-        self.audioButton2.setText("Audio Off")
-        self.audioButton2.setObjectName("audioButton2")
-        self.audioButton2.clicked.connect(lambda: self.stopSound())
-        self.audioButton2.hide()
-        
-        self.playsound()
 
         # call mouse hover events
         self.hover_events(MainWindow)
