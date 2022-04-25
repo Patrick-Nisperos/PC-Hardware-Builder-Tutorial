@@ -45,14 +45,14 @@ class Ui_MotherBoard(object):
     def hideGPU(self):
         self.gpu_img.hide()
         self.gpu_label.hide()
-        self.power_atx_label.show()
-        self.power_atx.show()
+        self.sata_label.show()
+        self.sata.show()
 
     def hideSSD(self):
         self.m2_img.hide()
         self.ssd_label.hide()
-        self.sata_label.show()
-        self.sata.show()
+        self.USB32_connecter.show()
+        self.usb32_label.show()
 
     def hideRam(self):
         self.ram_label.hide()
@@ -226,13 +226,17 @@ class Ui_MotherBoard(object):
         self.cpu_fan_header_connecter_label.hide()
         self.gpu_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1130, 210, 151, 31, "GPU")
         self.gpu_label.setStyleSheet("color: white")
-        self.power_atx_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1130, 210, 151, 31, "Power ATX")
+        self.sata_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1130, 210, 151, 31, "Sata Connecter")
+        self.sata_label.setStyleSheet("color: white")
+        self.sata_label.hide()
+        self.power_atx_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 370, 151, 31, "Power ATX")
+        self.power_atx_label.setStyleSheet("color: white")
         self.power_atx_label.hide()
         self.ram_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 370, 151, 31, "RAM Sticks")
         self.ram_label.setStyleSheet("color: white")
-        self.sata_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 530, 151, 31, "Sata Connecter")
-        self.sata_label.setStyleSheet("color: white")
-        self.sata_label.hide()
+        self.usb32_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 530, 151, 31, "USB 3.2")
+        self.usb32_label.setStyleSheet("color: white")
+        self.usb32_label.hide()
         self.ssd_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 530, 151, 31, "M.2 SSD")
         self.ssd_label.setStyleSheet("color: white")
         self.hover_description_label = Labels.NameLabel(self.centralwidget, 14, True, 75, 1092, 650, 250, 31, "Part Description")
@@ -246,8 +250,8 @@ class Ui_MotherBoard(object):
         self.cpu_img = Labels.DragLabel(self.centralwidget, "../images/i7_cpu.jpg", "../images/i7_cpu.jpg", 1070, 110, 91, 81, 91, 81, "CPU")
         self.cpu_cooler_img = Labels.DragLabel(self.centralwidget, "../images/cpu_cooler.png", "../images/cpu_fan.jpg", 1240, 100, 111, 111, 111, 111, "CPU-COOLER")
         self.gpu_img = Labels.DragLabel(self.centralwidget,  "../images/gpu.png","../images/gpu.png" , 1090, 250, 221, 121, 221,121, "GPU")
-        self.ram4_img = Labels.DragLabel(self.centralwidget,"../images/ram stick.jpg", "../images/ram stick.jpg", 1100, 410, 221, 51, 221, 51, "RAM")
-        self.ram2_img = Labels.DragLabel(self.centralwidget, "../images/ram stick.jpg","../images/ram stick.jpg", 1100, 470, 221, 51, 221, 51, "RAM")
+        self.ram4_img = Labels.DragLabel(self.centralwidget,"../images/ramstick.png", "../images/ramstick.png", 1100, 410, 221, 51, 221, 51, "RAM")
+        self.ram2_img = Labels.DragLabel(self.centralwidget, "../images/ramstick.png","../images/ramstick.png", 1100, 470, 221, 51, 221, 51, "RAM")
         self.m2_img = Labels.DragLabel(self.centralwidget, "../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg", 1090, 560, 251, 61, 251, 61, "SSD")
 
         #New Cables
@@ -260,9 +264,8 @@ class Ui_MotherBoard(object):
         self.cpu_fan_header_connecter.hide()
 
         #Replaces gpu
-        self.sata = Labels.DragLabel(self.centralwidget, "../images/SataCable.jpg", "../images/SataCable.jpg", 1090, 250, 251, 50, 251, 61, "Sata connecters")
+        self.sata = Labels.DragLabel(self.centralwidget, "../images/SataCable.jpg", "../images/SataCable.jpg", 1090, 250, 221, 121, 221,121, "Sata connecters")
         self.sata.hide()
-        
         #should be four power connecters
         #replaces ram
         self.power_atx = Labels.DragLabel(self.centralwidget, "../images/ATXPower2.jpg", "../images/ATXPower2.jpg", 1100, 410, 221, 51, 221, 51, "ATX Power Connecter")
@@ -270,6 +273,9 @@ class Ui_MotherBoard(object):
         self.power_atx2 = Labels.DragLabel(self.centralwidget, "../images/ATXPower2.jpg", "../images/ATXPower2.jpg", 1100, 470, 221, 51, 221, 51, "ATX Power Connecter")
         self.power_atx2.hide()
 
+        #USB connecter will replace ssd
+        self.USB32_connecter = Labels.DragLabel(self.centralwidget, "../images/USB2.0HeaderWire.png", "../images/USB2.0HeaderWire.png", 1090, 560, 251, 100, 251, 100, "USB32")
+        self.USB32_connecter.hide()
 
 
         
@@ -325,7 +331,7 @@ class Ui_MotherBoard(object):
         self.ram1 = Labels.Part(MainWindow, "RAM Slot", 560, 50, 20, 440)
 
         #m.2 drop on motherboard
-        self.m2 = Labels.DropLabel(MainWindow, "../images/m.2_ssd.jpg", 460, 830, 251, 71, "SSD")
+        #self.m2 = Labels.DropLabel(MainWindow, "../images/m.2_ssd.jpg", 460, 830, 251, 71, "SSD")
 
         #CMOS battery on motherboard (no image and no dragLabel)
         self.cmos = Labels.Part(MainWindow, "CMOS", 430, 616, 60, 60)
