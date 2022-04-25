@@ -47,7 +47,7 @@ partImages = [
                 ["../images/SataConnector.jpg", "../images/SataCable.jpg"],
                 ["../images/AddHeader.jpg", "../images/RGBHeader2.jpg"],
                 ["../images/CPUFanHeader.jpg", "../images/CPUFanHeader2.jpg"],
-                ["../images/ATXPower.jpg", "../images/ATXPower2.jpg"],
+                ["../images/ATXPower.jpg", "../images/ATXPower.jpg"],
                 ["../images/CHAFan.jpg", "FanHeader.jpg"],
                 ["../images/TPM.jpg", "../images/TPM2.jpg"],
                 ["../images/SPI.jpg", "../images/SPI2.jpg"]
