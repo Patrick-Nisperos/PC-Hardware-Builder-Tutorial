@@ -23,14 +23,6 @@ import Labels
 
 class Ui_MotherBoard(object):
 
-    def matched_events(self, MainWindow, centralwidget):
-        self.cpu.matched.connect(lambda: self.checkFn())
-        self.cpu_cooler.matched.connect(lambda: self.cpu_cooler_img.hide())
-        self.gpu.matched.connect(lambda: self.gpu_img.hide())
-        self.ram2.matched.connect(lambda: self.ram2_img.hide())
-        self.ram4.matched.connect(lambda: self.ram4_img.hide())
-        self.m2.matched.connect(lambda: self.m2_img.hide())
-
     def checkFn(self):
         self.cpu_img.hide()
         self.cpu_cooler.show()
@@ -42,22 +34,48 @@ class Ui_MotherBoard(object):
         self.ui2.setupUi(self.partView, name, description, description2, image, image2, width, height, width2, height2)
         self.partView.show()
 
+    def matched_events(self, MainWindow, centralwidget):
+        self.cpu.matched.connect(lambda: self.checkFn())
+        self.cpu_cooler.matched.connect(lambda: self.cpu_cooler_img.hide())
+        self.gpu.matched.connect(lambda: self.gpu_img.hide())
+        self.ram2.matched.connect(lambda: self.ram2_img.hide())
+        self.ram4.matched.connect(lambda: self.ram4_img.hide())
+        self.m2.matched.connect(lambda: self.m2_img.hide())
+
     def hover_events(self, MainWindow):
         # PC COMPONENTS hover events
+        self.cpu.leaveEvent = lambda e: hoverExit("CPU", self.hover_actual_description_label)
+        self.cpu.enterEvent = lambda e: hoverEnter("CPU", self.hover_actual_description_label)
         self.cpu_img.leaveEvent = lambda e: hoverExit("CPU", self.hover_actual_description_label)
         self.cpu_img.enterEvent = lambda e: hoverEnter("CPU", self.hover_actual_description_label)
+        self.gpu.leaveEvent = lambda e: hoverExit("GPU", self.hover_actual_description_label)
+        self.gpu.enterEvent = lambda e: hoverEnter("GPU", self.hover_actual_description_label)
         self.gpu_img.leaveEvent = lambda e: hoverExit("GPU", self.hover_actual_description_label)
         self.gpu_img.enterEvent = lambda e: hoverEnter("GPU", self.hover_actual_description_label)
+        self.ram1.leaveEvent = lambda e: hoverExit("RAM Slot", self.hover_actual_description_label)
+        self.ram1.enterEvent = lambda e: hoverEnter("RAM Slot", self.hover_actual_description_label)
+        self.ram2.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
+        self.ram2.enterEvent = lambda e: hoverEnter("RAM", self.hover_actual_description_label)
+        self.ram3.leaveEvent = lambda e: hoverExit("RAM Slot", self.hover_actual_description_label)
+        self.ram3.enterEvent = lambda e: hoverEnter("RAM Slot", self.hover_actual_description_label)
+        self.ram4.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
+        self.ram4.enterEvent = lambda e: hoverEnter("RAM", self.hover_actual_description_label)
         self.ram2_img.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
         self.ram2_img.enterEvent = lambda e: hoverEnter("RAM", self.hover_actual_description_label)
         self.ram4_img.leaveEvent = lambda e: hoverExit("RAM", self.hover_actual_description_label)
         self.ram4_img.enterEvent = lambda e: hoverEnter("RAM", self.hover_actual_description_label)
+        self.cpu_cooler.leaveEvent = lambda e: hoverExit("CPU-COOLER", self.hover_actual_description_label)
+        self.cpu_cooler.enterEvent = lambda e: hoverEnter("CPU-COOLER", self.hover_actual_description_label)
         self.cpu_cooler_img.leaveEvent = lambda e: hoverExit("CPU-COOLER", self.hover_actual_description_label)
         self.cpu_cooler_img.enterEvent = lambda e: hoverEnter("CPU-COOLER", self.hover_actual_description_label)
+        self.m2.leaveEvent = lambda e: hoverExit("SSD", self.hover_actual_description_label)
+        self.m2.enterEvent = lambda e: hoverEnter("SSD", self.hover_actual_description_label)
         self.m2_img.leaveEvent = lambda e: hoverExit("SSD", self.hover_actual_description_label)
         self.m2_img.enterEvent = lambda e: hoverEnter("SSD", self.hover_actual_description_label)
-
+        
         # IO Ports Hover Events
+        self.cpuCable.leaveEvent = lambda e: hoverExit("CPU-CABLE", self.hover_actual_description_label)
+        self.cpuCable.enterEvent = lambda e: hoverEnter("CPU-CABLE", self.hover_actual_description_label)
         self.antenna_port.leaveEvent = lambda e: hoverExit("ANTENNA", self.hover_actual_description_label)
         self.antenna_port.enterEvent = lambda e: hoverEnter("ANTENNA", self.hover_actual_description_label)
         self.hdmi_port.leaveEvent = lambda e: hoverExit("HDMI", self.hover_actual_description_label)
@@ -77,16 +95,18 @@ class Ui_MotherBoard(object):
         self.pcie2.enterEvent = lambda e: hoverEnter("PCIe_x1", self.hover_actual_description_label)
         self.pcie3.leaveEvent = lambda e: hoverExit("PCIe_x1", self.hover_actual_description_label)
         self.pcie3.enterEvent = lambda e: hoverEnter("PCIe_x1", self.hover_actual_description_label)
-
+        self.pcie_x16.leaveEvent = lambda e: hoverExit("PCIe_x16", self.hover_actual_description_label)
+        self.pcie_x16.enterEvent = lambda e: hoverEnter("PCIe_x16", self.hover_actual_description_label)
+        
         self.cmos.leaveEvent = lambda e: hoverExit("CMOS", self.hover_actual_description_label)
         self.cmos.enterEvent = lambda e: hoverEnter("CMOS", self.hover_actual_description_label)
 
         self.USB20.leaveEvent = lambda e: hoverExit("USB20", self.hover_actual_description_label)
         self.USB20.enterEvent = lambda e: hoverEnter("USB20", self.hover_actual_description_label)
-        self.USB32P0.leaveEvent = lambda e: hoverEnter("USB32", self.hover_actual_description_label) 
-        self.USB32P0.enterEvent = lambda e: hoverExit("USB32", self.hover_actual_description_label)
+        self.USB32P0.leaveEvent = lambda e: hoverExit("USB32", self.hover_actual_description_label) 
+        self.USB32P0.enterEvent = lambda e: hoverEnter("USB32", self.hover_actual_description_label)
         self.USB32P1.leaveEvent = lambda e: hoverExit("USB32", self.hover_actual_description_label)
-        self.USB32P1.enterEvent = lambda e: hoverExit("USB32", self.hover_actual_description_label)
+        self.USB32P1.enterEvent = lambda e: hoverEnter("USB32", self.hover_actual_description_label)
         self.frontPanelAudio.leaveEvent = lambda e: hoverExit("Front Panel Audio Header", self.hover_actual_description_label)
         self.frontPanelAudio.enterEvent = lambda e: hoverEnter("Front Panel Audio Header", self.hover_actual_description_label)
         self.thunderBolt.leaveEvent = lambda e: hoverExit("Thunderbolt AIC Connector", self.hover_actual_description_label)
@@ -130,6 +150,15 @@ class Ui_MotherBoard(object):
         self.TPM.enterEvent = lambda e: hoverEnter("TPM Header", self.hover_actual_description_label)
         self.SPI.leaveEvent = lambda e: hoverExit("Serial Port Header", self.hover_actual_description_label)
         self.SPI.enterEvent = lambda e: hoverEnter("Serial Port Header", self.hover_actual_description_label)
+
+    def io_ports(self, MainWindow):
+        # IO PORTS INVISIBLE IMAGES
+        self.antenna_port = Labels.Part(MainWindow, "ANTENNA", 15, 10, 81, 51)
+        self.hdmi_port = Labels.Part(MainWindow, "HDMI", 25, 70, 61, 51)
+        self.usb32_ps2_port = Labels.Part(MainWindow, "USB3.2_PS2", 25, 210, 71, 51)
+        self.usb32_typeA_typeC_port = Labels.Part(MainWindow, "USB3.2_TypeA_TypeC", 25, 320, 61, 45)
+        self.lan_usb20_port = Labels.Part(MainWindow, "LAN_USB2.0", 25, 380, 81, 65)
+        self.audio_jacks_port = Labels.Part(MainWindow, "AUDIO-JACKS", 25, 450, 71, 45)
 
     def setupHardware(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -185,35 +214,8 @@ class Ui_MotherBoard(object):
         self.retranslateHardware(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-
-        
-
-    def playsound(self):
-        self.music_player = QMediaPlayer()
-        self.full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/backgroundMusic.mp3')
-        self.url = QUrl.fromLocalFile(self.full_file_path)
-        self.music_player.setMedia(QMediaContent(self.url))
-        self.music_player.play()
-        self.audioButton2.show()
-        self.audioButton.hide()
-
-    def stopSound(self):
-        self.music_player.stop()
-        self.audioButton.show()
-        self.audioButton2.hide()
-
-
-    def io_ports(self, MainWindow):
-        # IO PORTS INVISIBLE IMAGES
-        self.antenna_port = Labels.Part(MainWindow, "ANTENNA", 15, 10, 81, 51)
-        self.hdmi_port = Labels.Part(MainWindow, "HDMI", 25, 70, 61, 51)
-        self.usb32_ps2_port = Labels.Part(MainWindow, "USB3.2_PS2", 25, 210, 71, 51)
-        self.usb32_typeA_typeC_port = Labels.Part(MainWindow, "USB3.2_TypeA_TypeC", 25, 320, 61, 45)
-        self.lan_usb20_port = Labels.Part(MainWindow, "LAN_USB2.0", 25, 380, 81, 65)
-        self.audio_jacks_port = Labels.Part(MainWindow, "AUDIO-JACKS", 25, 450, 71, 45)
-
-
     def setupMotherboard(self, MainWindow):
+        ui = mainMenu.Ui_MainMenu
         self.motherBoard = QtWidgets.QLabel(MainWindow)
         self.motherBoard.setGeometry(QtCore.QRect(0, 0, 801, 971))
         self.motherBoard.setMouseTracking(True)
@@ -228,7 +230,7 @@ class Ui_MotherBoard(object):
 
         self.cpu_cooler = Labels.DropLabel(MainWindow, "../images/cpu_fan.jpeg", 250, 150, 300, 300, "CPU-COOLER")
         self.cpu_cooler.hide()
-        self.cpuHeader = Labels.Part(MainWindow, "CPU-CABLE", 170, 19, 50, 25)
+        self.cpuCable = Labels.Part(MainWindow, "CPU-CABLE", 170, 19, 50, 25)
 
 
         #3 small PCIe x1 at y=500, 700, 890 (no image and no dragLabel)
@@ -280,27 +282,19 @@ class Ui_MotherBoard(object):
         self.TPM = Labels.Part(MainWindow, "TPM Header", 130, 940, 75, 20)
         self.SPI = Labels.Part(MainWindow, "Serial Port Header", 200, 940, 40, 20)
 
+        self.audioButton = QtWidgets.QPushButton(MainWindow)
+        self.audioButton.setGeometry(QtCore.QRect(1400, 25, 70, 31))
+        self.audioButton.setText("Toggle Music")
+        self.audioButton.setObjectName("audioButton")
+
+
         self.backButton = QtWidgets.QPushButton(MainWindow)
         self.backButton.setGeometry(QtCore.QRect(1500, 25, 70, 31))
         self.backButton.setText("Back")
         self.backButton.setObjectName("")
         self.backButton.clicked.connect(lambda: self.openMain())
-        self.backButton.clicked.connect(lambda: self.stopSound())
+        self.backButton.clicked.connect(lambda: self.ui.manage_song(self.backButton))
         self.backButton.clicked.connect(MainWindow.close)
-
-        self.audioButton = QtWidgets.QPushButton(MainWindow)
-        self.audioButton.setGeometry(QtCore.QRect(1400, 25, 70, 31))
-        self.audioButton.setText("Audio On")
-        self.audioButton.setObjectName("audioButton")
-        self.audioButton.clicked.connect(lambda: self.playsound())
-
-        self.audioButton2 = QtWidgets.QPushButton(MainWindow)
-        self.audioButton2.setGeometry(QtCore.QRect(1400, 25, 70, 31))
-        self.audioButton2.setText("Audio Off")
-        self.audioButton2.setObjectName("audioButton2")
-        self.audioButton2.clicked.connect(lambda: self.stopSound())
-        self.audioButton2.hide()
-        self.playsound()
 
         # call mouse hover events
         self.hover_events(MainWindow)
@@ -308,8 +302,8 @@ class Ui_MotherBoard(object):
         # call match events
         self.matched_events(MainWindow, self.centralwidget)
 
+        self.retranslateMotherboard(self.centralwidget)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
 
     def retranslateMotherboard(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -343,6 +337,6 @@ if __name__ == "__main__":
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MotherBoard()
     ui.setupHardware(MainWindow)
-    #ui.setupMotherboard(MainWindow)
+    ui.setupMotherboard(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

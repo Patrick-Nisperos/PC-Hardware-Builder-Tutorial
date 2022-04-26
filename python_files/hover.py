@@ -33,7 +33,9 @@ def hoverEnter(label, description_label):
     if (label == "PCIe_x16"):
         text = "PCIe x16 is a slot for expansion card with high bandwith requirements like graphics card"
     if (label == "RAM Slot"):
-        text = "These are slots for RAM sticks" 
+        text = "These are slots for RAM sticks"
+    if (label == "USB32"):
+        text = "These are USB32"
     try:
         description_label.setText(text)
     except:
