@@ -183,13 +183,13 @@ class Ui_MotherBoard(object):
         
         self.cpu_cooler_img = Labels.DropLabel(self.centralwidget, "../images/cpu_cooler.png", 1240, 100, 111, 111, "CPU-COOLER")
         
-        self.gpu_img = Labels.DropLabel(self.centralwidget, "../images/gpu.png", 1090, 250, 221, 121, "GPU")
+        self.gpu_img = Labels.DropLabel(self.centralwidget, "../images/gpu.png", 1030, 190, 350, 250, "GPU")
 
         self.ssd_img = Labels.DropLabel(self.centralwidget, "../images/m.2_ssd.jpg", 1090, 560, 251, 61, "SSD")
         
-        self.ram_img1 = Labels.DropLabel(self.centralwidget, "../images/ram stick.jpg", 1100, 410, 221, 51, "RAM")
+        self.ram_img1 = Labels.DropLabel(self.centralwidget, "../images/ramstick.png", 1100, 410, 221, 51, "RAM")
 
-        self.ram_img2 = Labels.DropLabel(self.centralwidget, "../images/ram stick.jpg", 1100, 470, 221, 51, "RAM")   
+        self.ram_img2 = Labels.DropLabel(self.centralwidget, "../images/ramstick.png", 1100, 470, 221, 51, "RAM")   
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -228,7 +228,7 @@ class Ui_MotherBoard(object):
         self.pcie3 = Labels.Part(MainWindow, "PCIe_x1", 170, 890, 80, 30)
 
         #GPU on motherboard
-        self.gpu = Labels.DragLabel(MainWindow, "../images/GPU_topview.png" , "../images/gpu.png", 20, 525, 800, 91, 221,121, "GPU")
+        self.gpu = Labels.DragLabel(MainWindow, "../images/3070side.png" , "../images/3070side.png",0, 425, 800, 300, 800,300, "GPU")
 
         #PCIe x16 on motherboard (no image and no Labels.DragLabel)
         self.pcie_x16 = Labels.Part(MainWindow, "PCIe_x16", 170, 760, 321, 31)

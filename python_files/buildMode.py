@@ -83,7 +83,7 @@ class Ui_MotherBoard(object):
         self.cpu_cooler.matched.connect(lambda: self.hideCool())
         self.gpu.matched.connect(lambda: self.hideGPU())
         self.ram2.matched.connect(lambda: self.ram2_img.hide())
-        self.ram2.matched.connect(lambda: self.count())g
+        self.ram2.matched.connect(lambda: self.count())
         self.ram4.matched.connect(lambda: self.ram4_img.hide())
         self.ram4.matched.connect(lambda: self.count())
         self.m2.matched.connect(lambda: self.hideSSD())
