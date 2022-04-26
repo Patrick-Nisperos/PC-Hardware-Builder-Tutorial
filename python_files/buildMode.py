@@ -84,6 +84,9 @@ class Ui_MotherBoard(object):
         self.ram4.matched.connect(lambda: self.count())
         self.m2.matched.connect(lambda: self.hideSSD())
         #self.power_atx.connect(lambda e: hidePowerATX())
+        self.cpu_AtxConnected.matched.connect(lambda: self.cpu_atx.hide())
+        self.cpu_fan_header_connected.matched.connect(lambda: self.cpu_fan_header_connecter.hide())
+        self.USB32_connected.matched.connect(lambda: self.USB32_connecter.hide())
 
 
     def hover_events(self, MainWindow):
@@ -118,8 +121,8 @@ class Ui_MotherBoard(object):
         self.m2_img.enterEvent = lambda e: hoverEnter("SSD", self.hover_actual_description_label)
         
         # IO Ports Hover Events
-        self.cpuCable.leaveEvent = lambda e: hoverExit("CPU-CABLE", self.hover_actual_description_label)
-        self.cpuCable.enterEvent = lambda e: hoverEnter("CPU-CABLE", self.hover_actual_description_label)
+       # self.cpuCable.leaveEvent = lambda e: hoverExit("CPU-CABLE", self.hover_actual_description_label)
+       # self.cpuCable.enterEvent = lambda e: hoverEnter("CPU-CABLE", self.hover_actual_description_label)
         self.antenna_port.leaveEvent = lambda e: hoverExit("ANTENNA", self.hover_actual_description_label)
         self.antenna_port.enterEvent = lambda e: hoverEnter("ANTENNA", self.hover_actual_description_label)
         self.hdmi_port.leaveEvent = lambda e: hoverExit("HDMI", self.hover_actual_description_label)
@@ -147,8 +150,8 @@ class Ui_MotherBoard(object):
 
         self.USB20.leaveEvent = lambda e: hoverExit("USB20", self.hover_actual_description_label)
         self.USB20.enterEvent = lambda e: hoverEnter("USB20", self.hover_actual_description_label)
-        self.USB32P0.leaveEvent = lambda e: hoverExit("USB32", self.hover_actual_description_label) 
-        self.USB32P0.enterEvent = lambda e: hoverEnter("USB32", self.hover_actual_description_label)
+        #self.USB32P0.leaveEvent = lambda e: hoverExit("USB32", self.hover_actual_description_label) 
+        #self.USB32P0.enterEvent = lambda e: hoverEnter("USB32", self.hover_actual_description_label)
         self.USB32P1.leaveEvent = lambda e: hoverExit("USB32", self.hover_actual_description_label)
         self.USB32P1.enterEvent = lambda e: hoverEnter("USB32", self.hover_actual_description_label)
         self.frontPanelAudio.leaveEvent = lambda e: hoverExit("Front Panel Audio Header", self.hover_actual_description_label)
@@ -176,8 +179,8 @@ class Ui_MotherBoard(object):
         self.CPUHeader1.leaveEvent = lambda e: hoverExit("CPU Fan Header", self.hover_actual_description_label)
         self.CPUHeader1.enterEvent = lambda e: hoverEnter("CPU Fan Header", self.hover_actual_description_label)
 
-        self.CPUHeader2.leaveEvent = lambda e: hoverExit("CPU Fan Header", self.hover_actual_description_label)
-        self.CPUHeader2.enterEvent = lambda e: hoverEnter("CPU Fan Header", self.hover_actual_description_label)
+        #self.CPUHeader2.leaveEvent = lambda e: hoverExit("CPU Fan Header", self.hover_actual_description_label)
+        #self.CPUHeader2.enterEvent = lambda e: hoverEnter("CPU Fan Header", self.hover_actual_description_label)
 
         self.ATXPower1.leaveEvent = lambda e: hoverExit("ATX Power connecter", self.hover_actual_description_label)
         self.ATXPower1.enterEvent = lambda e: hoverEnter("ATX Power connecter", self.hover_actual_description_label)
@@ -221,7 +224,7 @@ class Ui_MotherBoard(object):
         #count to check if ram was installed
         self.countRam = 0
         #labels for style sheet we can send in another parameter for color
-        self.hardware_list_label = Labels.NameLabel(self.centralwidget, 16, True, 75, 1045, 20, 241, 41, "Hardware Components")
+        self.hardware_list_label = Labels.NameLabel(self.centralwidget, 16, True, 75, 1100, 20, 241, 41, "Hardware Components")
         self.hardware_list_label.setStyleSheet("color: white")
 
         self.cpu_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1040, 70, 151, 31, "CPU")
@@ -259,7 +262,7 @@ class Ui_MotherBoard(object):
         self.usb32_label.hide()
         self.ssd_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 530, 151, 31, "M.2 SSD")
         self.ssd_label.setStyleSheet("color: white")
-        self.hover_description_label = Labels.NameLabel(self.centralwidget, 14, True, 75, 1092, 650, 250, 31, "Part Description")
+        self.hover_description_label = Labels.NameLabel(self.centralwidget, 14, True, 75, 1150, 650, 250, 31, "Part Description")
         self.hover_description_label.setStyleSheet("color: white")
         self.hover_actual_description_label = Labels.NameLabel(self.centralwidget, 10, False, 0, 1100, 680, 241, 200, "Hover over a Labels.Part to see description!\nRight click to analyze a Labels.Part!")
         self.hover_actual_description_label.setStyleSheet("color: white")
@@ -286,8 +289,7 @@ class Ui_MotherBoard(object):
         #Replaces gpu
         self.GPU16Pin = Labels.DragLabel(self.centralwidget, "../images/GPU16Pin.png", "../images/GPU16Pin.png", 1090, 250, 221, 121, 221,121, "GPU Pin")
         self.GPU16Pin.hide()
-        #self.sata = Labels.DragLabel(self.centralwidget, "../images/SataCable.jpg", "../images/SataCable.jpg", 1090, 250, 221, 121, 221,121, "Sata connecters")
-        #self.sata.hide()
+
         #should be four power connecters
         #replaces ram
         self.power_atx = Labels.DragLabel(self.centralwidget, "../images/ATXPower10Pin.png", "../images/ATXPower10Pin.png", 1100, 400, 221, 135, 221, 135, "ATX Power Connecter")
@@ -298,6 +300,7 @@ class Ui_MotherBoard(object):
         #USB connecter will replace ssd
         self.USB32_connecter = Labels.DragLabel(self.centralwidget, "../images/USB2.0HeaderWire.png", "../images/USB2.0HeaderWire.png", 1090, 550, 251, 100, 251, 100, "USB32")
         self.USB32_connecter.hide()
+
 
        
         MainWindow.setCentralWidget(self.centralwidget)
@@ -326,9 +329,14 @@ class Ui_MotherBoard(object):
         #CPU Drop on Motherboard
         self.cpu = Labels.DropLabel(MainWindow, "../images/i7_cpu.jpg", 330, 170, 131, 211, "CPU")
 
+        #cpu power connected!
+        self.cpu_AtxConnected = Labels.DropLabel(MainWindow, "../images/cpuAtx.jpg", 130, -30, 100, 100, "CPU-CABLE")
+
         self.cpu_cooler = Labels.DropLabel(MainWindow, "../images/cpu_fan.jpeg", 250, 150, 300, 300, "CPU-COOLER")
         self.cpu_cooler.hide()
-        self.cpuCable = Labels.Part(MainWindow, "CPU-CABLE", 170, 19, 50, 25)
+        #self.cpuCable = Labels.Part(MainWindow, "CPU-CABLE", 170, 19, 50, 25)
+
+        self.cpu_fan_header_connected = Labels.DropLabel(MainWindow, "../images/cpuFanConnected.jpg",  640, -30, 100, 100, "CPU Fan Header")
 
 
         #3 small PCIe x1 at y=500, 700, 890 (no image and no dragLabel)
@@ -357,9 +365,12 @@ class Ui_MotherBoard(object):
         #CMOS battery on motherboard (no image and no dragLabel)
         self.cmos = Labels.Part(MainWindow, "CMOS", 430, 616, 60, 60)
 
+        #drop label for one of the usb headers
+        self.USB32_connected = Labels.DropLabel(MainWindow, "../images/usb3.2Connected.jpg",  320, 920, 100, 100, "USB32")
+
         #Newly added headers using Sloans Part Class
         self.USB20 = Labels.Part(MainWindow, "USB20", 365, 935, 50, 25)
-        self.USB32P0 = Labels.Part(MainWindow, "USB32", 420, 930, 75, 25)
+        #self.USB32P0 = Labels.Part(MainWindow, "USB32", 420, 930, 75, 25)
         self.USB32P1 = Labels.Part(MainWindow, "USB32", 755, 430, 25, 75)
         self.frontPanelAudio = Labels.Part(MainWindow, "Front Panel Audio Header", 90, 935, 40,20)
         self.thunderBolt = Labels.Part(MainWindow, "Thunderbolt AIC connecter", 165, 845, 50, 30)
@@ -371,7 +382,7 @@ class Ui_MotherBoard(object):
         self.RGBHeader3 = Labels.Part(MainWindow, "LED", 310, 940, 40, 20)
         self.RGBHeader4 = Labels.Part(MainWindow, "LED", 270, 940, 40, 20)
         self.CPUHeader1 = Labels.Part(MainWindow, "CPU Fan Header", 130, 50, 40, 20)
-        self.CPUHeader2 = Labels.Part(MainWindow, "CPU Fan Header", 660, 20, 40, 20)
+       # self.CPUHeader2 = Labels.Part(MainWindow, "CPU Fan Header", 660, 20, 40, 20)
         self.ATXPower1 = Labels.Part(MainWindow, "ATX Power connecter", 755, 250, 40, 80)
         self.ATXPower2 = Labels.Part(MainWindow, "ATX Power connecter", 755, 190, 40, 50)
         self.ATXPower3 = Labels.Part(MainWindow, "ATX Power connecter", 760, 145, 30, 30)
