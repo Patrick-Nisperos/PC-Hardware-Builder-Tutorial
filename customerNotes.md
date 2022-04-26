@@ -43,3 +43,15 @@ Feedback
 5) Game crashed when clicked right on parts on hardware components in build mode
 6) Motherboard to have transparent background
 7) More questions for quiz mode
+
+
+## Sprint 4
+* Dragging all parts for buildmode and disassemble mode
+* dragging cables for buildmode
+* Toggling of music 
+* quiz mode got all questions correct
+
+Feedback
+1) Quiz Mode Changes: quiz for placement of parts, shows motherboard and user corresponds to choice on motherboard 
+2) loop music 
+3) making executable file
