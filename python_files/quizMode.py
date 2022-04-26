@@ -18,7 +18,7 @@ class Ui_Quiz(object):
     def contents(self):
         self.questions = ["What is the CPU for computers?", "What is the GPU for computers?", "What is the RAM for computers?", "What is an SSD for computers?", "What is the CMOS for computers?"]
         
-        self.question_images = ["../images/ryzen9.JPG", "../images/gpu.png", "../images/ram stick.jpg", "../images/m.2_ssd.jpg", "../images/cmos.jpg"]
+        self.question_images = ["../images/ryzen9.JPG", "../images/gpu.png", "../images/ramstick.png", "../images/m.2_ssd.jpg", "../images/cmos.jpg"]
 
         self.question_images_sizes = [[690,180,200,200], [590,180,400,200], [590,180,400,100], [590,180,400,100], [720,180,200,200]] # 1st - x pos, 2nd - y pos, 3rd - width, 4th - height
 
@@ -196,6 +196,8 @@ class Ui_Quiz(object):
         self.backButton.setText("Back")
         self.backButton.setObjectName("")
         self.backButton.clicked.connect(lambda: self.openMain())
+        self.backButton.clicked.connect(lambda: self.openMain())
+        self.backButton.clicked.connect(lambda: self.ui.manage_song(self.backButton))
         self.backButton.clicked.connect(MainWindow.close)
 
         self.audioButton = QtWidgets.QPushButton(MainWindow)
@@ -298,6 +300,7 @@ class Ui_Quiz(object):
         self.full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/correct.wav')
         self.url = QUrl.fromLocalFile(self.full_file_path)
         self.music_player.setMedia(QMediaContent(self.url))
+        self.music_player.setVolume(30)
         self.music_player.play()
 
     def playSoundWrong(self):
@@ -305,6 +308,7 @@ class Ui_Quiz(object):
         self.full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/wrong.mp3')
         self.url = QUrl.fromLocalFile(self.full_file_path)
         self.music_player.setMedia(QMediaContent(self.url))
+        self.music_player.setVolume(30)
         self.music_player.play()
 
     def openMain(self):

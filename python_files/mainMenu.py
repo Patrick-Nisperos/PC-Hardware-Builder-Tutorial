@@ -117,6 +117,7 @@ class Ui_MainMenu(object):
         self.ui.setupQuiz(self.window)
         self.ui.audioButton.setCheckable(self.play_music)
         self.ui.audioButton.clicked.connect(lambda: self.manage_song(self.ui.audioButton))
+        print(self.play_music)
         self.window.show()
 
     def openBuildMode(self):
