@@ -29,7 +29,7 @@ partImages = [
                 ["../images/cmos.jpg", "../images/cmos2.png"],
                 ["../images/network_adapter.jpg", "../images/port_expansion.jpg"],
                 ["../images/port_expansion.jpg", "../images/gpu2.png"],
-                ["../images/cpu_cable.jpg", ""],
+                ["../images/cpu_cable.jpg", "../images/cpu_cable.jpg"],
                 ["../images/antenna_port.jpg", "../images/antenna_port2.png"],
                 ["../images/hdmi_port.png", "../images/hdmi_port2.jpg"],
                 ["../images/PS2_port.jpg", "../images/usb3.2_port.jpg"],
