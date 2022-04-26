@@ -63,7 +63,7 @@ class DragLabel(QLabel):
             index = 0
             for names in Analyzer.partNames:
                 if(self.name == names and index < len(Analyzer.partNames)):
-                    Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[index],Analyzer.descriptions[index], Analyzer.descriptions2[index],
+                    buildMode.Ui_MotherBoard.openPartAnalyzer(self, Analyzer.partNames[index],Analyzer.descriptions[index], Analyzer.descriptions2[index],
                                                     Analyzer.partImages[index][0], Analyzer.partImages[index][1],
                                                     Analyzer.partCoordinates[index][0], Analyzer.partCoordinates[index][1], Analyzer.partCoordinates[index][2], Analyzer.partCoordinates[index][3])
                 index += 1

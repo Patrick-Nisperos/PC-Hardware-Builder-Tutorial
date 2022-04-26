@@ -16,20 +16,20 @@ from PyQt5.QtCore import *
 
 partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "CMOS", "PCIe_x1", "PCIe_x16", "CPU-CABLE", 
              "ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS", "CPU-SOCKET", "M.2 Slot", "RAM Slot",
-             "USB32", "USB20", "Front Panel Audio Header", "Thunderbolt AIC Connector", "Sata Connectors", "LED",
-             "CPU Fan Header", "ATX Power Connector", "Chassis/Waterpump fan connector", "TPM Header", "Serial Port Header"]
+             "USB32", "USB20", "Front Panel Audio Header", "Thunderbolt AIC connecter", "Sata connecters", "LED",
+             "CPU Fan Header", "ATX Power Connecter", "Chassis/Waterpump fan connecter", "TPM Header", "Serial Port Header"]
 
 partImages = [
                 ["../images/i7_cpu.jpg", "../images/ryzen9.jpg"], 
                 ["../images/gpu.png", "../images/gpu2.png"],
                 ["../images/cpu_cooler2.png", "../images/water_cooled.jpg"],
-                ["../images/ram stick.jpg", "../images/ram stick.jpg"],
+                ["../images/ramstick.png", "../images/ramstick.png"],
                 ["../images/m.2_ssd.jpg", "../images/m.2_ssd.jpg"],
-                ["../images/IntelMotherBoard2.jpg", ""],
+                ["../images/IntelMotherBoard2.jpg", "../images/clear_image.png"],
                 ["../images/cmos.jpg", "../images/cmos2.png"],
                 ["../images/network_adapter.jpg", "../images/port_expansion.jpg"],
                 ["../images/port_expansion.jpg", "../images/gpu2.png"],
-                ["../images/cpu_cable.jpg", ""],
+                ["../images/cpu_cable.jpg", "../images/cpu_cable.jpg"],
                 ["../images/antenna_port.jpg", "../images/antenna_port2.png"],
                 ["../images/hdmi_port.png", "../images/hdmi_port2.jpg"],
                 ["../images/PS2_port.jpg", "../images/usb3.2_port.jpg"],
@@ -41,13 +41,13 @@ partImages = [
                 ["../images/ram_slots.png", "../images/ram_slots2.png"],
                 
                 ["../images/USB2.0Header.jpg", "../images/USB32Header.jpg"],
-                ["../images/USB2.0Header.jpg", "../images/USB2.0HeaderWire.jpg"],
+                ["../images/USB2.0Header.jpg", "../images/USB2.0HeaderWire.png"],
                 ["../images/FrontPanelAudioHeader.jpg", "../images/FrontPanelAudioHeader2.jpg"],
                 ["../images/ThunderBoltCard.jpg", "../images/TBTHeaderCable.jpg"],
-                ["../images/SataConnector.jpg", "../images/SataCable.jpg"],
+                ["../images/Sataconnecter.jpg", "../images/SataCable.jpg"],
                 ["../images/AddHeader.jpg", "../images/RGBHeader2.jpg"],
                 ["../images/CPUFanHeader.jpg", "../images/CPUFanHeader2.jpg"],
-                ["../images/ATXPower.jpg", "../images/ATXPower2.jpg"],
+                ["../images/ATXPower.jpg", "../images/ATXPower.jpg"],
                 ["../images/CHAFan.jpg", "FanHeader.jpg"],
                 ["../images/TPM.jpg", "../images/TPM2.jpg"],
                 ["../images/SPI.jpg", "../images/SPI2.jpg"]
@@ -136,16 +136,16 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 "Thunderbold consists of 4 PCI Expresslanes and a DisplayPort connection. An Add-in card (AIC) gets these from"
                 "the PCIe slot and the DisplayPort cable you plug into the card.",
 
-                "Sata ports are generally known as connectors, and they are used to connect hard drives to motherboards.",
+                "Sata ports are generally known as connecters, and they are used to connect hard drives to motherboards.",
 
 
                 "Used for connecting to LED strips and other accessories to your PC.",
 
                 "CPU Fan Header is the main header used by the motherboard, and the BIOS and any other software.",
 
-                "ATX is a connector that connects the power supply to an ATX style MotherBoard.",
+                "ATX is a connecter that connects the power supply to an ATX style MotherBoard.",
 
-                "THE CHA_FAN or Chassis/Waterpump fan connector refers to the fan plug/socket on your motherboard.",
+                "THE CHA_FAN or Chassis/Waterpump fan connecter refers to the fan plug/socket on your motherboard.",
 
                 "TPM or Trusted Platform Module is a microchip attached to the motherboard that proviedes hardware-based"
                 " cybersecurity.",
@@ -215,7 +215,7 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
 
                 "USB 2.0 is an older version of current USBs which also supply lower transfer rates.",
 
-                "The HD_AUDIO cable connects the front audio/mic jack connectors from your case rto your motherboard, so they"
+                "The HD_AUDIO cable connects the front audio/mic jack connecters from your case rto your motherboard, so they"
                 " can be used. You can plug there whatever you'd like: speakers, headphones, etc...",
 
                 "You can transmit DisplayPort signals through Thunderbolt, allowing you to re-route an external graphics card"
@@ -227,7 +227,7 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
 
                 "Regulates and controls the CPU's thermals depending on the load by controlling the fan(s) speed.",
 
-                "This connector is used to supply additional 12V current to he motherboard, which is used to power most devices on it.",
+                "This connecter is used to supply additional 12V current to he motherboard, which is used to power most devices on it.",
 
                 "It is used to plug a Chassis/case fan (optional)",
 
