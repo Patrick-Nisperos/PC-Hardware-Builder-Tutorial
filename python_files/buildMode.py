@@ -217,7 +217,7 @@ class Ui_MotherBoard(object):
         self.motherBoard = QtWidgets.QLabel(MainWindow)
         self.motherBoard.setGeometry(QtCore.QRect(0, 0, 801, 971))
         self.motherBoard.setMouseTracking(True)
-        self.motherBoard.setPixmap(QtGui.QPixmap("../images/IntelMotherBoard.jpg"))
+        self.motherBoard.setPixmap(QtGui.QPixmap("../images/IntelMotherBoard_build_mode.png"))
         self.motherBoard.setObjectName("MotherBoard")
         
         # call io ports
