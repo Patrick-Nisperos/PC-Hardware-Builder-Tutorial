@@ -239,9 +239,11 @@ class Ui_Quiz(object):
             self.question_status_text.setStyleSheet("color: rgb(255, 0, 0);")
 
     def next_question(self):
-        self.question_num = self.question_num + 1
-        self.deselect_buttons()
-        self.set_questions_answers(self.question_num)
+        print(self.question_num)
+        if (self.question_num < self.total_question_num - 1):
+            self.question_num = self.question_num + 1
+            self.deselect_buttons()
+            self.set_questions_answers(self.question_num)
 
     def prev_question(self):
         if (self.question_num > 0):
@@ -263,7 +265,7 @@ class Ui_Quiz(object):
         self.question_status_text.setText("")
         self.question_image.setPixmap(QtGui.QPixmap(self.question_images[question_num]))
         self.question_image.setGeometry(self.question_images_sizes[question_num][0],
-         self.question_images_sizes[question_num][1], self.question_images_sizes[question_num][2], self.question_images_sizes[question_num][3])
+        self.question_images_sizes[question_num][1], self.question_images_sizes[question_num][2], self.question_images_sizes[question_num][3])
 
         self.answer_button1.setText(self.answers[question_num][0])
         self.answer_button2.setText(self.answers[question_num][1])
