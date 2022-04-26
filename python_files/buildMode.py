@@ -278,7 +278,7 @@ class Ui_MotherBoard(object):
 
         #Drag labels on the right
         self.cpu_img = Labels.DragLabel(self.centralwidget, "../images/i7_cpu.jpg", "../images/i7_cpu.jpg", 1070, 110, 91, 81, 91, 81, "CPU")
-        self.cpu_cooler_img = Labels.DragLabel(self.centralwidget, "../images/cpu_cooler.png", "../images/cpu_fan.jpg", 1240, 100, 111, 111, 111, 111, "CPU-COOLER")
+        self.cpu_cooler_img = Labels.DragLabel(self.centralwidget, "../images/cpu_cooler.png", "../images/cpu_cooler.png", 1240, 100, 111, 111, 111, 111, "CPU-COOLER")
         self.gpu_img = Labels.DragLabel(self.centralwidget,  "../images/gpu.png","../images/gpu.png" , 1030, 190, 350, 250, 350, 250, "GPU")
         self.ram4_img = Labels.DragLabel(self.centralwidget,"../images/ramstick.png", "../images/ramstick.png", 1100, 410, 221, 51, 221, 51, "RAM")
         self.ram2_img = Labels.DragLabel(self.centralwidget, "../images/ramstick.png","../images/ramstick.png", 1100, 470, 221, 51, 221, 51, "RAM")

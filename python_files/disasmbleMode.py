@@ -234,8 +234,8 @@ class Ui_MotherBoard(object):
         self.pcie_x16 = Labels.Part(MainWindow, "PCIe_x16", 170, 760, 321, 31)
         
         #2 RAM sticks on motherboard       
-        self.ram4 = Labels.DragLabel(MainWindow, "../images/ram_topview.jpg","../images/ram stick.jpg", 647, 50, 20, 440, 221, 51, "RAM")
-        self.ram2 = Labels.DragLabel(MainWindow, "../images/ram_topview.jpg","../images/ram stick.jpg", 589, 50, 20, 440, 221, 51, "RAM")
+        self.ram4 = Labels.DragLabel(MainWindow, "../images/ram_topview.jpg","../images/ramstick.png", 647, 50, 20, 440, 221, 51, "RAM")
+        self.ram2 = Labels.DragLabel(MainWindow, "../images/ram_topview.jpg","../images/ramstick.png", 589, 50, 20, 440, 221, 51, "RAM")
         
         #2 RAM slots on motherboard (no image and no Labels.DragLabel)
         self.ram3 = Labels.Part(MainWindow, "RAM Slot", 618, 50, 20, 440)
