@@ -26,9 +26,9 @@ class Ui_Quiz(object):
                     ["Ground Power Unit - Allows the pc's components flow of electricity to ground", "Graphics Processing Unit - speciailzed processor designed to accelerate graphics rendering", "General Public Utilities - Necessary processes that all pc needs to run", "General Processing Unit - Similar to a central procesing unit but more general"],
                     ["Rational Asset Manager - Software that manages different assets", "Remote Application Management - The BIOS management of applications", "Random Access Memory - Memory that computer stores for short term data", "Random Access Machine - Processor that is granted access to storage"],
                     ["Signed Sealed Delivered - Stevie wonder song that plays after your pc parts ship", "Switching Sequence Detection - Processor detecting a switch from binary to decimal", "Structured Self Development - The computer's boot up process before OS loads", "Solid State Drive - Flash-based memory"],
-                    ["Cellular Management Operation System - The BIOS system to communicate with the processor", "Configuration Memory Operating System - Allows communication between processor and memory" , "Cargo Movement Operations System - The gpu system to move large data", "Complementary Metal-Oxide Semiconductor - Small piece of memory that stores the BIOS settings"]]
+                    ["Cellular Management Operation System - The BIOS system to communicate with the processor", "Configuration Memory Operating System - Allows communication between processor and memory" , "Complementary Metal-Oxide Semiconductor - Small piece of memory that stores the BIOS settings", "Cargo Movement Operations System - The gpu system to move large data"]]
 
-        self.answer_indexes = [0,1,2,3,3]
+        self.answer_indexes = [0,1,2,3,2] # MAKE SURE the ANSWER INDEXES ISNT the SAME as the PREVIOUS ONE
 
         self.question_num = 0
         self.total_question_num = 5
@@ -230,15 +230,17 @@ class Ui_Quiz(object):
         self.progress_bar.setValue(value)
 
     def check_answer(self, answer):
+        print("answer", answer)
         correct_answer = self.answer_indexes[self.question_num]
+        print("correct", correct_answer)
         if (answer == correct_answer):
             self.question_status_text.setText("Correct!")
             self.question_status_text.setStyleSheet("color: rgb(0, 255, 0);")
+            self.playsoundCorrect()
             if (self.question_num in self.questions_answered_correct):
                 return
             self.questions_answered_correct.append(self.question_num)
             self.update_progress_bar()
-            self.playsoundCorrect()
         elif (not self.answer_button1.isChecked() and not self.answer_button2.isChecked() 
         and not self.answer_button3.isChecked() and not self.answer_button4.isChecked()):
             self.question_status_text.setText("")
@@ -261,13 +263,15 @@ class Ui_Quiz(object):
             self.deselect_buttons()
 
     def click_events(self):
+        self.next_button.clicked.connect(lambda: self.next_question())
+        self.previous_button.clicked.connect(lambda: self.prev_question())
+
         self.answer_button1.toggled.connect(lambda: self.check_answer(0))
         self.answer_button2.toggled.connect(lambda: self.check_answer(1))
         self.answer_button3.toggled.connect(lambda: self.check_answer(2))
         self.answer_button4.toggled.connect(lambda: self.check_answer(3))
 
-        self.next_button.clicked.connect(lambda: self.next_question())
-        self.previous_button.clicked.connect(lambda: self.prev_question())
+
 
     def set_questions_answers(self, question_num):
         self.question_text.setText(self.questions[question_num])
