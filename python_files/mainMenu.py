@@ -115,6 +115,8 @@ class Ui_MainMenu(object):
         self.window = QtWidgets.QMainWindow()
         self.ui = quizMode.Ui_Quiz()
         self.ui.setupQuiz(self.window)
+        self.ui.audioButton.setCheckable(self.play_music)
+        self.ui.audioButton.clicked.connect(lambda: self.manage_song(self.ui.audioButton))
         self.window.show()
 
     def openBuildMode(self):
@@ -124,8 +126,6 @@ class Ui_MainMenu(object):
         self.ui.setupMotherboard(self.window)
         self.ui.audioButton.setCheckable(self.play_music)
         self.ui.audioButton.clicked.connect(lambda: self.manage_song(self.ui.audioButton))
-        self.ui.backButton.setCheckable(self.play_music)
-        self.ui.backButton.clicked.connect(lambda: self.manage_song(self.ui.backButton))
         print(self.play_music)
         self.window.show()
     
@@ -136,8 +136,8 @@ class Ui_MainMenu(object):
         self.ui.setupMotherboard(self.window)
         self.ui.audioButton.setCheckable(self.play_music)
         self.ui.audioButton.clicked.connect(lambda: self.manage_song(self.ui.audioButton))
-        self.ui.startButton.setCheckable(self.play_music)
-        self.ui.startButton.clicked.connect(lambda: self.manage_song(self.ui.startButton))
+        # self.ui.startButton.setCheckable(self.play_music)
+        # self.ui.startButton.clicked.connect(lambda: self.manage_song(self.ui.startButton))
         self.window.show()
 
     def manage_song(self, toggle_music_button):
@@ -150,11 +150,13 @@ class Ui_MainMenu(object):
             content = QMediaContent(url)
             self.music_player.setMedia(content)
             self.music_player.play()
-            print(url)
+            print(self.play_music)
         else:
             self.play_music = True
             toggle_music_button.setCheckable(self.play_music)
             self.music_player.stop()
+            print(self.play_music)
+
 
 
 if __name__ == "__main__":
