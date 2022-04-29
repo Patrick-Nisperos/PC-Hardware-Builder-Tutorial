@@ -286,7 +286,7 @@ class Ui_MotherBoard(object):
 
         #New Cables
         #replaces cpu
-        self.cpu_atx = Labels.DragLabel(self.centralwidget, "../images/cpu_cable.jpg", "../images/cpu_cable.jpg", 1070, 110, 91, 81, 91, 81, "CPU-CABLE")
+        self.cpu_atx = Labels.DragLabel(self.centralwidget, "../images/cpu_cable.jpg", "../images/cpu_cable.jpg", 1070, 110, 91, 81, 91, 81, "CPU Power ATX")
         self.cpu_atx.hide()
 
         #replaces cooler
@@ -299,9 +299,9 @@ class Ui_MotherBoard(object):
 
         #should be four power connecters
         #replaces ram
-        self.power_atx = Labels.DragLabel(self.centralwidget, "../images/ATXPower10Pin.png", "../images/ATXPower10Pin.png", 1100, 400, 221, 135, 221, 135, "ATX Power connecter 10")
+        self.power_atx = Labels.DragLabel(self.centralwidget, "../images/ATXPower10Pin.png", "../images/ATXPower10Pin.png", 1100, 400, 221, 135, 221, 135, "Power ATX")
         self.power_atx.hide()
-        self.power_atx2 = Labels.DragLabel(self.centralwidget, "../images/ATXPower6Pin.jpg", "../images/ATXPower6Pin.jpg", 1100, 400, 221, 100, 221, 100, "ATX Power connecter 6")
+        self.power_atx2 = Labels.DragLabel(self.centralwidget, "../images/ATXPower6Pin.jpg", "../images/ATXPower6Pin.jpg", 1100, 400, 221, 100, 221, 100, "Power ATX")
         self.power_atx2.hide()
 
         #USB connecter will replace ssd
@@ -337,7 +337,7 @@ class Ui_MotherBoard(object):
         self.cpu = Labels.DropLabel(MainWindow, "../images/i7_cpu.jpg", 330, 170, 131, 211, "CPU")
 
         #cpu power connected!
-        self.cpu_AtxConnected = Labels.DropLabel(MainWindow, "../images/cpuAtx.jpg", 130, -30, 100, 100, "CPU-CABLE")
+        self.cpu_AtxConnected = Labels.DropLabel(MainWindow, "../images/cpuAtx.jpg", 130, -30, 100, 100, "CPU Power ATX")
 
         self.cpu_cooler = Labels.DropLabel(MainWindow, "../images/cpu_fan.jpeg", 250, 150, 300, 300, "CPU-COOLER")
         self.cpu_cooler.hide()
@@ -376,8 +376,8 @@ class Ui_MotherBoard(object):
         self.USB32_connected = Labels.DropLabel(MainWindow, "../images/usb3.2Connected.jpg",  320, 920, 100, 100, "USB32")
 
         #drop label for 10pin atx power
-        self.AtxPower10Pin = Labels.DropLabel(MainWindow, "../images/powerConnected.jpg",  755, 250, 40, 80, "ATX Power connecter 10")
-        self.AtxPower6Pin = Labels.DropLabel(MainWindow, "../images/powerConnected.jpg", 755, 190, 40, 50,  "ATX Power connecter 6")
+        self.AtxPower10Pin = Labels.DropLabel(MainWindow, "../images/powerConnected.jpg",  755, 250, 40, 80, "Power ATX")
+        self.AtxPower6Pin = Labels.DropLabel(MainWindow, "../images/powerConnected.jpg", 755, 190, 40, 50,  "Power ATX")
 
         #Newly added headers using Sloans Part Class
         self.USB20 = Labels.Part(MainWindow, "USB20", 365, 935, 50, 25)
