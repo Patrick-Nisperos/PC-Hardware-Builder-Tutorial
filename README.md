@@ -55,6 +55,22 @@ Newly added stories and completed:
 * Story - Make the program an executable
 * Story - Dropping hardware components into motherboard in buildmode
 
+## Sprint IV - Completed Work
+Estimated Stories - 11 for a complexity of 40
+
+Completed Stories - 9 for a complexity of 32
+
+Completed Stories list:
+* Story - Fix multiple check box's bug in quiz mode
+* Story - Create sound effects for placements and button clicking
+* Story - Create quiz mode content part 1
+* Story - Make motherboard image have transparent background
+* Story - Create quiz mode point system (progress bar)
+* Story - Make back button in quiz mode
+* Story - Change Labels.py so that you can choose color of font
+* Story - Make sure all parts have part analyzer working and hover description working in both build mode and disassemble mode
+* Story - Add cables for different hardware components pt 1
+
 ## How to run project
 0) Clone the repository
 1) Install these libaries:
