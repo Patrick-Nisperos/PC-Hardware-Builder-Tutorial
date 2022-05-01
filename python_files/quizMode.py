@@ -205,6 +205,35 @@ class Ui_Quiz(object):
         self.backButton.clicked.connect(lambda: self.ui.manage_song(self.backButton))
         self.backButton.clicked.connect(MainWindow.close)
 
+        self.link = QtWidgets.QLabel(MainWindow)
+        self.link.setOpenExternalLinks(True)
+        self.link.setText("<a href='https://en.wikipedia.org/wiki/Central_processing_unit'>Click me to learn more!</a>")
+        self.link.setGeometry(QtCore.QRect(440, 600, 141, 21))
+
+        # self.link2 = QtWidgets.QLabel(MainWindow)
+        # self.link2.setOpenExternalLinks(True)
+        # self.link2.setText("<a href='https://en.wikipedia.org/wiki/Central_processing_unit'>Click me to learn more2!</a>")
+        # self.link2.setGeometry(QtCore.QRect(440, 600, 141, 21))
+        # self.link2.hide()
+        #
+        # self.link3 = QtWidgets.QLabel(MainWindow)
+        # self.link3.setOpenExternalLinks(True)
+        # self.link3.setText("<a href='https://en.wikipedia.org/wiki/Central_processing_unit'>Click me to learn more3!</a>")
+        # self.link3.setGeometry(QtCore.QRect(440, 600, 141, 21))
+        # self.link3.hide()
+        #
+        # self.link4 = QtWidgets.QLabel(MainWindow)
+        # self.link4.setOpenExternalLinks(True)
+        # self.link4.setText("<a href='https://en.wikipedia.org/wiki/Central_processing_unit'>Click me to learn more4!</a>")
+        # self.link4.setGeometry(QtCore.QRect(440, 600, 141, 21))
+        # self.link4.hide()
+        #
+        # self.link5 = QtWidgets.QLabel(MainWindow)
+        # self.link5.setOpenExternalLinks(True)
+        # self.link5.setText("<a href='https://en.wikipedia.org/wiki/Central_processing_unit'>Click me to learn more5!</a>")
+        # self.link5.setGeometry(QtCore.QRect(440, 600, 141, 21))
+        # self.link5.hide()
+
         self.audioButton = QtWidgets.QPushButton(MainWindow)
         self.audioButton.setGeometry(QtCore.QRect(820, 25, 70, 31))
         self.audioButton.setText("Toggle Music")
@@ -262,7 +291,16 @@ class Ui_Quiz(object):
             self.question_num = self.question_num + 1
             self.deselect_buttons()
             self.set_questions_answers(self.question_num)
-
+        if(self.question_num == 0):
+            self.link.setText("<a href='https://en.wikipedia.org/wiki/Central_processing_unit'>Click me to learn more!</a>")
+        elif(self.question_num == 2):
+            self.link.setText("<a href='https://en.wikipedia.org/wiki/Graphics_processing_unit'>Click me to learn more!</a>")
+        elif(self.question_num == 4):
+            self.link.setText("<a href='https://en.wikipedia.org/wiki/Random-access_memory'>Click me to learn more!</a>")
+        elif(self.question_num == 6):
+            self.link.setText("<a href='https://en.wikipedia.org/wiki/Solid-state_drive'>Click me to learn more!</a>")
+        elif(self.question_num == 8):
+            self.link.setText("<a href='https://en.wikipedia.org/wiki/CMOS'>Click me to learn more!</a>")
     def prev_question(self):
         if (self.question_num > 0):
             self.question_num = self.question_num - 1
