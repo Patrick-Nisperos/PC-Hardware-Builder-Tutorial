@@ -16,35 +16,39 @@ import mainMenu
 
 class Ui_Quiz(object):
     def contents(self):
-        self.questions = ["What is the CPU for computers?", "What is the GPU for computers?", "What is the RAM for computers?", "What is an SSD for computers?", "What is the CMOS for computers?"]
+        self.questions = ["What is the CPU for computers?", "Where does the CPU go?", "What is the GPU for computers?", "Where does the GPU go?", "What is the RAM for computers?", "Where does the RAM go?", "What is an SSD for computers?", "Where does the SSD go?", "What is the CMOS for computers?"]
         
-        self.question_images = ["../images/ryzen9.JPG", "../images/gpu.png", "../images/ram stick.jpg", "../images/m.2_ssd.jpg", "../images/cmos.jpg"]
+        self.question_images = ["../images/ryzen9.JPG","../images/motherboard_question.png", "../images/gpu.png","../images/motherboard_question.png", "../images/ram stick.jpg", "../images/motherboard_question.png", "../images/m.2_ssd.jpg", "../images/motherboard_question.png", "../images/cmos.jpg"]
 
-        self.question_images_sizes = [[690,180,200,200], [590,180,400,200], [590,180,400,100], [590,180,400,100], [720,180,200,200]] # 1st - x pos, 2nd - y pos, 3rd - width, 4th - height
+        self.question_images_sizes = [[690,210,200,200],[590,140,342,415],[590,210,400,200],[590,140,342,415], [590,210,400,100],[590,140,342,415], [590,210,400,100],[590,140,342,415], [720,210,200,200]] # 1st - x pos, 2nd - y pos, 3rd - width, 4th - height
 
-        self.answers = [["Central Processing Unit - Computes all basic arithmetic and other operations", "Computer Power User - A person who can utilize all the computer's power", "Critical Patch Update - A crucial update in software to fix major issues", "Central Policy Unit - The policy that is central for software to run"], 
+        self.answers = [["Computer Power User - A person who can utilize all the computer's power", "Central Processing Unit - Computes all basic arithmetic and other operations", "Critical Patch Update - A crucial update in software to fix major issues", "Central Policy Unit - The policy that is central for software to run"], 
+                    ["A","B","C","D"],
                     ["Ground Power Unit - Allows the pc's components flow of electricity to ground", "Graphics Processing Unit - speciailzed processor designed to accelerate graphics rendering", "General Public Utilities - Necessary processes that all pc needs to run", "General Processing Unit - Similar to a central procesing unit but more general"],
-                    ["Rational Asset Manager - Software that manages different assets", "Remote Application Management - The BIOS management of applications", "Random Access Memory - Memory that computer stores for short term data", "Random Access Machine - Processor that is granted access to storage"],
-                    ["Signed Sealed Delivered - Stevie wonder song that plays after your pc parts ship", "Switching Sequence Detection - Processor detecting a switch from binary to decimal", "Structured Self Development - The computer's boot up process before OS loads", "Solid State Drive - Flash-based memory"],
-                    ["Cellular Management Operation System - The BIOS system to communicate with the processor", "Configuration Memory Operating System - Allows communication between processor and memory" , "Complementary Metal-Oxide Semiconductor - Small piece of memory that stores the BIOS settings", "Cargo Movement Operations System - The gpu system to move large data"]]
+                    ["A","B","C","D"],
+                    ["Random Access Memory - Memory that the computer stores for short term data", "Remote Application Management - The BIOS management of applications", "Rational Asset Manager - Software that manages different assets", "Random Access Machine - Processor that is granted access to storage"],
+                    ["A","B","C","D"],
+                    ["Signed Sealed Delivered - Stevie wonder song that plays after your pc parts ship", "Switching Sequence Detection - Processor detecting a switch from binary to decimal", "Solid State Drive - Flash-based memory", "Structured Self Development - The computer's boot up process before OS loads"],
+                    ["A","B","C","D"],
+                    ["Cellular Management Operation System - The BIOS system to communicate with the processor", "Configuration Memory Operating System - Allows communication between processor and memory" , "Complementary Metal-Oxide Semiconductor - Small piece of memory that stores the BIOS settings","Cargo Movement Operations System - The gpu system to move large data"]]
 
-        self.answer_indexes = [0,1,2,3,2] # MAKE SURE the ANSWER INDEXES ISNT the SAME as the PREVIOUS ONE
+        self.answer_indexes = [1,0,1,2,0,1,2,3,2] # MAKE SURE the ANSWER INDEXES ISNT the SAME as the PREVIOUS ONE
 
         self.question_num = 0
-        self.total_question_num = 5
+        self.total_question_num = 9
         self.questions_answered_correct = [] # list of the question numbers (0 to n)
 
     def setupQuiz(self, MainWindow):
         self.contents()
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1024, 576)
+        MainWindow.resize(1024, 676)
 
 
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.background_image = QtWidgets.QLabel(self.centralwidget)
-        self.background_image.setGeometry(QtCore.QRect(0, 0, 1031, 561))
+        self.background_image.setGeometry(QtCore.QRect(0, 0, 1031, 661))
         self.background_image.setText("")
         self.background_image.setPixmap(QtGui.QPixmap("../images/quiz_background.PNG"))
         self.background_image.setScaledContents(True)
@@ -57,11 +61,12 @@ class Ui_Quiz(object):
         font.setUnderline(False)
         font.setWeight(75)
         self.title.setFont(font)
-        self.title.setStyleSheet("color: rgb(255, 255, 255);")
+        self.title.setStyleSheet("color:rgb(0, 255, 255);\n"
+                                        "background-color: rgb(15, 15, 15);")
         self.title.setAlignment(QtCore.Qt.AlignCenter)
         self.title.setObjectName("title")
         self.progress_bar = QtWidgets.QProgressBar(self.centralwidget)
-        self.progress_bar.setGeometry(QtCore.QRect(370, 490, 291, 21))
+        self.progress_bar.setGeometry(QtCore.QRect(370, 590, 291, 21))
         self.progress_bar.setStyleSheet("color: rgb(255, 255, 255);")
         self.progress_bar.setProperty("value", 24)
         self.progress_bar.setObjectName("progressBar")
@@ -76,7 +81,7 @@ class Ui_Quiz(object):
         self.question_text.setAlignment(QtCore.Qt.AlignCenter)
         self.question_text.setObjectName("question_text")
         self.question_image = QtWidgets.QLabel(self.centralwidget)
-        self.question_image.setGeometry(QtCore.QRect(690, 180, 221, 201))
+        self.question_image.setGeometry(QtCore.QRect(690, 210, 221, 201))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.question_image.setFont(font)
@@ -86,7 +91,7 @@ class Ui_Quiz(object):
         self.question_image.setAlignment(QtCore.Qt.AlignCenter)
         self.question_image.setObjectName("question_image")
         self.next_button = QtWidgets.QPushButton(self.centralwidget)
-        self.next_button.setGeometry(QtCore.QRect(840, 470, 111, 31))
+        self.next_button.setGeometry(QtCore.QRect(840, 570, 111, 31))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
@@ -98,7 +103,7 @@ class Ui_Quiz(object):
                                         "background-color: rgb(33, 33, 33);")
         self.next_button.setObjectName("next_button")
         self.previous_button = QtWidgets.QPushButton(self.centralwidget)
-        self.previous_button.setGeometry(QtCore.QRect(50, 470, 121, 31))
+        self.previous_button.setGeometry(QtCore.QRect(50, 570, 121, 31))
         font = QtGui.QFont()
         font.setPointSize(9)
         font.setBold(True)
@@ -110,7 +115,7 @@ class Ui_Quiz(object):
                                         "background-color: rgb(33, 33, 33);")
         self.previous_button.setObjectName("previous_button")
         self.question_status_text = QtWidgets.QLabel(self.centralwidget)
-        self.question_status_text.setGeometry(QtCore.QRect(730, 110, 131, 31))
+        self.question_status_text.setGeometry(QtCore.QRect(730, 100, 131, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
@@ -120,7 +125,7 @@ class Ui_Quiz(object):
         self.question_status_text.setAlignment(QtCore.Qt.AlignCenter)
         self.question_status_text.setObjectName("question_status_text")
         self.progress_text = QtWidgets.QLabel(self.centralwidget)
-        self.progress_text.setGeometry(QtCore.QRect(440, 460, 141, 21))
+        self.progress_text.setGeometry(QtCore.QRect(440, 560, 141, 21))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(False)
@@ -131,7 +136,7 @@ class Ui_Quiz(object):
         self.progress_text.setAlignment(QtCore.Qt.AlignCenter)
         self.progress_text.setObjectName("progress_text")
         self.answer_button1 = QtWidgets.QRadioButton(self.centralwidget)
-        self.answer_button1.setGeometry(QtCore.QRect(30, 180, 610, 51))
+        self.answer_button1.setGeometry(QtCore.QRect(30, 190, 610, 51))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
@@ -144,7 +149,7 @@ class Ui_Quiz(object):
                                         "}")
         self.answer_button1.setObjectName("answer_button1")
         self.answer_button2 = QtWidgets.QRadioButton(self.centralwidget)
-        self.answer_button2.setGeometry(QtCore.QRect(30, 230, 610, 51))
+        self.answer_button2.setGeometry(QtCore.QRect(30, 240, 610, 51))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
@@ -157,7 +162,7 @@ class Ui_Quiz(object):
                                         "}")
         self.answer_button2.setObjectName("answer_button2")
         self.answer_button3 = QtWidgets.QRadioButton(self.centralwidget)
-        self.answer_button3.setGeometry(QtCore.QRect(30, 280, 610, 51))
+        self.answer_button3.setGeometry(QtCore.QRect(30, 290, 610, 51))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
@@ -170,7 +175,7 @@ class Ui_Quiz(object):
                                         "}")
         self.answer_button3.setObjectName("answer_button3")
         self.answer_button4 = QtWidgets.QRadioButton(self.centralwidget)
-        self.answer_button4.setGeometry(QtCore.QRect(30, 330, 610, 51))
+        self.answer_button4.setGeometry(QtCore.QRect(30, 340, 610, 51))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
