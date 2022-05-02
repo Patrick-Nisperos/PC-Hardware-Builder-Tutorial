@@ -16,9 +16,9 @@ from PyQt5.QtCore import *
 
 partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "CMOS", "PCIe_x1", "PCIe_x16", "CPU Power ATX", 
              "ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS", "CPU-SOCKET", "M.2 Slot", "RAM Slot",
-             "USB32", "USB20", "Front Panel Audio Header", "Thunderbolt AIC connecter", "Sata connecters", "LED",
-             "CPU Fan Header", "ATX Power Connecter", "Chassis/Waterpump fan connecter", "TPM Header", "Serial Port Header", "GPU Pin",
-             "Power ATX"]
+             "USB 3.2", "Front Panel Audio Header", "Thunderbolt AIC connecter", "Sata connecters", "LED",
+             "CPU Fan Header", "ATX Power Connecter", "TPM Header", "Serial Port Header", "GPU Pin",
+             "Power ATX", "Case Header"]
 
 partImages = [
                 ["../images/i7_cpu.jpg", "../images/ryzen9.jpg"], 
@@ -26,7 +26,7 @@ partImages = [
                 ["../images/cpu_cooler2.png", "../images/water_cooled.jpg"],
                 ["../images/ramstick.png", "../images/ram.png"],
                 ["../images/m.2_ssd.jpg", "../images/ssd.png"],
-                ["../images/IntelMotherBoard2.jpg", "../images/clear_image.png"],
+                ["../images/motherboardReplace.png", "../images/clear_image.png"],
                 ["../images/cmos.jpg", "../images/cmos2.png"],
                 ["../images/network_adapter.jpg", "../images/port_expansion.jpg"],
                 ["../images/port_expansion.jpg", "../images/gpu2.png"],
@@ -42,18 +42,17 @@ partImages = [
                 ["../images/ram_slots.png", "../images/ram_slots2.png"],
                 
                 ["../images/USB2.0Header.jpg", "../images/USB3.2Header.png"],
-                ["../images/USB2.0Header.jpg", "../images/USB2.0HeaderWire.png"],
                 ["../images/FrontPanelAudioHeader.jpg", "../images/FrontPanelAudioHeader2.jpg"],
                 ["../images/ThunderBoltCard.jpg", "../images/TBTHeaderCable.jpg"],
                 ["../images/Sataconnecter.jpg", "../images/SataCable.jpg"],
                 ["../images/AddHeader.jpg", "../images/RGBHeader2.jpg"],
                 ["../images/CPUFanHeader.jpg", "../images/CPUFanHeader2.jpg"],
                 ["../images/ATXPower.jpg", "../images/cpuAtx.jpg"],
-                ["../images/CHAFan.jpg", "FanHeader.jpg"],
                 ["../images/TPM.jpg", "../images/TPM2.jpg"],
-                ["../images/ATXPower.jpg", ""],
+                ["../images/SPI.jpg", "../images/SPI2.jpg"],
                 ["../images/gpuConnected.jpg", "../images/GPU16Pin.png"],
-                ["", ""]
+                ["../images/24.png", "../images/24pinCable.jpg"],
+                ["../images/caseIO.jpg", "../images/caseConnector.jpg"]
 
               ]
 
@@ -63,9 +62,9 @@ partCoordinates = [
                     [200, 200, 400, 200], [200, 150, 300, 240], [350, 80, 300, 240], [350, 80, 350, 240],
                     [350, 80, 350, 80],[350, 80, 350, 80],[350, 80, 350, 80], [350,80,350,100],
                     [200,200,200,200], [200,200,200,200], [200, 200, 300, 200], [200,200,200,200],
-                    [200,200,200,200],[200,200,200,200], [200,200,200,200], [200,200,200,200], [200,200,200,200],
-                    [200,200,200,200], [200,200,200,200], [200,200,200,200] ,[200,200,200,200],
-                    [200,200,200,200], [200, 200, 200, 200], [200,200,200,200]
+                    [200,200,200,200], [200,200,200,200], [200,200,200,200], [200,200,200,200],
+                    [200,200,200,200], [200,200,200,200] ,[200,200,200,200],
+                    [200,200,200,200], [200, 200, 200, 200], [200,200,200,200], [200,200,200,200]
 
                   ]
 
@@ -131,8 +130,6 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
 
                 "The USB 3.2 Gen1 Header allows the computer to add extra USB ports.",
 
-                "The USB 2.0 Header allows the computer to add extra USB ports.",
-
                 "The Front Panel audio header is usually located on the lower left of your motherboard and it basically"
                 "connects your audio.",
 
@@ -148,16 +145,16 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
 
                 "ATX is a connecter that connects the power supply to an ATX style MotherBoard.",
 
-                "THE CHA_FAN or Chassis/Waterpump fan connecter refers to the fan plug/socket on your motherboard.",
-
                 "TPM or Trusted Platform Module is a microchip attached to the motherboard that proviedes hardware-based"
                 " cybersecurity.",
 
                 "SPI or Serial Port Header is this COM1 hewader that supports a serial port module.",
 
-                "The GPU Power Pins usually consist from 4 to possibly 12 pin connectors.",
+                "The GPU Power Pins usually consist from 8 to possibly 24 pin connectors.",
 
-                "The motherboard Power Pins usually consts from 10 to 24 pin connectors"
+                "The motherboard Power Pins usually consts from 10 to 24 pin connectors",
+
+                "Connects the case buttons and lights to the motherboard"
 
                 ]
 
@@ -220,8 +217,6 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
                 "USB 3.2 is a different from an older generation USB such as 2.0 as it is faster, transferring up to"
                 "20Gpbs.",
 
-                "USB 2.0 is an older version of current USBs which also supply lower transfer rates.",
-
                 "The HD_AUDIO cable connects the front audio/mic jack connecters from your case rto your motherboard, so they"
                 " can be used. You can plug there whatever you'd like: speakers, headphones, etc...",
 
@@ -236,9 +231,6 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
 
                 "This connecter is used to supply additional 12V current to he motherboard, which is used to power most devices on it.",
 
-                "It is used to plug a Chassis/case fan (optional)",
-
-
                 "You can add TPM to your PC if it doens't come with one, but youll need this TPM header to do so.",
 
                 "This allows a seperate display output specific for older monitors or TVs which support SPI.",
@@ -247,7 +239,9 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
                 "enough power, then the speed of the GPU and even the entire computer will slow down.",
 
                 "These Pins power most of the motherbaord, including the pcie slots, ram, any storage devices, and any "
-                "headers or peripherals."
+                "headers or peripherals.",
+
+                "The cable allows the power button to work and if included, led will power on."
 
                 ]
 
