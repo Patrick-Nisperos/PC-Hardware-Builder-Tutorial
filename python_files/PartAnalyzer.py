@@ -44,7 +44,7 @@ partImages = [
                 ["../images/USB2.0Header.jpg", "../images/USB3.2Header.png"],
                 ["../images/FrontPanelAudioHeader.jpg", "../images/FrontPanelAudioHeader2.jpg"],
                 ["../images/ThunderBoltCard.jpg", "../images/TBTHeaderCable.jpg"],
-                ["../images/Sataconnecter.jpg", "../images/SataCable.jpg"],
+                ["../images/sataconnector.jpg", "../images/SataCable.jpg"],
                 ["../images/AddHeader.jpg", "../images/RGBHeader2.jpg"],
                 ["../images/CPUFanHeader.jpg", "../images/CPUFanHeader2.jpg"],
                 ["../images/ATXPower.jpg", "../images/cpuAtx.jpg"],
