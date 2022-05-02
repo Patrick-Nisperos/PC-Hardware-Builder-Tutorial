@@ -165,8 +165,8 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 "The M.2 Slot is a format designed for manufacterurs to replace a variety of specific devices"
                 " and do it in a tiny space, and require very little power with just 4 PCIe lanes.",
 
-                "RAM slots are vertical slots, typically numbering three or four, which are located"
-                " at the upper-right corner of the motherboard.",
+                "RAM slots are vertical slots, typically numbering from two or four, located"
+                " to right of the CPU.",
 
                 "The USB 3.2 Gen1 Header allows the computer to add extra USB ports.",
 
@@ -185,7 +185,7 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
 
                 "ATX is a connecter that connects the power supply to an ATX style MotherBoard.",
 
-                "TPM or Trusted Platform Module is a microchip attached to the motherboard that proviedes hardware-based"
+                "TPM or Trusted Platform Module is a microchip attached to the motherboard that provides hardware-based"
                 " cybersecurity.",
 
                 "SPI or Serial Port Header is this COM1 hewader that supports a serial port module.",
@@ -253,7 +253,7 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
                 " pluggewd into the M.2 slot at the same time.",
 
                 "A RAM slot is just a slot for the RAM to be inserted."
-                " RAM sticks should be inserted in every other slot (Dual Channel mode) which allows the computer to take"
+                " Ram comes in pairs (apply in odds); two RAM sticks should be inserted in every other slot (Dual Channel mode) which allows the computer to take"
                 " full advantage. In addition, make sure these RAM sticks have the same speed.",
 
                 "USB 3.2 is a different from an older generation USB such as 2.0 as it is faster, transferring up to"
@@ -273,7 +273,7 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
 
                 "This connecter is used to supply additional 12V current to he motherboard, which is used to power most devices on it.",
 
-                "You can add TPM to your PC if it doens't come with one, but youll need this TPM header to do so.",
+                "You can add TPM to your PC if it doesn't come with one, but you'll need this TPM header to do so as it adds secuity.",
 
                 "This allows a seperate display output specific for older monitors or TVs which support SPI.",
 
