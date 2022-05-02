@@ -316,6 +316,8 @@ class Ui_MotherBoard(object):
         self.sataconnecter2 = Labels.Part(MainWindow, "Sata connecters", 650, 935, 50, 20)
         self.sataconnecter3 = Labels.Part(MainWindow, "Sata connecters", 680, 600, 50, 100)
 
+
+
         self.RGBHeader1 = Labels.Part(MainWindow, "LED", 660, 80, 20, 40)
         self.addHeader1 = Labels.Part(MainWindow, "LED", 690, 80, 20, 40)
         self.RGBHeader2 = Labels.Part(MainWindow, "LED", 280, 920, 40, 20)
@@ -333,6 +335,7 @@ class Ui_MotherBoard(object):
         self.audioButton.setGeometry(QtCore.QRect(1400, 25, 70, 31))
         self.audioButton.setText("Toggle Music")
         self.audioButton.setObjectName("audioButton")
+
         
         # call io ports
         self.io_ports(MainWindow)
