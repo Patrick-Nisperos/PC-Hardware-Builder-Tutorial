@@ -1,11 +1,9 @@
 import os
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QDrag, QPixmap, QColor
-
 import PartAnalyzer as Analyzer
 import buildMode
 
@@ -23,7 +21,7 @@ class Part(QLabel):
         self.setMouseTracking(True)
         self.clear()
         self.setStyleSheet("QLabel::hover{background-color: yellow;}")
-
+        #self.adjustSize()
         self.setObjectName(self.name)
         self.setGraphicsEffect(self.effect)
     
