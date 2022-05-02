@@ -306,6 +306,16 @@ class Ui_Quiz(object):
             self.question_num = self.question_num - 1
             self.set_questions_answers(self.question_num)
             self.deselect_buttons()
+        if (self.question_num == 8):
+            self.link.setText("<a href='https://en.wikipedia.org/wiki/CMOS'>Click me to learn more!</a>")
+        elif(self.question_num == 7):
+            self.link.setText("<a href='https://en.wikipedia.org/wiki/Solid-state_drive'>Click me to learn more!</a>")
+        elif(self.question_num == 5):
+            self.link.setText("<a href='https://en.wikipedia.org/wiki/Random-access_memory'>Click me to learn more!</a>")
+        elif(self.question_num == 3):
+            self.link.setText("<a href='https://en.wikipedia.org/wiki/Graphics_processing_unit'>Click me to learn more!</a>")
+        elif(self.question_num == 1):
+            self.link.setText("<a href='https://en.wikipedia.org/wiki/Central_processing_unit'>Click me to learn more!</a>")
 
     def click_events(self):
         self.next_button.clicked.connect(lambda: self.next_question())
