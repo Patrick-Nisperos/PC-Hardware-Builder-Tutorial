@@ -19,7 +19,7 @@ class Ui_Quiz(object):
     def contents(self):
         self.questions = ["What is the CPU for computers?", "Where does the CPU go?", "What is the GPU for computers?", "Where does the GPU go?", "What is the RAM for computers?", "Where does the RAM go?", "What is an SSD for computers?", "Where does the SSD go?", "What is the CMOS for computers?"]
         
-        self.question_images = ["../images/ryzen9.JPG","../images/motherboard_question.png", "../images/gpu.png","../images/motherboard_question.png", "../images/ram stick.jpg", "../images/motherboard_question.png", "../images/m.2_ssd.jpg", "../images/motherboard_question.png", "../images/cmos.jpg"]
+        self.question_images = ["../images/ryzen9.JPG","../images/motherboard_question.png", "../images/gpu.png","../images/motherboard_question.png", "../images/ram stick.png", "../images/motherboard_question.png", "../images/m.2_ssd.jpg", "../images/motherboard_question.png", "../images/cmos.jpg"]
 
         self.question_images_sizes = [[690,210,200,200],[590,140,342,415],[590,210,402,287],[590,140,342,415], [590,210,400,100],[590,140,342,415], [590,210,400,100],[590,140,342,415], [720,210,200,200]] # 1st - x pos, 2nd - y pos, 3rd - width, 4th - height
 
@@ -366,7 +366,7 @@ class Ui_Quiz(object):
     def check_quiz_complete(self):
         print(len(self.questions_answered_correct))
         print(self.total_question_num)
-        if (len(self.questions_answered_correct) == 1):# self.total_question_num):
+        if (len(self.questions_answered_correct) == self.total_question_num):
            self.finish_button.show()
 
     def open_quiz_complete(self):
