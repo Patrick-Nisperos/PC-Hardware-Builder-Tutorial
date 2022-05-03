@@ -13,6 +13,7 @@ from PyQt5.QtCore import QUrl
 from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
 
 import mainMenu
+import quiz_complete
 
 class Ui_Quiz(object):
     def contents(self):
@@ -217,7 +218,6 @@ class Ui_Quiz(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.set_questions_answers(self.question_num)
 
-    
     def retranslateQuiz(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -237,9 +237,7 @@ class Ui_Quiz(object):
         self.progress_bar.setValue(value)
 
     def check_answer(self, answer):
-        print("answer", answer)
         correct_answer = self.answer_indexes[self.question_num]
-        print("correct", correct_answer)
         if (answer == correct_answer):
             self.question_status_text.setText("Correct!")
             self.question_status_text.setStyleSheet("color: rgb(0, 255, 0);")
@@ -255,14 +253,14 @@ class Ui_Quiz(object):
             self.question_status_text.setText("Incorrect!")
             self.question_status_text.setStyleSheet("color: rgb(255, 0, 0);")
             self.playSoundWrong()
+        self.check_quiz_complete()
 
     def next_question(self):
-        print(self.question_num)
         if (self.question_num < self.total_question_num - 1):
             self.question_num = self.question_num + 1
             self.deselect_buttons()
             self.set_questions_answers(self.question_num)
-
+            
     def prev_question(self):
         if (self.question_num > 0):
             self.question_num = self.question_num - 1
@@ -277,8 +275,6 @@ class Ui_Quiz(object):
         self.answer_button2.toggled.connect(lambda: self.check_answer(1))
         self.answer_button3.toggled.connect(lambda: self.check_answer(2))
         self.answer_button4.toggled.connect(lambda: self.check_answer(3))
-
-
 
     def set_questions_answers(self, question_num):
         self.question_text.setText(self.questions[question_num])
@@ -322,7 +318,17 @@ class Ui_Quiz(object):
         self.ui.setupUi(self.window)
         self.window.show()
 
+    def check_quiz_complete(self):
+        print(len(self.questions_answered_correct))
+        print(self.total_question_num)
+        if (len(self.questions_answered_correct) == self.total_question_num):
+            self.open_quiz_complete()
 
+    def open_quiz_complete(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = quiz_complete.Ui_QuizComplete()
+        self.ui.setupUi(self.window)
+        self.window.show()
 
 
     
