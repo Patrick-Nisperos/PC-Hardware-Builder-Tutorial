@@ -109,6 +109,7 @@ class Ui_QuizComplete(object):
 
         # Main menu button
         self.main_menu_button.clicked.connect(lambda: self.openMain())
+        self.main_menu_button.clicked.connect(MainWindow.close)
 
         # Exit button
         self.exit_button.clicked.connect(lambda: sys.exit(app.exec_()))
