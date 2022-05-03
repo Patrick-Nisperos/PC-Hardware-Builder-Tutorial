@@ -144,3 +144,4 @@ class NameLabel(QLabel):
         self.setFont(font)
         self.setAlignment(QtCore.Qt.AlignCenter)
         self.setText(name)
+        

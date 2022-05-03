@@ -63,7 +63,7 @@ class Ui_MotherBoard(object):
 
     def hidePowerATX(self):
         self.power_atx.hide()
-        self.power_atx_label.hide()
+        #self.power_atx_label.hide()
 
 
     def openPartAnalyzer(self, name, description, description2,  image, image2, width, height, width2, height2):
@@ -175,36 +175,40 @@ class Ui_MotherBoard(object):
         self.cpu_label.setStyleSheet("color: white")
         self.cpu_atx_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1040, 70, 151, 31, "CPU ATX Power")
         self.cpu_atx_label.setStyleSheet("color: white")
+        self.cpu_atx_label.adjustSize()
         self.cpu_atx_label.hide()
 
         self.cpu_cooler_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1220, 70, 151, 31, "CPU Cooler")
         self.cpu_cooler_label.setStyleSheet("color: white")
         self.cpu_fan_header_connecter_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1220, 70, 151, 31, "CPU Fan Header")
         self.cpu_fan_header_connecter_label.setStyleSheet("color: white")
+        self.cpu_fan_header_connecter_label.adjustSize()
         self.cpu_fan_header_connecter_label.hide()
 
         self.gpu_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1130, 210, 151, 31, "GPU")
         self.gpu_label.setStyleSheet("color: white")
-        self.GPU16PinLabel = Labels.NameLabel(self.centralwidget, 12, False, 75, 1130, 210, 151, 31, "GPU 16 Pin Connecter")
-        self.GPU16PinLabel.hide()
+        self.GPU16PinLabel = Labels.NameLabel(self.centralwidget, 12, False, 75, 1080, 210, 151, 31, "GPU 16 Pin Connecter")
         self.GPU16PinLabel.setStyleSheet("color: white")
         self.GPU16PinLabel.adjustSize()
+        self.GPU16PinLabel.hide()
 
-        self.power_atx_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 370, 151, 31, "Power ATX 24 Pin")
+        self.power_atx_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1100, 370, 151, 31, "Power ATX 24 Pin")
         self.power_atx_label.setStyleSheet("color: white")
+        self.power_atx_label.adjustSize()
         self.power_atx_label.hide()
 
         self.ram_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 370, 151, 31, "RAM Sticks")
         self.ram_label.setStyleSheet("color: white")
 
-        self.usb32_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 530, 151, 31, "USB 3.2")
+        self.usb32_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1170, 530, 151, 31, "USB 3.2")
         self.usb32_label.setStyleSheet("color: white")
+        self.usb32_label.adjustSize()
         self.usb32_label.hide()
         self.ssd_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 530, 151, 31, "M.2 SSD")
         self.ssd_label.setStyleSheet("color: white")
         self.hover_description_label = Labels.NameLabel(self.centralwidget, 14, True, 75, 1092, 650, 250, 31, "Part Description")
         self.hover_description_label.setStyleSheet("color: white")
-        self.hover_actual_description_label = Labels.NameLabel(self.centralwidget, 10, False, 0, 1100, 680, 241, 200, "Hover over a Labels.Part to see description!\nRight click to analyze a Labels.Part!")
+        self.hover_actual_description_label = Labels.NameLabel(self.centralwidget, 10, False, 0, 1100, 690, 241, 200, "Hover over a Labels.Part to see description!\nRight click to analyze a Labels.Part!")
         self.hover_actual_description_label.setStyleSheet("color: white")
         self.hover_actual_description_label.setWordWrap(True)
         self.hover_actual_description_label.setLayoutDirection(QtCore.Qt.LeftToRight)
@@ -236,7 +240,7 @@ class Ui_MotherBoard(object):
         self.power_atx.hide()
 
         #USB connecter will replace ssd
-        self.USB32_connecter = Labels.DragLabel(self.centralwidget, "../images/USB2.0HeaderWire.png", "../images/USB2.0HeaderWire.png", 1090, 550, 251, 100, 251, 100, "USB 3.2")
+        self.USB32_connecter = Labels.DragLabel(self.centralwidget, "../images/USB2.0HeaderWire.png", "../images/USB2.0HeaderWire.png", 1160, 560, 120, 90, 120, 90, "USB 3.2")
         self.USB32_connecter.hide()
 
 
@@ -282,7 +286,7 @@ class Ui_MotherBoard(object):
         self.pcie3 = Labels.Part(MainWindow, "PCIe_x1", 170, 890, 80, 30)
 
         #GPU Drop on Motherboard
-        self.gpu = Labels.DropLabel(MainWindow, "../images/3070side.png", 0, 425, 800, 300, "GPU")
+        self.gpu = Labels.DropLabel(MainWindow, "../images/3070side.png", 0, 505, 750, 100, "GPU")
         self.gpuPower = Labels.DropLabel(MainWindow, "../images/gpuConnected.jpg", 450, 500, 150, 100, "GPU Pin")
         #PCIe x16
         self.pcie_x16 = Labels.Part(MainWindow, "PCIe_x16", 170, 760, 321, 31)
@@ -375,6 +379,7 @@ class Ui_MotherBoard(object):
         self.hover_actual_description_label.setText(_translate("MainWindow", "Hover over a part to see description!\nRight click to analyze a part!"))
         self.hover_description_label.setText(_translate("MainWindow", "Part Description"))
         self.hover_description_label.adjustSize()
+
 
     def openMain(self):
         self.window = QtWidgets.QMainWindow()
