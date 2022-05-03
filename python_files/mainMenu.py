@@ -13,7 +13,7 @@ import os
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QUrl
-from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent, QMediaPlaylist
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPixmap
 import buildMode
@@ -37,12 +37,17 @@ class Ui_MainMenu(object):
         self.play_music = False
         self.full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/backgroundMusic.mp3')
         self.url = QUrl.fromLocalFile(self.full_file_path)
-        self.music_player.setMedia(QMediaContent(self.url))
-        self.music_player.play()
-
+        # self.music_player.setMedia(QMediaContent(self.url))
+        # self.music_player.play()
         self.centralwidget = QtWidgets.QWidget(MainMenu)
         self.centralwidget.setObjectName("centralwidget")
-        
+
+        self.playlist = QMediaPlaylist()
+        self.playlist.addMedia(QMediaContent(self.url))
+        self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
+        self.music_player.setPlaylist(self.playlist)
+        self.music_player.play()
+
         self.background = QtWidgets.QLabel(MainMenu)
         self.background.setGeometry(QtCore.QRect(0, 0, 1000, 800))
         self.background.setText("")
@@ -145,11 +150,12 @@ class Ui_MainMenu(object):
         toggle_music_button.setCheckable(self.play_music)
         if toggle_music_button.isChecked():
             self.play_music = False
+
             toggle_music_button.setCheckable(self.play_music)
-            full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/backgroundMusic.mp3')
-            url = QUrl.fromLocalFile(full_file_path)
-            content = QMediaContent(url)
-            self.music_player.setMedia(content)
+            # full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/backgroundMusic.mp3')
+            # url = QUrl.fromLocalFile(full_file_path)
+            # content = QMediaContent(url)
+            # # self.music_player.setMedia(content)
             self.music_player.play()
             print(self.play_music)
         else:
@@ -157,7 +163,6 @@ class Ui_MainMenu(object):
             toggle_music_button.setCheckable(self.play_music)
             self.music_player.stop()
             print(self.play_music)
-
 
 
 if __name__ == "__main__":
