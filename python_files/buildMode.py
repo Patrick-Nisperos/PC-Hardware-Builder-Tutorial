@@ -90,8 +90,8 @@ class Ui_MotherBoard(object):
         self.AtxPower24.matched.connect(lambda: self.hidePowerATX())
 
     def HoverEvent(self, drop):
-        drop.leaveEvent = lambda e: hoverExit(drop.name, self.hover_actual_description_label)
-        drop.enterEvent = lambda e: hoverEnter(drop.name, self.hover_actual_description_label)
+        drop.leaveEvent = lambda e: hoverExit(drop, self.hover_actual_description_label)
+        drop.enterEvent = lambda e: hoverEnter(drop, self.hover_actual_description_label)
     def hover_events(self, MainWindow):
         # PC COMPONENTS hover events
         self.HoverEvent(self.cpu_img)
@@ -163,7 +163,7 @@ class Ui_MotherBoard(object):
         #count to check if ram was installed
         self.countRam = 0
         #labels for style sheet we can send in another parameter for color
-        self.hardware_list_label = Labels.NameLabel(self.centralwidget, 16, True, 75, 1100, 20, 241, 41, "Hardware Components")
+        self.hardware_list_label = Labels.NameLabel(self.centralwidget, 16, True, 75, 1045, 20, 241, 41, "Hardware Components")
         self.hardware_list_label.setStyleSheet("color: white")
 
         self.cpu_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1040, 70, 151, 31, "CPU")
@@ -197,7 +197,7 @@ class Ui_MotherBoard(object):
         self.usb32_label.hide()
         self.ssd_label = Labels.NameLabel(self.centralwidget, 12, False, 75, 1140, 530, 151, 31, "M.2 SSD")
         self.ssd_label.setStyleSheet("color: white")
-        self.hover_description_label = Labels.NameLabel(self.centralwidget, 14, True, 75, 1150, 650, 250, 31, "Part Description")
+        self.hover_description_label = Labels.NameLabel(self.centralwidget, 14, True, 75, 1092, 650, 250, 31, "Part Description")
         self.hover_description_label.setStyleSheet("color: white")
         self.hover_actual_description_label = Labels.NameLabel(self.centralwidget, 10, False, 0, 1100, 680, 241, 200, "Hover over a Labels.Part to see description!\nRight click to analyze a Labels.Part!")
         self.hover_actual_description_label.setStyleSheet("color: white")
