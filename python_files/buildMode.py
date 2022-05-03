@@ -14,7 +14,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QMimeData, Qt
 from PyQt5.QtGui import QDrag, QPixmap, QPainter, QCursor, QImage
 from PyQt5.QtCore import *
-from hover import hoverExit, hoverEnter
+import hover
 import PartAnalyzer as Analyzer
 import mainMenu
 import disasmbleMode
@@ -90,8 +90,8 @@ class Ui_MotherBoard(object):
         self.AtxPower24.matched.connect(lambda: self.hidePowerATX())
 
     def HoverEvent(self, drop):
-        drop.leaveEvent = lambda e: hoverExit(drop, self.hover_actual_description_label)
-        drop.enterEvent = lambda e: hoverEnter(drop, self.hover_actual_description_label)
+        drop.leaveEvent = lambda e: hover.hoverExit(drop, self.hover_actual_description_label)
+        drop.enterEvent = lambda e: hover.hoverEnter(drop, self.hover_actual_description_label)
     def hover_events(self, MainWindow):
         # PC COMPONENTS hover events
         self.HoverEvent(self.cpu_img)
