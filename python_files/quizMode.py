@@ -111,6 +111,24 @@ class Ui_Quiz(object):
         font.setItalic(False)
         font.setUnderline(False)
         font.setWeight(75)
+
+        self.finish_button = QtWidgets.QPushButton(self.centralwidget)
+        self.finish_button.setObjectName("Finish_button")
+        self.finish_button.setGeometry(QtCore.QRect(840, 539, 111, 31))
+        self.finish_button.hide()
+        self.finish_button.clicked.connect(MainWindow.close)
+        self.finish_button.clicked.connect(lambda: self.open_quiz_complete())
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setWeight(75)
+        self.finish_button.setFont(font)
+        self.finish_button.setStyleSheet("color:rgb(0, 255, 255);\n"
+                                        "background-color: rgb(33, 33, 33);")
+
+
         self.previous_button.setFont(font)
         self.previous_button.setStyleSheet("color:rgb(0, 255, 255);\n"
                                         "background-color: rgb(33, 33, 33);")
@@ -202,7 +220,6 @@ class Ui_Quiz(object):
         self.backButton.setText("Back")
         self.backButton.setObjectName("")
         self.backButton.clicked.connect(lambda: self.openMain())
-        self.backButton.clicked.connect(lambda: self.openMain())
         self.backButton.clicked.connect(lambda: self.ui.manage_song(self.backButton))
         self.backButton.clicked.connect(MainWindow.close)
 
@@ -232,6 +249,7 @@ class Ui_Quiz(object):
         self.title.setText(_translate("MainWindow", "Hardware Quiz"))
         self.question_text.setText(_translate("MainWindow", "What is the CPU for computers?"))
         self.next_button.setText(_translate("MainWindow", "Next Question"))
+        self.finish_button.setText(_translate("MainWindow", "Finish"))
         self.previous_button.setText(_translate("MainWindow", "Previous Question"))
         self.question_status_text.setText(_translate("MainWindow", ""))
         self.answer_button1.setText(_translate("MainWindow", "Central Processing Unit - Computes all basic arithmetic and other operations"))
@@ -262,6 +280,7 @@ class Ui_Quiz(object):
             self.question_status_text.setStyleSheet("color: rgb(255, 0, 0);")
             self.playSoundWrong()
         self.check_quiz_complete()
+
 
     def next_question(self):
         if (self.question_num < self.total_question_num - 1):
@@ -297,11 +316,10 @@ class Ui_Quiz(object):
     def click_events(self):
         self.next_button.clicked.connect(lambda: self.next_question())
         self.previous_button.clicked.connect(lambda: self.prev_question())
-
-        self.answer_button1.toggled.connect(lambda: self.check_answer(0))
-        self.answer_button2.toggled.connect(lambda: self.check_answer(1))
-        self.answer_button3.toggled.connect(lambda: self.check_answer(2))
-        self.answer_button4.toggled.connect(lambda: self.check_answer(3))
+        self.answer_button1.toggled.connect(lambda:self.check_answer(0))
+        self.answer_button2.toggled.connect(lambda:self.check_answer(1))
+        self.answer_button3.toggled.connect(lambda:self.check_answer(2))
+        self.answer_button4.toggled.connect(lambda:self.check_answer(3))
 
     def set_questions_answers(self, question_num):
         self.question_text.setText(self.questions[question_num])
@@ -348,9 +366,8 @@ class Ui_Quiz(object):
     def check_quiz_complete(self):
         print(len(self.questions_answered_correct))
         print(self.total_question_num)
-        if (len(self.questions_answered_correct) == self.total_question_num):
-            self.open_quiz_complete()
-            MainWindow.close()
+        if (len(self.questions_answered_correct) == 1):# self.total_question_num):
+           self.finish_button.show()
 
     def open_quiz_complete(self):
         self.window = QtWidgets.QMainWindow()
