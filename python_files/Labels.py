@@ -121,6 +121,13 @@ class DropLabel(QLabel):
             event.acceptProposedAction()
             self.matched.emit()
             self.playsound()
+        else:
+            self.music_player = QMediaPlayer()
+            self.full_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sounds/wrong.mp3')
+            self.url = QUrl.fromLocalFile(self.full_file_path)
+            self.music_player.setMedia(QMediaContent(self.url))
+            self.music_player.setVolume(30)
+            self.music_player.play()
 
     def playsound(self):
         self.music_player = QMediaPlayer()

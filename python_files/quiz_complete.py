@@ -10,7 +10,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QMovie
-
 import mainMenu
 
 
@@ -112,7 +111,7 @@ class Ui_QuizComplete(object):
         self.main_menu_button.clicked.connect(MainWindow.close)
 
         # Exit button
-        self.exit_button.clicked.connect(lambda: sys.exit(app.exec_()))
+        self.exit_button.clicked.connect(MainWindow.close)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
