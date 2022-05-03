@@ -80,6 +80,8 @@ class Ui_MotherBoard(object):
         self.HoverEvent(self.SPI)
         self.HoverEvent(self.CHAFans0)
         self.HoverEvent(self.CHAFans)
+        self.HoverEvent(self.caseHeader)
+        self.HoverEvent(self.thunderBolt)
 
 
 
@@ -201,10 +203,12 @@ class Ui_MotherBoard(object):
         self.USB32P0 = Labels.Part(MainWindow, "USB 3.2", 420, 930, 75, 25)
         self.USB32P1 = Labels.Part(MainWindow, "USB 3.2", 755, 430, 25, 75)
         self.frontPanelAudio = Labels.Part(MainWindow, "Front Panel Audio Header", 90, 935, 40,20)
-        self.thunderBolt = Labels.Part(MainWindow, "Thunderbolt AIC Connector", 165, 845, 50, 30)
+        self.thunderBolt = Labels.Part(MainWindow, "Thunderbolt AIC connecter", 165, 845, 50, 30)
         self.sataConnector1 = Labels.Part(MainWindow, "Sata connecters", 580, 940, 50, 20)
         self.sataConnector2 = Labels.Part(MainWindow, "Sata connecters", 630, 940, 50, 20)
         self.sataConnector3 = Labels.Part(MainWindow, "Sata connecters", 750, 550, 40, 60)
+        self.caseHeader = Labels.Part(MainWindow, "Case Header", 720, 940, 80, 20)
+
         self.addHeader1 = Labels.Part(MainWindow, "LED", 715, 18, 40, 20)
         self.addHeader2 = Labels.Part(MainWindow, "LED", 715, 40, 40, 20)
         self.RGBHeader3 = Labels.Part(MainWindow, "LED", 310, 940, 40, 20)

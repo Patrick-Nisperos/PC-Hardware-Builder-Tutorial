@@ -96,8 +96,11 @@ class Ui_MotherBoard(object):
         # PC COMPONENTS hover events
         self.HoverEvent(self.cpu_img)
         self.HoverEvent(self.cpu)
+        self.HoverEvent(self.cpu_atx)
+        self.HoverEvent(self.cpu_fan_header_connecter)
         self.HoverEvent(self.gpu)
         self.HoverEvent(self.gpu_img)
+        self.HoverEvent(self.GPU16Pin)
         self.HoverEvent(self.ram1)
         self.HoverEvent(self.ram2)
         self.HoverEvent(self.ram3)
@@ -131,6 +134,8 @@ class Ui_MotherBoard(object):
         self.HoverEvent(self.RGBHeader2)
         self.HoverEvent(self.CPUHeader1)
         self.HoverEvent(self.ATXPower)
+        self.HoverEvent(self.power_atx)
+        self.HoverEvent(self.USB32_connecter)
         self.HoverEvent(self.caseHeader)
         self.HoverEvent(self.TPM)
         self.HoverEvent(self.SPI)
@@ -231,7 +236,7 @@ class Ui_MotherBoard(object):
         self.power_atx.hide()
 
         #USB connecter will replace ssd
-        self.USB32_connecter = Labels.DragLabel(self.centralwidget, "../images/USB2.0HeaderWire.png", "../images/USB2.0HeaderWire.png", 1090, 550, 251, 100, 251, 100, "USB32")
+        self.USB32_connecter = Labels.DragLabel(self.centralwidget, "../images/USB2.0HeaderWire.png", "../images/USB2.0HeaderWire.png", 1090, 550, 251, 100, 251, 100, "USB 3.2")
         self.USB32_connecter.hide()
 
 
@@ -297,7 +302,7 @@ class Ui_MotherBoard(object):
         self.cmos = Labels.Part(MainWindow, "CMOS", 415, 625, 60, 60)
 
         #drop label for one of the usb headers
-        self.USB32_connected = Labels.DropLabel(MainWindow, "../images/usb3.2Connected.jpg",  380, 920, 100, 80, "USB32")
+        self.USB32_connected = Labels.DropLabel(MainWindow, "../images/usb3.2Connected.jpg",  380, 920, 100, 80, "USB 3.2")
 
         #drop label for 24pin atx power
         self.AtxPower24 = Labels.DropLabel(MainWindow, "../images/24pinRotated.png",  680, 300, 40, 150, "Power ATX")
@@ -309,7 +314,9 @@ class Ui_MotherBoard(object):
         self.thunderBolt = Labels.Part(MainWindow, "Thunderbolt AIC connecter", 250, 800, 50, 20)
         self.sataconnecter1 = Labels.Part(MainWindow, "Sata connecters", 600, 935, 50, 20)
         self.sataconnecter2 = Labels.Part(MainWindow, "Sata connecters", 650, 935, 50, 20)
-        self.sataconnecter3 = Labels.Part(MainWindow, "Sata connecters", 750, 550, 40, 60)
+        self.sataconnecter3 = Labels.Part(MainWindow, "Sata connecters", 680, 600, 50, 100)
+
+
 
         self.RGBHeader1 = Labels.Part(MainWindow, "LED", 660, 80, 20, 40)
         self.addHeader1 = Labels.Part(MainWindow, "LED", 690, 80, 20, 40)
@@ -317,7 +324,7 @@ class Ui_MotherBoard(object):
         self.addHeader2 = Labels.Part(MainWindow, "LED", 270, 940, 40, 20)
 
         self.CPUHeader1 = Labels.Part(MainWindow, "CPU Fan Header", 650, 45, 60, 40)
-        self.ATXPower = Labels.Part(MainWindow, "ATX Power connecter", 760, 145, 30, 30)
+        self.ATXPower = Labels.Part(MainWindow, "CPU ATX Power", 760, 145, 30, 30)
 
         self.caseHeader = Labels.Part(MainWindow, "Case Header", 500, 940, 80, 20)
 
@@ -328,6 +335,7 @@ class Ui_MotherBoard(object):
         self.audioButton.setGeometry(QtCore.QRect(1400, 25, 70, 31))
         self.audioButton.setText("Toggle Music")
         self.audioButton.setObjectName("audioButton")
+
         
         # call io ports
         self.io_ports(MainWindow)
