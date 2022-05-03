@@ -8,7 +8,7 @@ from PyQt5.QtGui import QDrag, QPixmap, QColor
 
 import PartAnalyzer as Analyzer
 import mainMenu
-from hover import hoverExit, hoverEnter
+import hover
 import Labels
 
 class Ui_MotherBoard(object):
@@ -28,8 +28,8 @@ class Ui_MotherBoard(object):
         self.ssd_img.matched.connect(lambda: self.m2.hide())
 
     def HoverEvent(self, drop):
-        drop.leaveEvent = lambda e: hoverExit(drop, self.hover_actual_description_label)
-        drop.enterEvent = lambda e: hoverEnter(drop, self.hover_actual_description_label)
+        drop.leaveEvent = lambda e: hover.hoverExit(drop, self.hover_actual_description_label)
+        drop.enterEvent = lambda e: hover.hoverEnter(drop, self.hover_actual_description_label)
     
     def hover_events(self, MainWindow):
         # PC COMPONENTS hover events
