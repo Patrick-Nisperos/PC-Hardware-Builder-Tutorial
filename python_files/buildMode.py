@@ -61,7 +61,8 @@ class Ui_MotherBoard(object):
 
     def hidePowerATX(self):
         self.power_atx.hide()
-        #self.power_atx_label.hide()
+        #self.power_atx_label.hide() 
+        #commented out to make it consistent with others as this is the last one it should not disappear when matched
 
     def openPartAnalyzer(self, name, description, description2,  image, image2, width, height, width2, height2):
         self.partView = QtWidgets.QMainWindow()
