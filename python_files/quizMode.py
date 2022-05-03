@@ -241,8 +241,8 @@ class Ui_Quiz(object):
         self.progress_text.setText(_translate("MainWindow", "Quiz Progress"))
 
     def update_progress_bar(self):
-        value = (float(len(self.questions_answered_correct)) / self.total_question_num) * 100 # Value in percentage
-        self.progress_bar.setValue(value)
+        value = (float(len(self.questions_answered_correct)) / float(self.total_question_num)) * 100 # Value in percentage
+        self.progress_bar.setValue(int(value))
 
     def check_answer(self, answer):
         correct_answer = self.answer_indexes[self.question_num]
@@ -350,6 +350,7 @@ class Ui_Quiz(object):
         print(self.total_question_num)
         if (len(self.questions_answered_correct) == self.total_question_num):
             self.open_quiz_complete()
+            MainWindow.close()
 
     def open_quiz_complete(self):
         self.window = QtWidgets.QMainWindow()

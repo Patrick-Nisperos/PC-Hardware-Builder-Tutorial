@@ -47,8 +47,6 @@ class Ui_MotherBoard(object):
         self.gpu_label.hide()
         self.GPU16Pin.show()
         self.GPU16PinLabel.show()
-        #self.sata_label.show()
-        #self.sata.show()
 
     def hideSSD(self):
         self.m2_img.hide()
@@ -64,7 +62,6 @@ class Ui_MotherBoard(object):
     def hidePowerATX(self):
         self.power_atx.hide()
         self.power_atx_label.hide()
-
 
     def openPartAnalyzer(self, name, description, description2,  image, image2, width, height, width2, height2):
         self.partView = QtWidgets.QMainWindow()
@@ -92,6 +89,7 @@ class Ui_MotherBoard(object):
     def HoverEvent(self, drop):
         drop.leaveEvent = lambda e: hover.hoverExit(drop, self.hover_actual_description_label)
         drop.enterEvent = lambda e: hover.hoverEnter(drop, self.hover_actual_description_label)
+
     def hover_events(self, MainWindow):
         # PC COMPONENTS hover events
         self.HoverEvent(self.cpu_img)
@@ -139,8 +137,6 @@ class Ui_MotherBoard(object):
         self.HoverEvent(self.caseHeader)
         self.HoverEvent(self.TPM)
         self.HoverEvent(self.SPI)
-
-
 
     def io_ports(self, MainWindow):
         # IO PORTS INVISIBLE IMAGES
@@ -316,8 +312,6 @@ class Ui_MotherBoard(object):
         self.sataconnecter2 = Labels.Part(MainWindow, "Sata connecters", 650, 935, 50, 20)
         self.sataconnecter3 = Labels.Part(MainWindow, "Sata connecters", 680, 600, 50, 100)
 
-
-
         self.RGBHeader1 = Labels.Part(MainWindow, "LED", 660, 80, 20, 40)
         self.addHeader1 = Labels.Part(MainWindow, "LED", 690, 80, 20, 40)
         self.RGBHeader2 = Labels.Part(MainWindow, "LED", 280, 920, 40, 20)
@@ -335,8 +329,7 @@ class Ui_MotherBoard(object):
         self.audioButton.setGeometry(QtCore.QRect(1400, 25, 70, 31))
         self.audioButton.setText("Toggle Music")
         self.audioButton.setObjectName("audioButton")
-
-        
+ 
         # call io ports
         self.io_ports(MainWindow)
 
