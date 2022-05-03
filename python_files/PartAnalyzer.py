@@ -16,9 +16,9 @@ from PyQt5.QtCore import *
 
 partNames = ["CPU", "GPU", "CPU-COOLER", "RAM", "SSD", "MotherBoard", "CMOS", "PCIe_x1", "PCIe_x16", "CPU Power ATX", 
              "ANTENNA", "HDMI", "USB3.2_PS2", "USB3.2_TypeA_TypeC", "LAN_USB2.0", "AUDIO-JACKS", "CPU-SOCKET", "M.2 Slot", "RAM Slot",
-             "USB32", "USB20", "Front Panel Audio Header", "Thunderbolt AIC connecter", "Sata connecters", "LED",
-             "CPU Fan Header", "ATX Power Connecter", "Chassis/Waterpump fan connecter", "TPM Header", "Serial Port Header", "GPU Pin",
-             "Power ATX"]
+             "USB 3.2", "Front Panel Audio Header", "Thunderbolt AIC connecter", "Sata connecters", "LED",
+             "CPU Fan Header", "ATX Power Connecter", "TPM Header", "Serial Port Header", "GPU Pin",
+             "Power ATX", "Case Header", "CHA/Waterpump fan connector"]
 
 partImages = [
                 ["../images/i7_cpu.jpg", "../images/ryzen9.jpg"], 
@@ -26,7 +26,7 @@ partImages = [
                 ["../images/cpu_cooler2.png", "../images/water_cooled.jpg"],
                 ["../images/ramstick.png", "../images/ram.png"],
                 ["../images/m.2_ssd.jpg", "../images/ssd.png"],
-                ["../images/IntelMotherBoard2.jpg", "../images/clear_image.png"],
+                ["../images/motherboardReplace.png", "../images/clear_image.png"],
                 ["../images/cmos.jpg", "../images/cmos2.png"],
                 ["../images/network_adapter.jpg", "../images/port_expansion.jpg"],
                 ["../images/port_expansion.jpg", "../images/gpu2.png"],
@@ -42,18 +42,18 @@ partImages = [
                 ["../images/ram_slots.png", "../images/ram_slots2.png"],
                 
                 ["../images/USB2.0Header.jpg", "../images/USB3.2Header.png"],
-                ["../images/USB2.0Header.jpg", "../images/USB2.0HeaderWire.png"],
                 ["../images/FrontPanelAudioHeader.jpg", "../images/FrontPanelAudioHeader2.jpg"],
                 ["../images/ThunderBoltCard.jpg", "../images/TBTHeaderCable.jpg"],
-                ["../images/Sataconnecter.jpg", "../images/SataCable.jpg"],
+                ["../images/sataconnector.jpg", "../images/SataCable.jpg"],
                 ["../images/AddHeader.jpg", "../images/RGBHeader2.jpg"],
                 ["../images/CPUFanHeader.jpg", "../images/CPUFanHeader2.jpg"],
                 ["../images/ATXPower.jpg", "../images/cpuAtx.jpg"],
-                ["../images/CHAFan.jpg", "FanHeader.jpg"],
                 ["../images/TPM.jpg", "../images/TPM2.jpg"],
-                ["../images/ATXPower.jpg", ""],
+                ["../images/SPI.jpg", "../images/SPI2.jpg"],
                 ["../images/gpuConnected.jpg", "../images/GPU16Pin.png"],
-                ["", ""]
+                ["../images/24.png", "../images/24pinCable.jpg"],
+                ["../images/caseIO.jpg", "../images/caseConnector.jpg"],
+                ["../images/CHAFan.jpg", "../images/water_cooled.jpg"]
 
               ]
 
@@ -63,11 +63,50 @@ partCoordinates = [
                     [200, 200, 400, 200], [200, 150, 300, 240], [350, 80, 300, 240], [350, 80, 350, 240],
                     [350, 80, 350, 80],[350, 80, 350, 80],[350, 80, 350, 80], [350,80,350,100],
                     [200,200,200,200], [200,200,200,200], [200, 200, 300, 200], [200,200,200,200],
-                    [200,200,200,200],[200,200,200,200], [200,200,200,200], [200,200,200,200], [200,200,200,200],
-                    [200,200,200,200], [200,200,200,200], [200,200,200,200] ,[200,200,200,200],
-                    [200,200,200,200], [200, 200, 200, 200], [200,200,200,200]
+                    [200,200,200,200], [200,200,200,200], [200,200,200,200], [200,200,200,200],
+                    [200,200,200,200], [200,200,200,200] ,[200,200,200,200], [200,200,200,200],
+                    [200,200,200,200], [200, 200, 200, 200], [200,200,200,200], [200,200,200,200]
 
                   ]
+
+shortDescriptions = ["CPU stands for Central Processing Unit. The CPU is the BRAIN of the computer,"
+                    " containing all the circuitry needed to process input, store data, and output results.",
+                    "GPU stands for Graphics Processing Unit (Graphics Card. The GPU is a specialized electronic"
+                    " circuit that accelerates the creation and rendering of images, video, and animation.",
+                    "CPU cooler removes the heat produced from the cpu to keep it from overheating and becoming damaged.",
+                    "RAM stands for Random Access Memory. The RAM is short term memory where data is stored as the processor needs it.",
+                    "SSD stands for Solid-State Drive. M.2 is a form factor for SSDs. Similiar to a Hard drive, an SSD stores data even when the pc is off."
+                    " However it uses flash memory and is much faster.",
+                    "MotherBoard",
+                    "CMOS battery powers BIOS firmware",
+                    "PCIe x1 is a slot for low demanding PCIe expansion card",
+                    "PCIe x16 is a slot for expansion card with high bandwith requirements like graphics card",
+                    "The CPU Pin Connector powers the CPU and varies in number of pins.",
+                    "These are antenna ports for wifi",
+                    "This is a port for HDMI connection",
+                    "This is a port for USB3.2 and PS/2",
+                    "This is a port for USB3.2 type-A and USB3.2 type-C",
+                    "This is a port for LAN or local area network ethernet and USB2.0",
+                    "This is a port for audio jacks for sound and mic",
+                    "CPU Socket",
+                    "M.2",
+                    "These are slots for RAM sticks",
+                    "These are USB 3.2 slots",
+                    "Allows audio connection to the case's ports",
+                    "Thunderbolt AIC gives users a chance to use one cable to access high-speed and high resolution media",
+                    "Powers various hardware components such as drives",
+                    "LED Headers just allow connection to led striped and other lighted accessories",
+                    "CPU Fan Header is used to mainly power the fan on the CPU.",
+                    "The ATX Power Connector powers most of the system",
+                    "The TPM Header allows connection to a microchip ",
+                    "The COM header allows an extra serial port",
+                    "The GPU pins power the GPU which also varies in number of pins",
+                    "Power ATX powers most of the system",
+                    "The Case header connects the motherboard to the case allowing the case to turn off the system and more.",
+                    "The CHA Fan or Waterpump connector allows an extra connection to a case fan."
+
+
+                    ]
 
 #Index is CPU as 0, GPU, RAM, CPU-COOLER, SSD
 descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
@@ -126,20 +165,18 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
                 "The M.2 Slot is a format designed for manufacterurs to replace a variety of specific devices"
                 " and do it in a tiny space, and require very little power with just 4 PCIe lanes.",
 
-                "RAM slots are vertical slots, typically numbering three or four, which are located"
-                " at the upper-right corner of the motherboard.",
+                "RAM slots are vertical slots, typically numbering from two or four, located"
+                " to right of the CPU.",
 
                 "The USB 3.2 Gen1 Header allows the computer to add extra USB ports.",
-
-                "The USB 2.0 Header allows the computer to add extra USB ports.",
 
                 "The Front Panel audio header is usually located on the lower left of your motherboard and it basically"
                 "connects your audio.",
 
-                "Thunderbold consists of 4 PCI Expresslanes and a DisplayPort connection. An Add-in card (AIC) gets these from"
+                "Thunderbolt consists of 4 PCI Expresslanes and a DisplayPort connection. An Add-in card (AIC) gets these from"
                 "the PCIe slot and the DisplayPort cable you plug into the card.",
 
-                "Sata ports are generally known as connecters, and they are used to connect hard drives to motherboards.",
+                "Sata ports are generally known as sata connecters, and they are used to power hardware to motherboards.",
 
 
                 "Used for connecting to LED strips and other accessories to your PC.",
@@ -148,16 +185,18 @@ descriptions = ["The CPU or Central Processing Unit is the brain of a computer,"
 
                 "ATX is a connecter that connects the power supply to an ATX style MotherBoard.",
 
-                "THE CHA_FAN or Chassis/Waterpump fan connecter refers to the fan plug/socket on your motherboard.",
-
-                "TPM or Trusted Platform Module is a microchip attached to the motherboard that proviedes hardware-based"
+                "TPM or Trusted Platform Module is a microchip attached to the motherboard that provides hardware-based"
                 " cybersecurity.",
 
                 "SPI or Serial Port Header is this COM1 hewader that supports a serial port module.",
 
-                "The GPU Power Pins usually consist from 4 to possibly 12 pin connectors.",
+                "The GPU Power Pins usually consist from 8 to possibly 24 pin connectors.",
 
-                "The motherboard Power Pins usually consts from 10 to 24 pin connectors"
+                "The motherboard Power Pins usually consts from 10 to 24 pin connectors",
+
+                "Connects the case buttons and lights to the motherboard",
+
+                "CHA or chassis is another word for a computer case. So CHA Fans are just case fans headers. "
 
                 ]
 
@@ -214,13 +253,11 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
                 " pluggewd into the M.2 slot at the same time.",
 
                 "A RAM slot is just a slot for the RAM to be inserted."
-                " RAM sticks should be inserted in every other slot (Dual Channel mode) which allows the computer to take"
+                " Ram comes in pairs (apply in odds); two RAM sticks should be inserted in every other slot (Dual Channel mode) which allows the computer to take"
                 " full advantage. In addition, make sure these RAM sticks have the same speed.",
 
                 "USB 3.2 is a different from an older generation USB such as 2.0 as it is faster, transferring up to"
                 "20Gpbs.",
-
-                "USB 2.0 is an older version of current USBs which also supply lower transfer rates.",
 
                 "The HD_AUDIO cable connects the front audio/mic jack connecters from your case rto your motherboard, so they"
                 " can be used. You can plug there whatever you'd like: speakers, headphones, etc...",
@@ -236,10 +273,7 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
 
                 "This connecter is used to supply additional 12V current to he motherboard, which is used to power most devices on it.",
 
-                "It is used to plug a Chassis/case fan (optional)",
-
-
-                "You can add TPM to your PC if it doens't come with one, but youll need this TPM header to do so.",
+                "You can add TPM to your PC if it doesn't come with one, but you'll need this TPM header to do so as it adds secuity.",
 
                 "This allows a seperate display output specific for older monitors or TVs which support SPI.",
 
@@ -247,7 +281,11 @@ descriptions2 = ["The CPU acts as the brain of the computer and performs calcula
                 "enough power, then the speed of the GPU and even the entire computer will slow down.",
 
                 "These Pins power most of the motherbaord, including the pcie slots, ram, any storage devices, and any "
-                "headers or peripherals."
+                "headers or peripherals.",
+
+                "The cable allows the power button to work and if included, led will power on.",
+
+                "The CHA Fans are optional but they provide air flow for the case"
 
                 ]
 
@@ -286,6 +324,7 @@ class Ui_PartAnalyzer(object):
         self.PartName.setObjectName("PartName")
         self.PartName.setText(name)
         self.PartName.setStyleSheet(("font-size: 16pt; color: white;"))
+        self.PartName.adjustSize()
 
         self.Parttitle = QtWidgets.QLabel(self.centralwidget)
         self.Parttitle.setGeometry(QtCore.QRect(480, 110, 251, 51))
